@@ -10,6 +10,7 @@ const UserProfile = () => {
   const [description, setDescription] = useState('');
   const [genre, setGenre] = useState('');
   const [audio, setAudio] = useState('');
+  const [coverArt, setCoverArt] = useState('');
   const dispatch = useDispatch();
 
   const handleName = (e) => setName(e.target.value);
@@ -29,6 +30,7 @@ const UserProfile = () => {
         genre,
         audio,
         uploadedBy: '6283d941aa182558f39eaa19', //temporary field
+        coverArt,
       })
     );
     handleClose();
@@ -57,6 +59,7 @@ const UserProfile = () => {
                   placeholder='Enter Music Name'
                   value={name}
                   onChange={handleName}
+                  required
                 />
               </Form.Group>
 
@@ -67,6 +70,7 @@ const UserProfile = () => {
                   placeholder='Enter Music Description'
                   value={description}
                   onChange={handleDescription}
+                  required
                 />
               </Form.Group>
 
@@ -85,15 +89,24 @@ const UserProfile = () => {
                   placeholder='Enter Genre'
                   value={genre}
                   onChange={handleGenre}
+                  required
                 />
               </Form.Group>
 
               <Form.Group className='mb-3' controlId='formBasicAudio'>
-                <Form.Label>Upload Audio File</Form.Label>
+                <Form.Label>Upload Audio File </Form.Label>
                 <FileUploader
                   type='audio'
                   onFileSelectError={({ error }) => alert(error)}
                   onFileSelectSuccess={(file) => setAudio(file)}
+                />
+              </Form.Group>
+              <Form.Group className='mb-3' controlId='formBasicCoverArt'>
+                <Form.Label>Upload Cover Art </Form.Label>
+                <FileUploader
+                  type='image'
+                  onFileSelectError={({ error }) => alert(error)}
+                  onFileSelectSuccess={(file) => setCoverArt(file)}
                 />
               </Form.Group>
 

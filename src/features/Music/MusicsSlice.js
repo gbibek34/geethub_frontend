@@ -44,6 +44,7 @@ export const createNewMusic = createAsyncThunk(
       genre,
       audio,
       uploadedBy, //temporary field
+      coverArt,
     },
     thunkAPI
   ) => {
@@ -54,6 +55,7 @@ export const createNewMusic = createAsyncThunk(
       formData.append('genre', genre);
       formData.append('audio', audio);
       formData.append('uploadedBy', uploadedBy); // temporary field
+      formData.append('coverArt', coverArt);
       const response = await axios.post(
         'http://localhost:3000/music/new',
         formData,

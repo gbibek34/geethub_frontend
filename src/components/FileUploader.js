@@ -13,11 +13,18 @@ const FileUploader = ({ onFileSelectSuccess, onFileSelectError, type }) => {
         onFileSelectError({ error: 'File type must be mp3 or mpeg' });
       }
     }
+    if (type === 'image') {
+      if (file.type === 'image/jpeg' || file.type === 'image/png') {
+        onFileSelectSuccess(file);
+      } else {
+        onFileSelectError({ error: 'File type must be jpeg or png' });
+      }
+    }
   };
 
   return (
     <div className='file-uploader'>
-      <input type='file' onChange={handleFileInput} />
+      <input type='file' onChange={handleFileInput} required />
 
       {/* <button
         onClick={(e) => fileInput.current && fileInput.current.click()}
