@@ -36,16 +36,27 @@ export const fetchMyMusics = createAsyncThunk(
 
 export const createNewMusic = createAsyncThunk(
   'music/create',
-  async ({ token, name, description, genre, audio }, thunkAPI) => {
+  async (
+    {
+      token,
+      name,
+      description,
+      genre,
+      audio,
+      uploadedBy, //temporary field
+    },
+    thunkAPI
+  ) => {
     try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('description', description);
+      formData.append('genre', genre);
+      formData.append('audio', audio);
+      formData.append('uploadedBy', uploadedBy); // temporary field
       const response = await axios.post(
         'http://localhost:3000/music/new',
-        {
-          name,
-          description,
-          genre,
-          audio,
-        },
+        formData,
         {
           headers: { Authorization: 'Bearer ' + token },
         }
