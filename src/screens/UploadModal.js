@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewMusic } from '../features/Music/MusicsSlice';
 import FileUploader from '../components/FileUploader';
 
-const UserProfile = () => {
+const UploadModal = (props) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -33,12 +33,12 @@ const UserProfile = () => {
         coverArt,
       })
     );
+    props.notifyParent();
     handleClose();
   };
 
   return (
     <div>
-      <p>User Profile</p>
       <Button className='' onClick={handleShow}>
         <div className='feed-text px-2'>
           <h6 className='text-black-50 mt-2'>Add a Music</h6>
@@ -121,4 +121,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UploadModal;

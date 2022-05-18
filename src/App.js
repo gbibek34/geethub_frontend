@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import UserProfile from './screens/UserProfile';
+import MyUploads from './screens/MyUploads';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path='/' element={<UserProfile />} />
+            <Route path='/' element={<MyUploads />} />
           </Routes>
         </div>
       </Router>

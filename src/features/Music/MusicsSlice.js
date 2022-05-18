@@ -11,10 +11,10 @@ const initialStateValue = {
 };
 
 export const fetchMyMusics = createAsyncThunk(
-  'music/user',
+  'music/my',
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('', {
+      const response = await axios.get('http://localhost:3000/music/my', {
         headers: { Authorization: 'Bearer ' + token },
       });
 
@@ -70,7 +70,7 @@ export const createNewMusic = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
       if (data.success === true) {
-        return data;
+        return thunkAPI.fulfillWithValue(data);
       } else {
         return thunkAPI.rejectWithValue(data);
       }
@@ -104,7 +104,7 @@ export const musicsSlice = createSlice({
     [fetchMyMusics.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
-      state.events = payload.data;
+      state.musics = payload.data;
     },
     [createNewMusic.pending]: (state) => {
       state.isFetching = true;
@@ -114,7 +114,7 @@ export const musicsSlice = createSlice({
       state.isError = true;
       state.errorMessage = 'Could not add music';
     },
-    [fetchMyMusics.fulfilled]: (state, { payload }) => {
+    [createNewMusic.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
     },
