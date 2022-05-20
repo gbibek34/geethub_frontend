@@ -1,0 +1,24 @@
+/* signup css */
+
+.btn-cyan{
+  background-color: #3D85A3;
+  color: white;
+}
+
+.loginContinue {
+  width: 250px;
+  margin: auto;
+  color: white;
+}
+.gotoSignup {
+  color: #67686c;
+}
+.loginHeader {
+  margin-bottom: 100px;
+}
+.signupHeader {
+  margin-bottom: 60px;
+}
+
+
+
