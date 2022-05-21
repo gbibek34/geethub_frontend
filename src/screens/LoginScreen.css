@@ -1,0 +1,205 @@
+body {
+    background-color: #ffffff;
+    padding: 0;
+  }
+  
+  .navbar {
+    background-color: #913059;
+    color: white;
+  }
+  .btn-purple{
+    background-color: #913059;
+    color: white;
+  }
+  /* homepage css */
+  .homeElement1 {
+    background-color: #ffffff;
+    min-height: 600px;
+    border-radius: 20px;
+  }
+  
+  .homeElement2{
+    height: 300px;
+    border-radius: 20px;
+    background: linear-gradient(to top right, #0066ff 0%, #cc99ff 100%);
+  }
+  
+  .homeElement3{
+    min-height: 450px;
+    border-radius: 20px;
+  }
+  
+  .homeElement3t{
+    height: 450px;
+    border-radius: 20px;
+  }
+  
+  .indivLecturerCard {
+    width: 300px;
+    height: 450px;
+    background-color: white;
+  }
+  
+  .quoteText {
+    font-size: 2.5em;
+  }
+  .homeHeadingTextBody{
+    font-size: 1.5em;
+  }
+  
+  /* responsive */
+  @media only screen and (max-width: 989px) {
+    .homeHeadingText {
+      margin-top: 2px;
+      font-size: 2em;
+    }
+    .homeElement2 {
+      height: 200px;
+    }
+    .quoteText {
+      font-size: 1.5em;
+    }
+  }
+  
+  /* individual course */
+  .indivCourseOverviewText {
+    font-size: 1.3em;
+  }
+  .indivCourseElement2 {
+    background: linear-gradient(to top right, #6600cc 0%, #ff9900 100%);
+  }
+  .indivCourseAssignment {
+    background-color: white;
+    border-radius: 20px;
+  }
+  .journalElement2 {
+    background: linear-gradient(to bottom right, #cc33ff 0%, #ffcc00 100%);
+  }
+  .gradientCustom {
+    color: #6600cc;
+  }
+  
+  /* asignment submission */
+  .submissionElement2 {
+    background-color: #ffffff;
+    height: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom right, #6600cc 0%, #ff9900 100%);
+  }
+  /* journal */
+  .journalElement1{
+    min-height: 200px;
+  }
+  .journalElement3{
+    background: linear-gradient(to bottom left, #cf427e 0%, #79b1f3 100%);
+  }
+  
+  /* agenda */
+  .agendaElement2{
+    background: linear-gradient(to bottom left, #6600cc 0%, #ffcc66 100%);
+  }
+  .agendaElement3{
+    min-height: 200px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom left, #cf427e 0%, #79b1f3 100%);
+  }
+  /* .indivAgenda{
+    
+  } */
+  .agendaColorTag{
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+  }
+  /* to-do Checklist */
+  .todoChecklist{
+    min-height: 450px;
+    width: 300px;
+    background-color: #FFF5BF;
+    border-radius: 10px;
+  }
+  .checkedboxDito{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background-color: #913059;
+    border-radius: 5px;
+  }
+  .uncheckedboxDito{
+    height: 30px;
+    width: 30px;
+    background-color: #FFF5BF;
+    border: 5px solid #913059;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .deleteList{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background: #FFE76B;
+    border-radius: 5px;
+  }
+  .deleteListItem{
+    border: none;
+    height: 30px;
+    width: 30px;
+    background: #FFF5BF;
+    border-radius: 5px;
+  }
+  
+  /* login and signup */
+  /* login page */
+  .loginContinue {
+    width: 250px;
+    margin: auto;
+    color: white;
+  }
+  .gotoSignup {
+    color: #717171;
+  }
+  .loginHeader {
+    margin-bottom: 100px;
+  }
+  .signupHeader {
+    margin-bottom: 60px;
+  }
+  .picCircle {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    left: 1px;
+    top: 6px;
+    background: #50abff;
+  }
+  .newPostButton{
+    position: relative;
+    left: 10px;
+    top: -13px;
+  }
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  
+  
+  @media only screen and (max-width: 989px) {
+    .loginPic {
+      display: none;
+    }
+    .signupHeader {
+      font-size: 30px;
+    }
+    .halfEntry{
+      margin-bottom: 5px;
+    }
+  }
+  @media only screen and (max-width: 1463px) and (min-width: 989px) {
+    .signupHeader {
+      font-size: 38px;
+    }
+  }
+  
+  
