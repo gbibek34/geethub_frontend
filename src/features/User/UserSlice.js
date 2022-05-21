@@ -25,12 +25,9 @@ export const signupUser = createAsyncThunk(
         passedData
       );
       let data = response.data;
-      console.log(data);
       if (data.success === true) {
-        console.log('success');
         return thunkAPI.fulfillWithValue(data);
       } else {
-        console.log('failed');
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
@@ -54,7 +51,6 @@ export const loginUser = createAsyncThunk(
       );
 
       let data = response.data;
-      console.log(data.success === true);
       if (data.success === true) {
         localStorage.setItem('token', data.token);
         return thunkAPI.fulfillWithValue(data);
@@ -62,7 +58,6 @@ export const loginUser = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      console.log('Error', e.response.data);
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
@@ -81,7 +76,6 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [signupUser.fulfilled]: (state, { payload }) => {
-      console.log('payload', payload);
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
@@ -97,7 +91,6 @@ export const userSlice = createSlice({
       state.errorMessage = 'Registration failed';
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      console.log('payload', payload);
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;

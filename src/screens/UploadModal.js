@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewMusic } from '../features/Music/MusicsSlice';
-import FileUploader from '../components/FileUploader';
+import FileUploader from '../components/MusicUploader';
+import './UploadModal.css';
+import MusicUploader from '../components/MusicUploader';
+import ImageUploader from '../components/ImageUploader';
 
 const UploadModal = (props) => {
   const [show, setShow] = useState(false);
@@ -29,7 +32,6 @@ const UploadModal = (props) => {
         description,
         genre,
         audio,
-        uploadedBy: '6283d941aa182558f39eaa19', //temporary field
         coverArt,
       })
     );
@@ -39,86 +41,99 @@ const UploadModal = (props) => {
 
   return (
     <div>
-      <Button className='' onClick={handleShow}>
-        <div className='feed-text px-2'>
-          <h6 className='text-black-50 mt-2'>Add a Music</h6>
-        </div>
-      </Button>
+      <div type='button' onClick={handleShow} className='upload-button'>
+        + UPLOAD MUSIC
+      </div>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Music</Modal.Title>
+      <Modal
+        className='modal fade'
+        id='MusicUploadModal'
+        tabIndex='-1'
+        aria-labelledby='MusicUploadModalLabel'
+        aria-hidden='true'
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header className='modal-header' closeButton>
+          <Modal.Title className='modal-title' id='MusicUploadModalLabel'>
+            Add Music
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Container>
-            <Form onSubmit={onSubmitHandler}>
-              <Form.Group className='mb-3' controlId='formBasicName'>
-                <Form.Label>Music Name</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Enter Music Name'
-                  value={name}
-                  onChange={handleName}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className='mb-3' controlId='formBasicDescription'>
-                <Form.Label>Music Description</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Enter Music Description'
-                  value={description}
-                  onChange={handleDescription}
-                  required
-                />
-              </Form.Group>
-
-              {/* <Form.Group className='mb-3' controlId='formBasicEventDate'>
-                <Form.Label>Event Date</Form.Label>
-                <ReactDatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                />
-              </Form.Group> */}
-
-              <Form.Group className='mb-3' controlId='formBasicGenre'>
-                <Form.Label>Genre</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Enter Genre'
-                  value={genre}
-                  onChange={handleGenre}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className='mb-3' controlId='formBasicAudio'>
-                <Form.Label>Upload Audio File </Form.Label>
-                <FileUploader
-                  type='audio'
-                  onFileSelectError={({ error }) => alert(error)}
-                  onFileSelectSuccess={(file) => setAudio(file)}
-                />
-              </Form.Group>
-              <Form.Group className='mb-3' controlId='formBasicCoverArt'>
-                <Form.Label>Upload Cover Art </Form.Label>
-                <FileUploader
-                  type='image'
-                  onFileSelectError={({ error }) => alert(error)}
-                  onFileSelectSuccess={(file) => setCoverArt(file)}
-                />
-              </Form.Group>
-
-              <Button variant='primary' className='float-right' type='submit'>
-                Submit
-              </Button>
-            </Form>
-          </Container>
-        </Modal.Body>
+        <form action='post' onSubmit={onSubmitHandler}>
+          <div className='modal-body'>
+            <div className='form-group'>
+              <label htmlFor='MusicName'>Music Name</label>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Music Name'
+                id='MusicName'
+                value={name}
+                onChange={handleName}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='MusicDescription'>Description</label>
+              <input
+                type='text'
+                className='form-control'
+                id='MusicDescription'
+                placeholder='Enter Music Description'
+                value={description}
+                onChange={handleDescription}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='MusicGenre'>Genre</label>
+              <input
+                type='text'
+                className='form-control'
+                id='MusicGenre'
+                placeholder='Enter Genre'
+                value={genre}
+                onChange={handleGenre}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='MusicFile'>Upload Your Music</label>
+              <MusicUploader
+                onFileSelectError={({ error }) => alert(error)}
+                onFileSelectSuccess={(file) => setAudio(file)}
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='UploadCoverArt'>Cover Art</label>
+              <ImageUploader
+                coverArt={coverArt}
+                onFileSelectError={({ error }) => alert(error)}
+                onFileSelectSuccess={(file) => setCoverArt(file)}
+                onFileClear={() => setCoverArt('')}
+              />
+            </div>
+          </div>
+          <div className='modal-footer'>
+            <button type='submit' className='btn btn-primary'>
+              Submit
+            </button>
+          </div>
+        </form>
       </Modal>
     </div>
   );
 };
 
 export default UploadModal;
+
+{
+  /* <script>
+                                                const coverartbtn = document.querySelector("#UploadCoverArt")
+                                                const uploadbtn = document.querySelector("#UploadCoverArtBtn2")
+                                                const filename = docume.querySelector("#CoverArtFilename")
+                                                function uploadCoverArt() {
+                                                    coverartbtn.click();
+                                                }
+                                            </script> */
+}

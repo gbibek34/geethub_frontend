@@ -19,12 +19,11 @@ export const fetchMyMusics = createAsyncThunk(
       });
 
       let data = response.data;
-
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       }
       if (data.success === true) {
-        return data;
+        return thunkAPI.fulfillWithValue(data);
       } else {
         return thunkAPI.rejectWithValue(data);
       }
@@ -36,25 +35,13 @@ export const fetchMyMusics = createAsyncThunk(
 
 export const createNewMusic = createAsyncThunk(
   'music/create',
-  async (
-    {
-      token,
-      name,
-      description,
-      genre,
-      audio,
-      uploadedBy, //temporary field
-      coverArt,
-    },
-    thunkAPI
-  ) => {
+  async ({ token, name, description, genre, audio, coverArt }, thunkAPI) => {
     try {
       const formData = new FormData();
       formData.append('name', name);
       formData.append('description', description);
       formData.append('genre', genre);
       formData.append('audio', audio);
-      formData.append('uploadedBy', uploadedBy); // temporary field
       formData.append('coverArt', coverArt);
       const response = await axios.post(
         'http://localhost:3000/music/new',
@@ -95,28 +82,36 @@ export const musicsSlice = createSlice({
   extraReducers: {
     [fetchMyMusics.pending]: (state) => {
       state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
     },
     [fetchMyMusics.rejected]: (state) => {
       state.isFetching = false;
       state.isError = true;
+      state.isSuccess = false;
       state.errorMessage = 'Could not load musics';
     },
     [fetchMyMusics.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.isError = false;
       state.musics = payload.data;
     },
     [createNewMusic.pending]: (state) => {
       state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
     },
     [createNewMusic.rejected]: (state) => {
       state.isFetching = false;
       state.isError = true;
+      state.isSuccess = false;
       state.errorMessage = 'Could not add music';
     },
     [createNewMusic.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.isFetching = false;
     },
   },
 });

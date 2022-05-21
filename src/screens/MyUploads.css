@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+
+    background: #F4F4F5;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+
+    background-color: #E8E9EC;
+}
+
+.main-container {
+    width: 60%;
+    padding: 20px;
+
+    background-color: #F4F4F5;
+}
+
+.page-header {
+    font-size: 30px;
+    font-weight: 800;
+
+    margin-bottom: 20px;
+}
+
+.uploaded-music {
+    border-radius: 5px;
+    background-color: #FAFAFA;
+}
+
+.upload-header {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+
+    padding: 10px 20px 0px 20px;
+}
+
+.sub-header {
+    padding: 5px 0px 0px 10px;
+}
+
+.upload-button {
+    font-weight: 600;
+
+    padding: 5px 20px;
+
+    cursor: pointer;
+    transition: ease-in 0.2s;
+
+    color: #3D85A3;
+    border: 2px #FAFAFA solid;
+    border-radius: 2px;
+}
+
+.upload-button:hover {
+    transform: scale(1.01);
+
+    background: #F4F4F5;
+}
+
+.all-music {
+    padding: 0px 20px 20px 20px;
+}
+
+.music-card {
+    display: flex;
+
+    margin-top: 10px;
+    padding: 10px;
+
+    border-radius: 5px;
+    background: #f3f3f3;
+}
+
+.music-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 100%;
+    padding: 0 10px;
+}
+
+.major-details {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.music-name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.music-options {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-music {
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+.delete-music {
+    margin-left: 15px;
+
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+.music-card:hover .edit-music, .music-card:hover .delete-music {
+    opacity: 1;
+}
+
+.other-details {
+    font-family: 'Dosis', sans-serif;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.cover-art {
+    position: relative;
+
+    width: 100px;
+
+    cursor: pointer;
+}
+
+.cover-art img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+    opacity: 0.7;
+    border-radius: 5px;
+}
+
+.play-button {
+    font-size: 35px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: #FAFAFA;
+}
+
+.music-status {
+    width: 20%;
+
+    border-left: 1px gray solid;
+    background-color: #F4F4F5;
+}

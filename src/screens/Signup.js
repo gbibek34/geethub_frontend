@@ -76,7 +76,6 @@ const Signup = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log('success in component');
       dispatch(clearState());
       navigate('/login');
     }
