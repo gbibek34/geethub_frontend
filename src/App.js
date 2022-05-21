@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import MyUploads from './screens/MyUploads';
+import LoginScreen from './screens/LoginScreen';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <div>
           <Routes>
             <Route path='/' element={<MyUploads />} />
+            <Route path='/login' element={<LoginScreen/>}/>
           </Routes>
         </div>
       </Router>
