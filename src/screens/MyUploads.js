@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import UploadModal from './UploadModal';
+import UploadModal from '../components/UploadModal';
 import './MyUploads.css';
 import {
   clearState,
@@ -9,8 +9,9 @@ import {
   musicsSelector,
 } from '../features/Music/MusicsSlice';
 import { Rings } from 'react-loader-spinner';
-import MusicCard from './MusicCard';
-import MusicPlayer from './MusicPlayer';
+import MusicCard from '../components/MusicCard';
+import MusicPlayer from '../components/MusicPlayer';
+import ProfileScreen from './ProfileScreen';
 
 const MyUploads = () => {
   const navigate = useNavigate();
@@ -30,6 +31,12 @@ const MyUploads = () => {
     }
   };
 
+  const handleLogout = () => {
+    // localStorage.removeItem('token');
+    localStorage.clear();
+    navigate('/login');
+  };
+
   return (
     // <div>
     //   <p>My Uploads</p>
@@ -38,9 +45,20 @@ const MyUploads = () => {
     // </div>
     <div>
       <div className='container-fluid'>
-        <div className='sidebar text-center'>Geethub</div>
+        <div className='sidebar text-center'>
+          <h5>Geethub</h5>
+          <button
+            className='btn btn-outline-warning w-75'
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
         <div className='main-container'>
-          <div className='page-header'>My Uploads</div>
+          <div>
+            <ProfileScreen />
+          </div>
+          {/* <div className='page-header'>My Uploads</div> */}
           <div className='uploaded-music'>
             <div className='upload-header'>
               <div className='sub-header'>My Music</div>
