@@ -63,6 +63,27 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const fetchUserById = createAsyncThunk(
+  'user/id',
+  async ({ token, id }, thunkAPI) => {
+    try {
+      const response = await axios.get('http://localhost:3000/user/' + id, {
+        headers: { Authorization: 'Bearer ' + token },
+      });
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        console.log('fulfilled');
+        return thunkAPI.fulfillWithValue(data.data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: initialStateValue,
@@ -105,6 +126,28 @@ export const userSlice = createSlice({
       state.isError = true;
       state.isSuccess = false;
       state.errorMessage = 'Login failed';
+    },
+    [fetchUserById.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.id = payload._id;
+      state.name = payload.name;
+      state.email = payload.email;
+      state.is_authenticated = payload.is_authenticated;
+      state.joined_date = payload.joined_date;
+      state.is_verified = payload.is_verified;
+    },
+    [fetchUserById.pending]: (state) => {
+      state.isError = false;
+      state.isSuccess = false;
+      state.isFetching = true;
+    },
+    [fetchUserById.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = 'User Retrieval failed';
     },
   },
 });

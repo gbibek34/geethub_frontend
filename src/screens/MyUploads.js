@@ -10,6 +10,7 @@ import {
 } from '../features/Music/MusicsSlice';
 import { Rings } from 'react-loader-spinner';
 import MusicCard from './MusicCard';
+import MusicPlayer from './MusicPlayer';
 
 const MyUploads = () => {
   const navigate = useNavigate();
@@ -49,7 +50,6 @@ const MyUploads = () => {
             <div className='all-music'>
               {!isFetching ? (
                 musics.map((music) => {
-                  console.log(music);
                   return <MusicCard music={music} key={music._id} />;
                 })
               ) : (
@@ -58,7 +58,9 @@ const MyUploads = () => {
             </div>
           </div>
         </div>
-        <div className='music-status text-center'>Now Playing - Your Mom</div>
+        <div className='music-status text-center'>
+          <MusicPlayer />
+        </div>
       </div>
     </div>
   );
