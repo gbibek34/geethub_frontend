@@ -10,6 +10,7 @@ import {
 } from '../features/Music/MusicsSlice';
 import { Rings } from 'react-loader-spinner';
 import MusicCard from './MusicCard';
+import ProfileScreen from './ProfileScreen';
 
 const MyUploads = () => {
   const navigate = useNavigate();
@@ -29,6 +30,12 @@ const MyUploads = () => {
     }
   };
 
+  const handleLogout = () => {
+    // localStorage.removeItem('token');
+    localStorage.clear();
+    navigate('/login');
+  };
+
   return (
     // <div>
     //   <p>My Uploads</p>
@@ -37,9 +44,15 @@ const MyUploads = () => {
     // </div>
     <div>
       <div className='container-fluid'>
-        <div className='sidebar text-center'>Geethub</div>
+        <div className='sidebar text-center'>
+          <h5>Geethub</h5>
+          <button className='btn btn-outline-warning w-75' onClick={handleLogout}>Logout</button>
+        </div>
         <div className='main-container'>
-          <div className='page-header'>My Uploads</div>
+          <div>
+            <ProfileScreen/>
+          </div>
+          {/* <div className='page-header'>My Uploads</div> */}
           <div className='uploaded-music'>
             <div className='upload-header'>
               <div className='sub-header'>My Music</div>
