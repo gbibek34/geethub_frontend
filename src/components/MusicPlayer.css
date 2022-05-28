@@ -1,0 +1,69 @@
+.rhap_container {
+    background-color: #567784;
+    border-radius: 0 0 8px 8px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.rhap_volume-bar-area {
+    display: none;
+}
+
+#rhap_current-time {
+    color: white;
+    font-size: 12px;
+}
+
+.rhap_total-time {
+    color: white;
+    font-size: 12px;
+}
+
+.rhap_progress-bar {
+    background-color: white;
+}
+
+.rhap_progress-indicator {
+    background-color: #FFE455;
+}
+
+.rhap_progress-filled {
+    background-color: #FFE455;
+}
+
+.rhap_heart {
+    cursor: pointer;
+}
+
+.cover_container {
+    margin-top: 10px;
+    background-image: linear-gradient(rgba(61, 133, 163, 1), rgba(103, 170, 197, 0.63));
+    border-radius: 8px 8px 0px 0px;
+    height: 265px;
+}
+
+.now_playing {
+    color: white;
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+
+.cover_art {
+    height: 125px;
+    width: 125px;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.music_name {
+    color: white;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+.artist_name {
+    color: #E8E9EC;
+    margin-top: 5px;
+    font-size: small;
+}

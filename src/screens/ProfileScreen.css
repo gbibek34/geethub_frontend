@@ -1,0 +1,75 @@
+.profile-container {
+  display: flex;
+
+  margin-top: 10px;
+  padding: 10px;
+
+  border-radius: 5px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.profile-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.profile-bio {
+  color: #9799a0;
+}
+
+.profile-stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #9799a0;
+}
+
+.profile-social {
+  font-family: "Dosis", sans-serif;
+  display: flex;
+  max-width: 60px;
+  justify-content: space-between;
+}
+
+.profile-image {
+  position: relative;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
+
+.profile-image img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.update-button {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px 20px;
+
+  cursor: pointer;
+  transition: ease-in 0.2s;
+
+  color: #3d85a3;
+}
+
+.update-button:hover {
+  transform: scale(1.01);
+  background: #fafafa;
+}

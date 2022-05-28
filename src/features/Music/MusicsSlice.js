@@ -68,7 +68,7 @@ export const createNewMusic = createAsyncThunk(
 );
 
 export const musicsSlice = createSlice({
-  name: 'music',
+  name: 'musics',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
 
 const MusicCard = ({ music }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString('en-us', {
@@ -7,10 +9,15 @@ const MusicCard = ({ music }) => {
     month: 'short',
     day: 'numeric',
   });
+  const dispatch = useDispatch();
+
+  const handleMusicClick = () => {
+    dispatch(updateNowPlayingState([music]));
+  };
 
   return (
     <div className='music-card'>
-      <div className='cover-art'>
+      <div className='cover-art' onClick={handleMusicClick}>
         <img
           src={
             music.coverArt
