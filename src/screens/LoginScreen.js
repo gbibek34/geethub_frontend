@@ -47,7 +47,7 @@ const LoginScreen = () => {
     }
     if (isSuccess) {
       dispatch(clearState());
-      navigate(from, {replace: true});
+      navigate(from, { replace: true });
     }
   }, [isError, isSuccess]);
 
@@ -101,13 +101,13 @@ const LoginScreen = () => {
                   </button>
                 </form>
                 <div className='loginButtonGroup form-group mb-4'>
-                  <a
-                    href='testSignup.html'
+                  <Link
+                    to='/signup'
                     type='button'
                     className='gotoSignup btn btn-link'
                   >
                     New here? Create an account
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
