@@ -1,22 +1,26 @@
-import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import MyUploads from './screens/MyUploads';
-import Signup from './screens/Signup';
-import LoginScreen from './screens/LoginScreen';
-import EmailVerify from './screens/EmailVerify';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import MyUploads from "./screens/MyUploads";
+import Signup from "./screens/Signup";
+import LoginScreen from "./screens/LoginScreen";
+import EmailVerify from "./screens/EmailVerify";
+import MyPlaylists from "./screens/MyPlaylists";
+import AllMusics from "./screens/AllMusics";
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Router>
         <div>
           <Routes>
-            <Route path='/' element={<MyUploads />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/login' element={<LoginScreen />} />
+            <Route path="/" element={<MyUploads />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/playlist" element={<MyPlaylists />} />
+            <Route path='/all' element={<AllMusics/>}/>
             <Route
-              path='/verify/:userId/:uniqueString'
+              path="/verify/:userId/:uniqueString"
               element={<EmailVerify />}
             />
           </Routes>
