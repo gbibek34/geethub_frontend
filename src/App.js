@@ -1,18 +1,14 @@
 import './App.css';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import MyUploads from './screens/MyUploads';
 import Signup from './screens/Signup';
 import LoginScreen from './screens/LoginScreen';
 import EmailVerify from './screens/EmailVerify';
+import MyPlaylists from './screens/MyPlaylists';
 import PrivateRoute from './helpers/PrivateRoute';
 import { ProtectedRoute } from './helpers/PrivateRoute';
+import AllMusics from './screens/AllMusics';
 
 function App() {
   return (
@@ -24,6 +20,8 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='/home' element={<MyUploads />} />
               <Route path='/' element={<MyUploads />} />
+              <Route path='/playlist' element={<MyPlaylists />} />
+              <Route path='/all' element={<AllMusics />} />
             </Route>
             <Route element={<ProtectedRoute />}>
               <Route path='/signup' element={<Signup />} />
