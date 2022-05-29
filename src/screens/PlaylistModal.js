@@ -42,26 +42,19 @@ const PlaylistModal = (props) => {
       </button>
       <Modal
         className="modal fade"
-        id="create_new_playlist_modal"
+        // id="create_new_playlist_modal"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
+        aria-labelledby="CreateNewPlaylistLabel"
         aria-hidden="true"
         show={show}
         onHide={handleClose}
       >
-        <Modal.Header className="modal-header">
-          <Modal.Title className="modal-title" id="exampleModalCenterTitle">
+        <Modal.Header className="modal-header" closeButton>
+          <Modal.Title className="modal-title" id="CreateNewPlaylistLabel" >
             Create new playlist
           </Modal.Title>
-          <button
-            type="button"
-            className="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+          
         </Modal.Header>
         <form action="post" onSubmit={onSubmitHandler}>
           <div className="modal-body">
@@ -99,6 +92,7 @@ const PlaylistModal = (props) => {
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
+              onClick={handleClose}
             >
               Close
             </button>
