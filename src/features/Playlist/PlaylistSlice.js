@@ -13,28 +13,29 @@ const initialStateValue = {
   errorMessage: "",
 };
 
-// export const fetchPlaylistbyId = createAsyncThunk(
-//   "playlist/details",
-//   async ({ token, playlistId }, thunkAPI) => {
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:3000/playlist/musics/" + playlistId,
-//         {
-//           headers: { Authorization: "Bearer " + token },
-//         }
-//       );
-//       let data = response.data;
-//       console.log(data.success);
-//       if (data.success !== true) {
-//         return thunkAPI.rejectWithValue(data);
-//       } else {
-//         return thunkAPI.fulfillWithValue(data);
-//       }
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.data);
-//     }
-//   }
-// );
+export const fetchPlaylistbyId = createAsyncThunk(
+  "playlist/details",
+  async ({ token, playlistId }, thunkAPI) => {
+    console.log("in");
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/playlist/details/" + playlistId,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+      console.log(data.success);
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return thunkAPI.fulfillWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
 
 export const fetchMusicInPlaylist = createAsyncThunk(
   "playlist/view",
@@ -87,8 +88,28 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-
       state.musics = payload.data;
+    },
+    [fetchPlaylistbyId.pending]: (state) => {
+      console.log("in");
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchPlaylistbyId.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not load playlist details";
+    },
+    [fetchPlaylistbyId.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state._id = payload.data._id;
+      state.createdBy = payload.data.createdBy;
+      state.name = payload.data.name;
+      state.description = payload.data.description;
     },
   },
 });

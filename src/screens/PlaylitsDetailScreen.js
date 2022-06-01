@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./uploadsCSS.css";
 import PlaylistMusicCard from "./PlaylistMusicCard";
-import PlaylistModal from "./PlaylistModal";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import MusicPlayer from "../components/MusicPlayer";
 import ProfileScreen from "./ProfileScreen";
+
 import { Rings } from "react-loader-spinner";
-import MusicPlayer from '../components/MusicPlayer';
 import {
+  fetchPlaylistbyId,
   fetchMusicInPlaylist,
   clearState,
   playlistSelector,
 } from "../features/Playlist/PlaylistSlice";
+import PlaylistModal from "./PlaylistModal";
 
 const PlaylistDetailScreen = () => {
   const navigate = useNavigate();
@@ -22,6 +25,9 @@ const PlaylistDetailScreen = () => {
     dispatch(
       fetchMusicInPlaylist({ token: localStorage.getItem("token"), playlistId })
     );
+    // dispatch(
+    //   fetchPlaylistbyId({ token: localStorage.getItem("token"), playlistId })
+    // );
   }, []);
 
   const { isFetching, isError, isSuccess, musics } =
@@ -55,17 +61,17 @@ const PlaylistDetailScreen = () => {
           <div>
             <ProfileScreen />
           </div>
-
+          {/* <div className='page-header'>My Uploads</div> */}
           <div className="uploaded-music">
             <div className="upload-header">
               <div className="sub-header">Music</div>
-              <PlaylistModal notifyparent={refresh} />
+              <PlaylistModal notifyParent={refresh} />
             </div>
 
             <div className="all-music">
               {!isFetching ? (
                 musics.map((music) => {
-                  return <PlaylistMusicCard music={music} />;
+                  return <PlaylistMusicCard key={music._id} music={music} />;
                 })
               ) : (
                 <Rings />
@@ -73,7 +79,7 @@ const PlaylistDetailScreen = () => {
             </div>
           </div>
         </div>
-        <div className='music-status text-center'>
+        <div className="music-status text-center">
           <MusicPlayer />
         </div>
       </div>
