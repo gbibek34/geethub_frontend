@@ -144,8 +144,11 @@ const MusicPlayer = () => {
           ),
         }}
       />
-      <div>
-      {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+      <div className='queue-container'>
+      <div className='queue-header'>YOUR QUEUE</div>
+        <div className='queue'>
+          {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} currentIndex={currentIndex} item={index} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+        </div>
       </div>
     </div>
   );
