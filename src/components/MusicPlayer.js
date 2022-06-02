@@ -9,7 +9,7 @@ import {
   regular,
   brands,
 } from '@fortawesome/fontawesome-svg-core/import.macro';
-import './MusicPlayer.css';
+import '../styles/MusicPlayer.css';
 import error from '../images/error.png';
 import { musicSelector } from '../features/Music/MusicSlice';
 import { fetchUserById } from '../features/User/UserSlice';
@@ -74,7 +74,7 @@ const MusicPlayer = () => {
           currentSong.audio &&
           `http://localhost:3000/${currentSong.audio.slice(6)}`
         }
-        autoPlay
+        // autoPlay
         showSkipControls={true}
         customAdditionalControls={[
           <div

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToPlaylistModal from './AddToPlaylistModal';
 import { useDispatch } from 'react-redux';
-import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
+import { updateNowPlayingState, addToQueue } from '../features/Music/NowPlayingSlice';
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -14,6 +14,10 @@ const AllMusicCard = ({ music }) => {
 
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+  };
+
+  const handleAddToQueue = () => {
+    dispatch(addToQueue(music));
   };
 
   return (
@@ -31,12 +35,22 @@ const AllMusicCard = ({ music }) => {
         </div>
         <div className='playlist_title'>
           <div className='playlist_name'>{music.name}</div>
-          <div className='playlist_descr'>Instrumental Pop</div>
+          <div className='playlist_descr'>{music.genre}</div>
         </div>
       </div>
       <div className='playlist_allstats'>
         <div className='playlist_stat'>5 likes</div>
         <AddToPlaylistModal musicId={music._id} />
+        <span
+          type='button'
+          data-toggle='tooltip'
+          data-placement='top'
+          title='Add to queue'
+          className='material-symbols-rounded songs_action_btn'
+          onClick={handleAddToQueue}
+        >
+          queue_music
+        </span>
         <span
           type='button'
           data-toggle='tooltip'

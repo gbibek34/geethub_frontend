@@ -5,10 +5,9 @@ import {
   fetchMyProfile,
   userSelector,
 } from '../features/User/UserSlice';
-import './ProfileScreen.css';
+import '../styles/ProfileScreen.css';
 import { Rings } from 'react-loader-spinner';
 import UpdateProfileModal from '../components/UpdateProfileModal';
-import './ProfileScreen.css';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const ProfileScreen = () => {
   return (
     <div className='profile'>
       {isSuccess ? (
-        (console.log(''),
+        (
         (
           <div className='profile-container'>
             <div className='profile-image'>

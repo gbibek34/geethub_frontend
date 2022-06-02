@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MyUploads from "./screens/MyUploads";
 import Signup from "./screens/Signup";
 import LoginScreen from "./screens/LoginScreen";
@@ -9,8 +9,6 @@ import MyPlaylists from "./screens/MyPlaylists";
 import PrivateRoute from "./helpers/PrivateRoute";
 import { ProtectedRoute } from "./helpers/PrivateRoute";
 import AllMusics from "./components/AllMusics";
-import Sidebar from "./components/Sidebar";
-import MusicPlayer from "./components/MusicPlayer";
 import PageLayout from "./helpers/PageLayout";
 import PlaylistDetailScreen from "./screens/PlaylitsDetailScreen";
 

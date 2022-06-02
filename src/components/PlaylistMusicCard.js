@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AddToPlaylistModal from "../components/AddToPlaylistModal";
+import AddToPlaylistModal from "./AddToPlaylistModal";
 import { updateNowPlayingState } from "../features/Music/NowPlayingSlice";
 import { useDispatch } from "react-redux";
 
@@ -29,9 +29,6 @@ const PlaylistMusicCard = ({ music }) => {
             }
             className="playlist_image"
           />
-          <span className="material-symbols-rounded play_symbol">
-            play_circle
-          </span>
         </div>
         <div className="playlist_title">
           <div className="playlist_name">{music.name}</div>
