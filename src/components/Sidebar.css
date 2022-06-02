@@ -1,0 +1,123 @@
+body {
+    font-family: 'Manrope', sans-serif;
+
+    background: #F4F4F5;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 20%;
+    height: 100vh;
+
+    overflow-y: scroll;
+
+    background: #E8E9EC;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    padding: 10px 0px;
+}
+
+.logo-image {
+    width: 60px;
+    height: 60px;
+}
+
+.logo-name {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo-name:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.class-header {
+    font-size: 12px;
+    font-weight: 800;
+
+    margin: 0px 0px 0px 20px;
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+
+    margin: 5px 40px 5px 20px;
+
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+
+    border-radius: 8px;
+}
+
+.option-icon {
+    width: 40px;
+    padding: 12px 40px 12px 24px;
+}
+
+.option-text {
+    padding: 12px 12px 12px 0px;
+
+    color: #9799A0;
+}
+
+.option:hover {
+    color: #3D85A3;
+    background-color: #F4F4F5;
+    text-decoration: none;
+}
+
+.option:hover .option-text {
+    color: #3D85A3;
+}
+
+.active-option {
+    color: #3D85A3;
+    background-color: #FAFAFA;
+}
+
+.active-option .option-text {
+    color: #3D85A3;
+}
+
+.sidebar-profile-picture {
+    width: 40px;
+    height: 40px;
+
+    border: 3px #E54040 solid;
+    border-radius: 50%;
+}
+
+.sidebar-user-overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 10px;
+
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background: #FAFAFA;
+}
+
+.sidebar-profile-details {
+    padding: 0px 0px 0px 5px;
+}
+
+.sidebar-profile-name {
+    font-weight: 800;
+}
+
+.vcurrency {
+    color: gold;
+}

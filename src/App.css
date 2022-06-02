@@ -1,3 +1,18 @@
 body{
   background-color: #F4F4F5;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.app-container {
+  
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  
+}
+
+.music-status {
+  width: 20%;
+
+  background-color: #E8E9EC;
 }
