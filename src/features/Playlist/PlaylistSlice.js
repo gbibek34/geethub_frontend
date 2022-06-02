@@ -16,7 +16,7 @@ const initialStateValue = {
 export const fetchPlaylistbyId = createAsyncThunk(
   "playlist/details",
   async ({ token, playlistId }, thunkAPI) => {
-    console.log("in");
+    console.log("in here");
     try {
       const response = await axios.get(
         "http://localhost:3000/playlist/details/" + playlistId,
@@ -25,6 +25,7 @@ export const fetchPlaylistbyId = createAsyncThunk(
         }
       );
       let data = response.data;
+      console.log(data);
       console.log(data.success);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
@@ -48,7 +49,7 @@ export const fetchMusicInPlaylist = createAsyncThunk(
         }
       );
       let data = response.data;
-      console.log(data.success);
+
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {

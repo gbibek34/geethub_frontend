@@ -4,6 +4,8 @@ import musicCover from "../images/musicCover.png";
 import "./mainCSS.css";
 import { clearState } from "../features/Playlist/PlaylistsSlice";
 
+
+//playlist card to be displayed in myplaylists screen
 export default function PlaylistCard({ playlist }) {
   return (
     <div className="indiv_playlist">

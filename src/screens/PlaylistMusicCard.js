@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddToPlaylistModal from "./AddToPlaylistModal";
-import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
-import { useDispatch } from 'react-redux';
+import { updateNowPlayingState } from "../features/Music/NowPlayingSlice";
+import { useDispatch } from "react-redux";
 
+//playlist music card to be displayed on playlist description screen
 
 const PlaylistMusicCard = ({ music }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString("en-us", {
@@ -15,7 +16,6 @@ const PlaylistMusicCard = ({ music }) => {
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
   };
-
 
   return (
     <div className="indiv_playlist">
@@ -41,7 +41,7 @@ const PlaylistMusicCard = ({ music }) => {
       <div className="playlist_allstats">
         <div className="playlist_stat">5 likes</div>
         <div className="playlist_stat">16:47</div>
-        
+
         <span
           type="button"
           data-toggle="tooltip"

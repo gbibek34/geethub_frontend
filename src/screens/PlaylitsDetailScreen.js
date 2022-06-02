@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "./uploadsCSS.css";
 import PlaylistMusicCard from "./PlaylistMusicCard";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MusicPlayer from "../components/MusicPlayer";
-import ProfileScreen from "./ProfileScreen";
 
 import { Rings } from "react-loader-spinner";
 import {
-  fetchPlaylistbyId,
   fetchMusicInPlaylist,
+  fetchPlaylistbyId,
   clearState,
   playlistSelector,
 } from "../features/Playlist/PlaylistSlice";
 import PlaylistModal from "./PlaylistModal";
 
+
+//playlist details screen that displays all the music in the playlist
+
 const PlaylistDetailScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   let { playlistId } = useParams();
   useEffect(() => {
     dispatch(
       fetchMusicInPlaylist({ token: localStorage.getItem("token"), playlistId })
     );
-    // dispatch(
-    //   fetchPlaylistbyId({ token: localStorage.getItem("token"), playlistId })
-    // );
   }, []);
 
-  const { isFetching, isError, isSuccess, musics } =
+  useEffect(() => {
+    dispatch(
+      fetchPlaylistbyId({ token: localStorage.getItem("token"), playlistId })
+    );
+  }, []);
+
+  const { isFetching, isError, isSuccess, musics, name, description } =
     useSelector(playlistSelector);
 
   const refresh = () => {
@@ -58,14 +61,12 @@ const PlaylistDetailScreen = () => {
           </button>
         </div>
         <div className="main-container">
-          <div>
-            <ProfileScreen />
-          </div>
-          {/* <div className='page-header'>My Uploads</div> */}
+        <div className="page-header">{name}</div>
+
           <div className="uploaded-music">
             <div className="upload-header">
               <div className="sub-header">Music</div>
-              <PlaylistModal notifyParent={refresh} />
+              <PlaylistModal notifyparent={refresh} />
             </div>
 
             <div className="all-music">

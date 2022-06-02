@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createNewPlaylist } from "../features/Playlist/PlaylistsSlice";
 
+//playlist modal to create a new playlist
 const PlaylistModal = (props) => {
   const [show, setShow] = useState(false);
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
