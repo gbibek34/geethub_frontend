@@ -14,6 +14,7 @@ import error from '../images/error.png';
 import { musicSelector } from '../features/Music/MusicSlice';
 import { fetchUserById } from '../features/User/UserSlice';
 import axios from 'axios';
+import QueueMusic from '../components/QueueMusic';
 
 const MusicPlayer = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,13 @@ const MusicPlayer = () => {
     }
   };
 
+  var queue = useSelector((state) => state.nowPlaying.musics);
+  // queue = queue.slice(currentIndex + 1);
+  console.log("queue",queue);
+  console.log("musics",musics);
+  console.log("current index",currentIndex)
+  console.log("music length", musics.length)
+
   return (
     <div className='m-2'>
       <div className='cover_container'>
@@ -66,6 +74,8 @@ const MusicPlayer = () => {
           currentSong.audio &&
           `http://localhost:3000/${currentSong.audio.slice(6)}`
         }
+        autoPlay
+        showSkipControls={true}
         customAdditionalControls={[
           <div
             style={{
@@ -91,7 +101,7 @@ const MusicPlayer = () => {
         onEnded={() =>
           currentIndex + 1 < musics.length
             ? setCurrentIndex((i) => i + 1)
-            : setCurrentIndex(0)
+            : null
         }
         onClickNext={() =>
           currentIndex + 1 < musics.length
@@ -104,14 +114,14 @@ const MusicPlayer = () => {
         customIcons={{
           play: <FontAwesomeIcon icon={solid('circle-play')} color='white' />,
           pause: <FontAwesomeIcon icon={solid('circle-pause')} color='white' />,
-          rewind: (
+          previous: (
             <FontAwesomeIcon
               icon={solid('backward-step')}
               color='white'
               size='xs'
             />
           ),
-          forward: (
+          next: (
             <FontAwesomeIcon
               icon={solid('forward-step')}
               color='white'
@@ -134,6 +144,9 @@ const MusicPlayer = () => {
           ),
         }}
       />
+      <div>
+      {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+      </div>
     </div>
   );
 };

@@ -127,7 +127,15 @@ body {
     transition: ease-in-out 0.5s;
 }
 
-.music-card:hover .edit-music, .music-card:hover .delete-music {
+.queue-music {
+    margin-left: 15px;
+
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+.music-card:hover .edit-music, .music-card:hover .delete-music, .music-card:hover .queue-music {
     opacity: 1;
 }
 
