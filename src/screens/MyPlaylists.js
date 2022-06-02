@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import toast from "react-hot-toast";
-import { Rings } from "react-loader-spinner";
-import PlaylistCard from "./PlaylistCard";
-import PlaylistModal from "./PlaylistModal";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+import { Rings } from 'react-loader-spinner';
+import PlaylistCard from '../components/PlaylistCard';
+import PlaylistModal from '../components/PlaylistModal';
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   getUserplaylist,
   playlistsSelector,
   clearState,
-} from "../features/Playlist/PlaylistsSlice";
+} from '../features/Playlist/PlaylistsSlice';
 
 const MyPlaylists = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+
   const { isFetching, isSuccess, isError, errorMessage, playlists } =
     useSelector(playlistsSelector);
 
   useEffect(() => {
-    dispatch(getUserplaylist(localStorage.getItem("token")));
+    dispatch(getUserplaylist(localStorage.getItem('token')));
   }, []);
 
   const refresh = () => {
     if (isSuccess) {
-      dispatch(getUserplaylist(localStorage.getItem("token")));
+      dispatch(getUserplaylist(localStorage.getItem('token')));
     }
   };
 
@@ -47,32 +47,24 @@ const MyPlaylists = () => {
   //   }
   // }, [isError, isSuccess]);
   return (
-    <div>
-      <div className="container-fluid">
-        <div className="sidebar text-center">Geethub</div>
-
-        <div className="main-container">
-          <div className="page-header">Playlists</div>
-          <div className="all_playlists">
-            <div className="upload-header">
-              <div className="sub-header">ALL</div>
-              <PlaylistModal notifyparent={refresh} />
-            </div>
-            <div className="overflow-auto">
-              {!isFetching ? (
-                playlists.map((playlist) => (
-                  <PlaylistCard playlist={playlist} key={playlist._id} />
-                ))
-              ) : (
-                <Rings />
-              )}
-            </div>
-          </div>
+    <div className='main-container'>
+      <div className='page-header'>Playlists</div>
+      <div className='all_playlists'>
+        <div className='upload-header'>
+          <div className='sub-header'>ALL</div>
+          <PlaylistModal notifyparent={refresh} />
         </div>
-        <div className="music-status text-center">Now Playing</div>
+        <div className='overflow-auto'>
+          {!isFetching ? (
+            playlists.map((playlist) => (
+              <PlaylistCard playlist={playlist} key={playlist._id} />
+            ))
+          ) : (
+            <Rings />
+          )}
+        </div>
       </div>
     </div>
-    
   );
 };
 
