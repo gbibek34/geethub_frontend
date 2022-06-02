@@ -13,6 +13,8 @@ import Sidebar from "./components/Sidebar";
 import MusicPlayer from "./components/MusicPlayer";
 import PageLayout from "./helpers/PageLayout";
 import PlaylistDetailScreen from "./screens/PlaylitsDetailScreen";
+// import SearchScreen from "./screens/SearchScreen";
+import SearchArtist from "./screens/SearchScreen";
 
 function App() {
   return (
@@ -39,6 +41,7 @@ function App() {
             path="/verify/:userId/:uniqueString"
             element={<EmailVerify />}
           />
+            <Route path="/search" element={<SearchArtist />} />
         </Routes>
       </Router>
     </div>
