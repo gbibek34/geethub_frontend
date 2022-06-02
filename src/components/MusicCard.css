@@ -1,0 +1,89 @@
+.music-card {
+    display: flex;
+
+    margin-top: 10px;
+    padding: 10px;
+
+    border-radius: 5px;
+    background: #f3f3f3;
+}
+
+.music-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 100%;
+    padding: 0 10px;
+}
+
+.major-details {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.music-name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.music-options {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-music {
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+.delete-music {
+    margin-left: 15px;
+
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+.music-card:hover .edit-music, .music-card:hover .delete-music {
+    opacity: 1;
+}
+
+.other-details {
+    font-family: 'Dosis', sans-serif;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.cover-art {
+    position: relative;
+
+    width: 100px;
+
+    cursor: pointer;
+}
+
+.cover-art img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+    opacity: 0.7;
+    border-radius: 5px;
+}
+
+.play-button {
+    font-size: 35px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: #FAFAFA;
+}

@@ -117,12 +117,7 @@ body {
   transition: ease-in-out 0.5s;
 }
 
-/* now playing sidebar (right bar) */
-.music-status {
-  width: 20%;
-  border-left: 1px gray solid;
-  background-color: #f4f4f5;
-}
+
 /* library */
 .clr_primaryFG{
   color: #3d85a3;
@@ -175,11 +170,17 @@ body {
 }
 
 /* for playlists scrollable */
-.all_playlists .overflow-auto{
+.all_playlists .allmusic-container{
   max-height: 530px;
   margin-right: 4px;
   padding: 0px 24px;
 }
+
+.allmusic-container {
+  height: 75vh;
+  overflow-y: scroll;
+}
+
 /* individual playlist */
 .indiv_playlist {
   display: flex;
@@ -239,4 +240,8 @@ body {
   font-size: 16px;
   line-height: 22px;
   color: #9799a0;
+}
+
+.image_container {
+  cursor: pointer;
 }
