@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
+import { updateNowPlayingState, addToQueue } from '../features/Music/NowPlayingSlice';
 
 const MusicCard = ({ music }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString('en-us', {
@@ -13,6 +13,10 @@ const MusicCard = ({ music }) => {
 
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+  };
+
+  const handleAddToQueue = () => {
+    dispatch(addToQueue(music));
   };
 
   return (
@@ -37,6 +41,9 @@ const MusicCard = ({ music }) => {
             </div>
             <div className='delete-music'>
               <i className='fa-solid fa-trash'></i>
+            </div>
+            <div className='queue-music' onClick={handleAddToQueue}>
+              <i className='fa-solid fa-add'></i>
             </div>
           </div>
         </div>

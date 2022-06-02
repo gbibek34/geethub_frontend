@@ -67,3 +67,11 @@
     margin-top: 5px;
     font-size: small;
 }
+
+.rhap_rewind-button {
+    display: none;
+}
+
+.rhap_forward-button {
+    display: none;
+}

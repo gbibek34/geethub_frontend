@@ -13,8 +13,12 @@ export const nowPlayingSlice = createSlice({
     updateNowPlayingState: (state, { payload }) => {
       state.musics = payload;
     },
+    addToQueue: (state, { payload }) => {
+      state.musics = [...state.musics, payload];
+    },
   },
 });
 
 export const { updateNowPlayingState } = nowPlayingSlice.actions;
 export const nowPlayingSelector = (state) => state.nowPlaying;
+export const { addToQueue } = nowPlayingSlice.actions;
