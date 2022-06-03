@@ -5,11 +5,13 @@ import { nowPlayingSlice } from "./features/Music/NowPlayingSlice";
 import { playlistsSlice } from "./features/Playlist/PlaylistsSlice";
 import { userSlice } from "./features/User/UserSlice";
 import { playlistSlice } from "./features/Playlist/PlaylistSlice";
+import { usersSlice } from "./features/User/UsersSlice";
 
 export default configureStore({
   reducer: {
     musics: musicsSlice.reducer,
     user: userSlice.reducer,
+    users:usersSlice.reducer,
     music: musicSlice.reducer,
     nowPlaying: nowPlayingSlice.reducer,
     playlists: playlistsSlice.reducer,

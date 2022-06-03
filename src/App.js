@@ -11,6 +11,9 @@ import { ProtectedRoute } from "./helpers/PrivateRoute";
 import AllMusics from "./components/AllMusics";
 import PageLayout from "./helpers/PageLayout";
 import PlaylistDetailScreen from "./screens/PlaylitsDetailScreen";
+import ArtistProfileScreen from "./screens/ArtistProfileScreen";
+import SearchArtist from "./screens/SearchScreen";
+
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
                 path="/playlist/:playlistId"
                 element={<PlaylistDetailScreen />}
               />
+              <Route path="/search" element={<SearchArtist />} />
+              <Route path='/artist/:artistid' element={<ArtistProfileScreen/>}/>
             </Route>
           </Route>
           <Route element={<ProtectedRoute />}>

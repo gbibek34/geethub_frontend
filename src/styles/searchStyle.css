@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+
+  background: #f4f4f5;
+  cursor: default;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh;
+
+  background-color: #e8e9ec;
+}
+
+.main-container {
+  width: 60%;
+  padding: 20px;
+
+  background-color: #f4f4f5;
+}
+
+.page-header {
+  width: 162px;
+  height: 65px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 65px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+/* now playing sidebar (right bar) */
+.music-status {
+  width: 20%;
+  border-left: 1px gray solid;
+  background-color: #f4f4f5;
+}
+/* library */
+.clr_primaryFG {
+  color: #3d85a3;
+}
+.clr_primaryBG {
+  background-color: #3d85a3;
+}
+.btn-main {
+  color: #f4f4f5;
+  background-color: #3d85a3;
+}
+.btn-main:hover {
+  color: #f4f4f5;
+  background-color: #698a98;
+}
+/* all playlists */
+.all_search_categories {
+  margin-top: 32px;
+  padding-bottom: 20px;
+  /* background: #fafafa; */
+  box-shadow: 0px 8px 20px -80px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+/* playlist header */
+.upload-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding: 8px 24px;
+}
+.sub-header {
+  font-weight: 400;
+  font-size: 18px;
+  /* line-height: 27px; */
+  display: flex;
+  align-items: center;
+  color: #9799a0;
+}
+.sub-header_search {
+  padding: 5px 0px 0px 10px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #9799a0;
+}
+.create_new_playlist {
+  color: #3d85a3;
+  text-decoration: none;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}
+.create_new_playlist:hover {
+  color: #698a98;
+}
+
+/* for playlists scrollable */
+.all_playlists .overflow-auto {
+  max-height: 530px;
+  margin-right: 4px;
+  padding: 0px 24px;
+}
+/* individual playlist */
+.indiv_playlist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 110px;
+  /* margin: 20px; */
+  margin-bottom: 8px;
+  padding: 5px 0px;
+  padding-right: 28px;
+  border-radius: 8px;
+  background: #f4f4f5;
+  cursor: default;
+}
+
+/* image, name and description */
+
+/* title class for name and desc blocks */
+
+/* playlist stats */
+
+/* icons */
+
+/* images */
+.all_search_artists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+}
+.indiv_artist_card {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #ffffff; */
+  border-radius: 8px;
+  padding: 0;
+  /* width: 190px; */
+  /* margin-right: 24px; */
+  cursor: pointer;
+}
+.indiv_artist_card:hover {
+  transform: scale(1.05);
+}
+.artist_image {
+  margin: 0px;
+  object-fit: cover;
+  height: 180px;
+  width: 180px;
+  border-radius: 8px;
+}
+.artist_name {
+  padding: 0;
+  margin: 0;
+  margin-top: 4px;
+  height: 20%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+.search_container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  line-height: 100%;
+}
+.searchbar {
+  width: 82%;
+  /* width: 500px; */
+  margin-right: 1%;
+}
+.searchbar:focus {
+  border-color: #3d85a3;
+  box-shadow: none;
+}
+.search_button {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+  line-height: 100%;
+  width: 17%;
+}
+.search_icon {
+  height: 100%;
+}
+/* .search_button label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 100%;
+} */
+@media only screen and (max-width: 600px) {
+  .search_button label {
+    font-size: 0px;
+  }
+}
