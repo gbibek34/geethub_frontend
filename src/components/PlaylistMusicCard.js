@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddToPlaylistModal from "./AddToPlaylistModal";
-import { updateNowPlayingState } from "../features/Music/NowPlayingSlice";
+import { updateNowPlayingState, updateIndex } from "../features/Music/NowPlayingSlice";
 import { useDispatch } from "react-redux";
 
 //playlist music card to be displayed on playlist description screen
 
-const PlaylistMusicCard = ({ music }) => {
+const PlaylistMusicCard = ({ music, item, allMusics }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString("en-us", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
   const dispatch = useDispatch();
-  const handleMusicClick = () => {
-    dispatch(updateNowPlayingState([music]));
+  const handleMusicClick = (index) => {
+    dispatch(updateNowPlayingState(allMusics));
+    dispatch(updateIndex(index));
   };
 
   return (
     <div className="indiv_playlist">
       <div className="playlist_details">
-        <div className="image_container" onClick={handleMusicClick}>
+        <div className="image_container" onClick={()=>handleMusicClick(item)}>
           <img
             src={
               music.coverArt

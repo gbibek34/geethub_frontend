@@ -58,7 +58,7 @@ const AddToPlaylistModal = ({ musicId }) => {
       <div
         className="modal fade"
         id="exampleModalCenter"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
@@ -88,6 +88,7 @@ const AddToPlaylistModal = ({ musicId }) => {
                     type="button"
                     onClick={() => onClickHandler(playlist._id)}
                     className="btn btn-outline-secondary w-100 text-left"
+                    key={playlist._id}
                   >
                     {playlist.name}
                   </button>

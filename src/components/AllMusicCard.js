@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToPlaylistModal from './AddToPlaylistModal';
-import { useDispatch } from 'react-redux';
-import { updateNowPlayingState, addToQueue } from '../features/Music/NowPlayingSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateNowPlayingState, addToQueue, nowPlayingSelector } from '../features/Music/NowPlayingSlice';
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -12,12 +12,18 @@ const AllMusicCard = ({ music }) => {
     day: 'numeric',
   });
 
+  const { musics } = useSelector(nowPlayingSelector);
+
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
   };
 
   const handleAddToQueue = () => {
-    dispatch(addToQueue(music));
+    if (musics[musics.length - 1] === music) {
+      console.log("Already in queue's last element");
+    } else{
+      dispatch(addToQueue(music));
+    }
   };
 
   return (

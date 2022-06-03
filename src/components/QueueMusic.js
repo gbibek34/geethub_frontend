@@ -1,7 +1,18 @@
 import "../styles/QueueMusic.css";
+import React, { useRef, useEffect } from "react";
 
 const QueueMusic = ({ queue, currentIndex, item }) => {
   console.log(currentIndex);
+  const scroll = () => {
+    const section = document.querySelector(".active-queue");
+    if (!section) return;
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+  scroll();
+
   return (
     <div className="queue-main">
       <div className={currentIndex === item ? "active-queue" : undefined}>

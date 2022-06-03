@@ -41,12 +41,12 @@ const AllMusics = () => {
       <div className='uploaded-music'>
         <div className='upload-header'>
           <div className='sub-header'>My Music</div>
-          <span class="material-symbols-rounded songs_action_btn" onClick={handlePlayAll}>
+          <span className="material-symbols-rounded songs_action_btn" onClick={handlePlayAll}>
             add
           </span>
           <UploadModal notifyParent={refresh} />
         </div>
-        <div class='allmusic-container'>
+        <div className='allmusic-container'>
           {!isFetching ? (
             musics.map((music) => {
               console.log(music);

@@ -26,8 +26,8 @@ const EmailVerify = () => {
   }, [params]);
 
   return (
-    <div class='verify-card'>
-      <div class='verify-status'>
+    <div className='verify-card'>
+      <div className='verify-status'>
         {isSuccess ? (
           <div>
             <img src={tick} className='verify-img' alt='success' />

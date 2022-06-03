@@ -43,8 +43,8 @@ const PlaylistDetailScreen = () => {
             </div>
             <div className="allmusic-container">
               {!isFetching ? (
-                musics.map((music) => {
-                  return <PlaylistMusicCard key={music._id} music={music} />;
+                musics.map((music, index) => {
+                  return <PlaylistMusicCard key={music._id} item = {index} allMusics={musics} music={music} />;
                 })
               ) : (
                 <Rings />

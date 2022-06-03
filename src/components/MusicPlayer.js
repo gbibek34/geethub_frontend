@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { nowPlayingSelector } from '../features/Music/NowPlayingSlice';
+import { nowPlayingSelector, updateIndex } from '../features/Music/NowPlayingSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,
@@ -20,19 +20,20 @@ const MusicPlayer = () => {
   const dispatch = useDispatch();
 
   const { musics } = useSelector(nowPlayingSelector);
+  var playlistIndex = useSelector(nowPlayingSelector).playlistIndex;
   const [artistName, setArtistName] = useState('');
   const [currentSong, setCurrentSong] = useState({});
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(playlistIndex);
   useEffect(() => {
     if (musics.length > 0) {
-      setCurrentSong(musics[currentIndex]);
+      setCurrentSong(musics[playlistIndex]);
       fetchArtistById();
     }
   });
 
   const fetchArtistById = async () => {
     let response = await axios.get(
-      'http://localhost:3000/user/' + musics[currentIndex].uploadedBy,
+      'http://localhost:3000/user/' + musics[playlistIndex].uploadedBy,
       {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -48,7 +49,6 @@ const MusicPlayer = () => {
   // queue = queue.slice(currentIndex + 1);
   console.log("queue",queue);
   console.log("musics",musics);
-  console.log("current index",currentIndex)
   console.log("music length", musics.length)
 
   return (
@@ -74,7 +74,7 @@ const MusicPlayer = () => {
           currentSong.audio &&
           `http://localhost:3000/${currentSong.audio.slice(6)}`
         }
-        // autoPlay
+        autoPlay
         showSkipControls={true}
         customAdditionalControls={[
           <div
@@ -99,17 +99,19 @@ const MusicPlayer = () => {
           RHAP_UI.VOLUME,
         ]}
         onEnded={() =>
-          currentIndex + 1 < musics.length
-            ? setCurrentIndex((i) => i + 1)
+            playlistIndex + 1 < musics.length
+            ? dispatch(updateIndex(playlistIndex+=1))
             : null
         }
         onClickNext={() =>
-          currentIndex + 1 < musics.length
-            ? setCurrentIndex((i) => i + 1)
-            : setCurrentIndex(0)
+            playlistIndex + 1 < musics.length
+            ? dispatch(updateIndex(playlistIndex+=1))
+            : dispatch(updateIndex(playlistIndex=0))
         }
         onClickPrevious={() =>
-          currentIndex > 0 ? setCurrentIndex((i) => i - 1) : setCurrentIndex(0)
+          playlistIndex > 0
+            ? dispatch(updateIndex(playlistIndex-=1))
+            : dispatch(updateIndex(playlistIndex=0))
         }
         customIcons={{
           play: <FontAwesomeIcon icon={solid('circle-play')} color='white' />,
@@ -147,7 +149,7 @@ const MusicPlayer = () => {
       <div className='queue-container'>
       <div className='queue-header'>YOUR QUEUE</div>
         <div className='queue'>
-          {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} currentIndex={currentIndex} item={index} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+          {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} currentIndex={playlistIndex} item={index} key={index}/>;})) : (<h5>Queue is empty</h5>)}
         </div>
       </div>
     </div>
