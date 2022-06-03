@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MusicPlayer from "../components/MusicPlayer";
 import { Rings } from "react-loader-spinner";
+import "../styles/mainCSS.css";
 import "../styles/artistStyle.css";
 import {
   fetchArtistMusic,
