@@ -169,7 +169,9 @@ body {
   flex-direction: row;
   justify-content: left;
 }
-
+.artist_profile_buttons{
+  /* width: 100%; */
+}
 .btn-play{
   width: max-content;
   /* border-radius: 8px; */

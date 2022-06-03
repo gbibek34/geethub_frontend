@@ -20,4 +20,4 @@ export default function SearchResultCard({ result }) {
     </div>
   );
 }
-``;
+;
