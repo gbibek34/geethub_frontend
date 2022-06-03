@@ -3,7 +3,7 @@ import { Button, Modal, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewMusic } from '../features/Music/MusicsSlice';
 import FileUploader from '../components/MusicUploader';
-import './UploadModal.css';
+import '../styles/UploadModal.css';
 import MusicUploader from '../components/MusicUploader';
 import ImageUploader from '../components/ImageUploader';
 

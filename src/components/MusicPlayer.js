@@ -9,7 +9,7 @@ import {
   regular,
   brands,
 } from '@fortawesome/fontawesome-svg-core/import.macro';
-import './MusicPlayer.css';
+import '../styles/MusicPlayer.css';
 import error from '../images/error.png';
 import { musicSelector } from '../features/Music/MusicSlice';
 import { fetchUserById } from '../features/User/UserSlice';
@@ -74,7 +74,7 @@ const MusicPlayer = () => {
           currentSong.audio &&
           `http://localhost:3000/${currentSong.audio.slice(6)}`
         }
-        autoPlay
+        // autoPlay
         showSkipControls={true}
         customAdditionalControls={[
           <div
@@ -144,8 +144,11 @@ const MusicPlayer = () => {
           ),
         }}
       />
-      <div>
-      {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+      <div className='queue-container'>
+      <div className='queue-header'>YOUR QUEUE</div>
+        <div className='queue'>
+          {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} currentIndex={currentIndex} item={index} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+        </div>
       </div>
     </div>
   );

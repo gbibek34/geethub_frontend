@@ -9,7 +9,7 @@ import {
 } from '../features/User/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import './Signup.css';
+import '../styles/Signup.css';
 import signupPicture from '../images/signup.png';
 
 const Signup = () => {

@@ -257,13 +257,14 @@ body {
   padding: 0;
 }
 
-.image_container{
-  /* position:absolute; */
+/* .image_container{
+  position:absolute;
 }
 
 .image_container:hover img{
-  /* background-image: radial-gradient(); */
-}
+  background-image: radial-gradient();
+} */
+
 .maxH_200{
   max-height: 200px;
   padding: 0px 24px;
