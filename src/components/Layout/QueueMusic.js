@@ -1,5 +1,5 @@
-import '../styles/QueueMusic.css';
-import React, { useRef, useEffect } from 'react';
+import '../../styles/QueueMusic.css';
+import React from 'react';
 
 const QueueMusic = ({ queue, currentIndex, item }) => {
   const scroll = () => {
@@ -10,7 +10,7 @@ const QueueMusic = ({ queue, currentIndex, item }) => {
       block: 'start',
     });
   };
-  scroll();
+  // scroll();
 
   return (
     <div className='queue-main'>

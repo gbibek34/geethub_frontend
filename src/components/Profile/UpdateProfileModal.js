@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Modal, Container, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile, userSelector } from '../features/User/UserSlice';
-import ImageUploader from './ImageUploader';
-import '../styles/UploadModal.css';
+import { updateUserProfile, userSelector } from '../../features/User/UserSlice';
+import ImageUploader from '../../helpers/ImageUploader';
+import '../../styles/UploadModal.css';
 
 const UpdateProfileModal = (props) => {
   const user = useSelector(userSelector);

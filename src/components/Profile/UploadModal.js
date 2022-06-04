@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Modal, Container, Form } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNewMusic } from '../features/Music/MusicsSlice';
-import FileUploader from '../components/MusicUploader';
-import '../styles/UploadModal.css';
-import MusicUploader from '../components/MusicUploader';
-import ImageUploader from '../components/ImageUploader';
+import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { createNewMusic } from '../../features/Music/MusicsSlice';
+import '../../styles/UploadModal.css';
+import MusicUploader from '../../helpers/MusicUploader';
+import ImageUploader from '../../helpers/ImageUploader';
 
 const UploadModal = (props) => {
   const [show, setShow] = useState(false);

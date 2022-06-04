@@ -1,15 +1,14 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Rings } from 'react-loader-spinner';
 import {
   usersSelector,
   clearState,
-  usersSlice,
   searchForArtists,
 } from '../features/User/UsersSlice';
 import '../styles/searchStyle.css';
-import SearchResultCard from './SearchResultCard';
+import SearchResultCard from '../components/Search/SearchResultCard';
 
 export default function SearchArtist() {
   const [searchkey, setsearchkey] = useState('');
@@ -43,16 +42,13 @@ export default function SearchArtist() {
             }}
             className='form-control searchbar'
             type='text'
-            placeholder='search for artists'
+            placeholder='Search for Artists'
           />
           <button
             type='submit'
             className='btn btn-main search_button'
             onClick={() => onClickHandler()}
           >
-            <span className='material-symbols-rounded search_icon mr-2'>
-              search
-            </span>
             Search
           </button>
         </div>

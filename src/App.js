@@ -10,7 +10,7 @@ import PrivateRoute from './helpers/PrivateRoute';
 import { ProtectedRoute } from './helpers/PrivateRoute';
 import AllMusics from './screens/AllMusics';
 import PageLayout from './helpers/PageLayout';
-import PlaylistDetailScreen from './screens/PlaylitsDetailScreen';
+import PlaylistDetailScreen from './screens/PlaylistDetailScreen';
 import ArtistProfileScreen from './screens/ArtistProfileScreen';
 import SearchArtist from './screens/SearchScreen';
 

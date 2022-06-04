@@ -1,6 +1,6 @@
 import React from 'react';
-import MusicPlayer from '../components/MusicPlayer';
-import Sidebar from '../components/Sidebar';
+import MusicPlayer from '../components/Layout/MusicPlayer';
+import Sidebar from '../components/Layout/Sidebar';
 import { Outlet } from 'react-router-dom';
 
 const PageLayout = () => {

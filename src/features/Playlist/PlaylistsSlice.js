@@ -84,6 +84,7 @@ export const addMusicToPlaylist = createAsyncThunk(
         }
       );
       let data = response.data;
+      console.log(data);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       }

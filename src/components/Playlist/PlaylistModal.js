@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { createNewPlaylist } from '../features/Playlist/PlaylistsSlice';
+import { createNewPlaylist } from '../../features/Playlist/PlaylistsSlice';
 
 //playlist modal to create a new playlist
 const PlaylistModal = (props) => {
@@ -31,14 +30,9 @@ const PlaylistModal = (props) => {
 
   return (
     <div>
-      <button
-        onClick={handleShow}
-        className='btn btn-link create_new_playlist'
-        data-toggle='modal'
-        data-target='#create_new_playlist_modal'
-      >
+      <div type='button' onClick={handleShow} className='create_new_playlist'>
         + CREATE NEW PLAYLIST
-      </button>
+      </div>
       <Modal
         className='modal fade'
         // id="create_new_playlist_modal"

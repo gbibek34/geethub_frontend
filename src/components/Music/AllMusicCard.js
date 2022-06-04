@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import AddToPlaylistModal from './AddToPlaylistModal';
+import React from 'react';
+import AddToPlaylistModal from '../Playlist/AddToPlaylistModal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   updateNowPlayingState,
   addToQueue,
   nowPlayingSelector,
-} from '../features/Music/NowPlayingSlice';
+} from '../../features/Music/NowPlayingSlice';
 const _ = require('lodash');
 
 const AllMusicCard = ({ music }) => {

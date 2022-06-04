@@ -1,7 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 
 const initialStateValue = {
   musics: [],
@@ -20,7 +17,7 @@ export const nowPlayingSlice = createSlice({
     },
     updateIndex: (state, { payload }) => {
       state.playlistIndex = payload;
-    }
+    },
   },
 });
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Sidebar.css';
-import logo from '../images/Geethub-Logo.png';
+import '../../styles/Sidebar.css';
+import logo from '../../images/Geethub-Logo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMyProfile, userSelector } from '../features/User/UserSlice';
+import { fetchMyProfile, userSelector } from '../../features/User/UserSlice';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {

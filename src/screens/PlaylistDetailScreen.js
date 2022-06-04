@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import PlaylistMusicCard from '../components/PlaylistMusicCard';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import MusicPlayer from '../components/MusicPlayer';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/artistStyle.css';
 
 import { Rings } from 'react-loader-spinner';
 import {
   fetchMusicInPlaylist,
   fetchPlaylistbyId,
-  clearState,
   playlistSelector,
 } from '../features/Playlist/PlaylistSlice';
 import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
+import PlaylistMusicCard from '../components/Playlist/PlaylistMusicCard';
 
 //playlist details screen that displays all the music in the playlist
 const PlaylistDetailScreen = () => {
@@ -77,18 +75,6 @@ const PlaylistDetailScreen = () => {
                   play_circle
                 </span>
               </button>
-              <div className='artist_profile_actions'>
-                <button type='button' className='btn btn-main-outline mr-2'>
-                  <span className='material-symbols-rounded mr-1'>
-                    person_add
-                  </span>
-                  <span>Follow</span>
-                </button>
-                <button type='button' className='btn btn-primary btn-main'>
-                  <span className='material-symbols-rounded'>redeem</span>
-                  <span>Tip</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -100,10 +86,17 @@ const PlaylistDetailScreen = () => {
         <div className='upload-header'>
           <div className='sub-header'>Music</div>
         </div>
-        <div className='allmusic-container'>
+        <div className='playlist-music-container'>
           {!isFetching ? (
-            musics.map((music) => {
-              return <PlaylistMusicCard key={music._id} music={music} />;
+            musics.map((music, index) => {
+              return (
+                <PlaylistMusicCard
+                  key={music._id}
+                  music={music}
+                  item={index}
+                  allMusics={musics}
+                />
+              );
             })
           ) : (
             <Rings />

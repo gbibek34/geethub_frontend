@@ -5,19 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   nowPlayingSelector,
   updateIndex,
-} from '../features/Music/NowPlayingSlice';
+} from '../../features/Music/NowPlayingSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-} from '@fortawesome/fontawesome-svg-core/import.macro';
-import '../styles/MusicPlayer.css';
-import error from '../images/error.png';
-import { musicSelector } from '../features/Music/MusicSlice';
-import { fetchUserById } from '../features/User/UserSlice';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import '../../styles/MusicPlayer.css';
+import error from '../../images/error.png';
 import axios from 'axios';
-import QueueMusic from '../components/QueueMusic';
+import QueueMusic from './QueueMusic';
 
 const MusicPlayer = () => {
   const dispatch = useDispatch();

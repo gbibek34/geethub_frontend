@@ -159,7 +159,7 @@ body {
 }
 .create_new_playlist {
   color: #3d85a3;
-  font-weight: normal !important;
+  font-weight: bold !important;
   font-size: 16px;
 }
 .create_new_playlist:hover {
@@ -177,6 +177,17 @@ body {
   height: 75vh;
   overflow-y: scroll;
 }
+
+.artist-music-container {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.playlist-music-container {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
 
 /* individual playlist */
 .indiv_playlist {
