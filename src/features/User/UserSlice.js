@@ -84,7 +84,6 @@ export const fetchUserById = createAsyncThunk(
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {
-        console.log('fulfilled');
         return thunkAPI.fulfillWithValue(data.data);
       }
     } catch (e) {

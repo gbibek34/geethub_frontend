@@ -9,9 +9,9 @@ export default function PlaylistCard({ playlist }) {
       <div className='playlist_details'>
         <img src={musicCover} className='playlist_image' />
         <div className='playlist_title'>
-          <div className='playlist_name'>
-          <Link to={`/playlist/${playlist._id}`}>{playlist.name}</Link>
-          </div>
+          <Link className='playlist_name' to={`/playlist/${playlist._id}`}>
+            {playlist.name}
+          </Link>
           <div className='playlist_descr'>{playlist.description}</div>
         </div>
       </div>

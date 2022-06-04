@@ -14,6 +14,10 @@ import SearchResultCard from './SearchResultCard';
 export default function SearchArtist() {
   const [searchkey, setsearchkey] = useState('');
   const dispatch = useDispatch();
+
+  const { artists, isFetching, isSuccess, isError, total_results } =
+    useSelector(usersSelector);
+
   const onClickHandler = () => {
     if (searchkey) {
       dispatch(
@@ -26,9 +30,6 @@ export default function SearchArtist() {
       dispatch(clearState());
     }
   };
-
-  const { artists, isFetching, isSuccess, isError, total_results } =
-    useSelector(usersSelector);
 
   return (
     <>

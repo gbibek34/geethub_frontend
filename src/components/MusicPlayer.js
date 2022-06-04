@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { nowPlayingSelector, updateIndex } from '../features/Music/NowPlayingSlice';
+import {
+  nowPlayingSelector,
+  updateIndex,
+} from '../features/Music/NowPlayingSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,
@@ -47,9 +50,6 @@ const MusicPlayer = () => {
 
   var queue = useSelector((state) => state.nowPlaying.musics);
   // queue = queue.slice(currentIndex + 1);
-  console.log("queue",queue);
-  console.log("musics",musics);
-  console.log("music length", musics.length)
 
   return (
     <div className='m-2'>
@@ -99,19 +99,19 @@ const MusicPlayer = () => {
           RHAP_UI.VOLUME,
         ]}
         onEnded={() =>
-            playlistIndex + 1 < musics.length
-            ? dispatch(updateIndex(playlistIndex+=1))
+          playlistIndex + 1 < musics.length
+            ? dispatch(updateIndex((playlistIndex += 1)))
             : null
         }
         onClickNext={() =>
-            playlistIndex + 1 < musics.length
-            ? dispatch(updateIndex(playlistIndex+=1))
-            : dispatch(updateIndex(playlistIndex=0))
+          playlistIndex + 1 < musics.length
+            ? dispatch(updateIndex((playlistIndex += 1)))
+            : dispatch(updateIndex((playlistIndex = 0)))
         }
         onClickPrevious={() =>
           playlistIndex > 0
-            ? dispatch(updateIndex(playlistIndex-=1))
-            : dispatch(updateIndex(playlistIndex=0))
+            ? dispatch(updateIndex((playlistIndex -= 1)))
+            : dispatch(updateIndex((playlistIndex = 0)))
         }
         customIcons={{
           play: <FontAwesomeIcon icon={solid('circle-play')} color='white' />,
@@ -147,9 +147,22 @@ const MusicPlayer = () => {
         }}
       />
       <div className='queue-container'>
-      <div className='queue-header'>YOUR QUEUE</div>
+        <div className='queue-header'>YOUR QUEUE</div>
         <div className='queue'>
-          {queue.length > 0 ? (queue.map((queue, index)=>{return <QueueMusic queue={queue} currentIndex={playlistIndex} item={index} key={index}/>;})) : (<h5>Queue is empty</h5>)}
+          {queue.length > 0 ? (
+            queue.map((queue, index) => {
+              return (
+                <QueueMusic
+                  queue={queue}
+                  currentIndex={playlistIndex}
+                  item={index}
+                  key={index}
+                />
+              );
+            })
+          ) : (
+            <h5>Queue is empty</h5>
+          )}
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ export default configureStore({
   reducer: {
     musics: musicsSlice.reducer,
     user: userSlice.reducer,
+    users:usersSlice.reducer,
     music: musicSlice.reducer,
     nowPlaying: nowPlayingSlice.reducer,
     playlists: playlistsSlice.reducer,

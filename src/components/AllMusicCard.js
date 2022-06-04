@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToPlaylistModal from './AddToPlaylistModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateNowPlayingState, addToQueue, nowPlayingSelector } from '../features/Music/NowPlayingSlice';
+import {
+  updateNowPlayingState,
+  addToQueue,
+  nowPlayingSelector,
+} from '../features/Music/NowPlayingSlice';
+const _ = require('lodash');
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -19,9 +24,14 @@ const AllMusicCard = ({ music }) => {
   };
 
   const handleAddToQueue = () => {
-    if (musics[musics.length - 1] === music) {
-      console.log("Already in queue's last element");
-    } else{
+    let equal = false;
+    for (let i = 0; i < musics.length; i++) {
+      if (_.isEqual(musics[i], music)) {
+        equal = true;
+        console.log("Already in queue's last element");
+      }
+    }
+    if (equal === false) {
       dispatch(addToQueue(music));
     }
   };
@@ -66,36 +76,7 @@ const AllMusicCard = ({ music }) => {
         >
           tune
         </span>
-        <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Delete'
-          className='material-symbols-rounded songs_action_btn'
-        >
-          delete_forever
-        </span>
       </div>
-
-      {/* <div className="music-details">
-        <div className="major-details">
-          <AddToPlaylistModal musicId={music._id} />
-          <div className="music-options">
-            <div className="edit-music">
-              <i className="fa-solid fa-sliders"></i>
-            </div>
-            <div className="delete-music">
-              <i className="fa-solid fa-trash"></i>
-            </div>
-          </div>
-        </div>
-        <div className="other-details">
-          <div className="last-updated">{date}</div>
-          <div className="likes">
-            <i className="fa-solid fa-heart"></i>&nbsp; 253
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
