@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import UploadModal from '../components/UploadModal';
-import './MyUploads.css';
+import '../styles/MyUploads.css';
 import {
   clearState,
   fetchMyMusics,

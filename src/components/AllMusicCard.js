@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToPlaylistModal from './AddToPlaylistModal';
-import { useDispatch } from 'react-redux';
-import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateNowPlayingState, addToQueue, nowPlayingSelector } from '../features/Music/NowPlayingSlice';
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -12,8 +12,18 @@ const AllMusicCard = ({ music }) => {
     day: 'numeric',
   });
 
+  const { musics } = useSelector(nowPlayingSelector);
+
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+  };
+
+  const handleAddToQueue = () => {
+    if (musics[musics.length - 1] === music) {
+      console.log("Already in queue's last element");
+    } else{
+      dispatch(addToQueue(music));
+    }
   };
 
   return (
@@ -31,12 +41,22 @@ const AllMusicCard = ({ music }) => {
         </div>
         <div className='playlist_title'>
           <div className='playlist_name'>{music.name}</div>
-          <div className='playlist_descr'>Instrumental Pop</div>
+          <div className='playlist_descr'>{music.genre}</div>
         </div>
       </div>
       <div className='playlist_allstats'>
         <div className='playlist_stat'>5 likes</div>
         <AddToPlaylistModal musicId={music._id} />
+        <span
+          type='button'
+          data-toggle='tooltip'
+          data-placement='top'
+          title='Add to queue'
+          className='material-symbols-rounded songs_action_btn'
+          onClick={handleAddToQueue}
+        >
+          queue_music
+        </span>
         <span
           type='button'
           data-toggle='tooltip'

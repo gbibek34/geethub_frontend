@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import loginbg from '../images/login-bg.jpg';
-import './LoginScreen.css';
+import '../styles/LoginScreen.css';
 import {
   loginUser,
   userSelector,

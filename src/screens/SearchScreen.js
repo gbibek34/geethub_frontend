@@ -8,7 +8,7 @@ import {
   usersSlice,
   searchForArtists,
 } from '../features/User/UsersSlice';
-import './searchStyle.css';
+import '../styles/searchStyle.css';
 import SearchResultCard from './SearchResultCard';
 
 export default function SearchArtist() {

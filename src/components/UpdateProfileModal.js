@@ -3,7 +3,7 @@ import { Button, Modal, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, userSelector } from '../features/User/UserSlice';
 import ImageUploader from './ImageUploader';
-import './UploadModal.css';
+import '../styles/UploadModal.css';
 
 const UpdateProfileModal = (props) => {
   const user = useSelector(userSelector);

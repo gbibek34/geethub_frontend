@@ -1,0 +1,51 @@
+.queue-card {
+  display: flex;
+  border-radius: 5px;
+  text-align: left;
+  margin-left: 20px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.queue-img-container {
+  position: relative;
+  width: 60px;
+}
+
+.queue-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+.queue-title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000;
+}
+.queue-artist {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #9799a0;
+}
+
+.active-queue {
+  background-color: #ffe455;
+  border-radius: 8px;
+}
+
+.active-queue img{
+  opacity: 1;
+}
+
+.queue-main {
+  margin-right: 5px;
+}
+

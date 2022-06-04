@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import musicCover from '../images/musicCover.png';
-import '../screens/mainCSS.css';
+import '../styles/mainCSS.css';
 
 export default function PlaylistCard({ playlist }) {
   return (
@@ -9,7 +9,9 @@ export default function PlaylistCard({ playlist }) {
       <div className='playlist_details'>
         <img src={musicCover} className='playlist_image' />
         <div className='playlist_title'>
-          <div className='playlist_name'>{playlist.name}</div>
+          <div className='playlist_name'>
+          <Link to={`/playlist/${playlist._id}`}>{playlist.name}</Link>
+          </div>
           <div className='playlist_descr'>{playlist.description}</div>
         </div>
       </div>

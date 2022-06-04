@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import tick from '../images/tick.png';
 import error from '../images/error.png';
-import './EmailVerify.css';
+import '../styles/EmailVerify.css';
 
 const EmailVerify = () => {
   const [isSuccess, setSuccess] = useState(false);
@@ -26,8 +26,8 @@ const EmailVerify = () => {
   }, [params]);
 
   return (
-    <div class='verify-card'>
-      <div class='verify-status'>
+    <div className='verify-card'>
+      <div className='verify-status'>
         {isSuccess ? (
           <div>
             <img src={tick} className='verify-img' alt='success' />
