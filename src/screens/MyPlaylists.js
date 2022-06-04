@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
 import { Rings } from 'react-loader-spinner';
-import PlaylistCard from '../components/PlaylistCard';
-import PlaylistModal from '../components/PlaylistModal';
+import PlaylistCard from '../components/Playlist/PlaylistCard';
+import PlaylistModal from '../components/Playlist/PlaylistModal';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   getUserplaylist,
   playlistsSelector,
-  clearState,
 } from '../features/Playlist/PlaylistsSlice';
 
 const MyPlaylists = () => {

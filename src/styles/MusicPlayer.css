@@ -75,3 +75,19 @@
 .rhap_forward-button {
     display: none;
 }
+
+.queue-header{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    color: #9799A0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.queue {
+    overflow-y: scroll;
+    max-height: 40vh;
+}

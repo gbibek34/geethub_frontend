@@ -1,32 +1,29 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialStateValue = {
   musics: [],
-  _id: "",
-  createdBy: "",
-  name: "",
-  description: "",
+  _id: '',
+  createdBy: '',
+  name: '',
+  description: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export const fetchPlaylistbyId = createAsyncThunk(
-  "playlist/details",
+  'playlist/details',
   async ({ token, playlistId }, thunkAPI) => {
-    console.log("in here");
     try {
       const response = await axios.get(
-        "http://localhost:3000/playlist/details/" + playlistId,
+        'http://localhost:3000/playlist/details/' + playlistId,
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
-      console.log(data);
-      console.log(data.success);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {
@@ -39,13 +36,13 @@ export const fetchPlaylistbyId = createAsyncThunk(
 );
 
 export const fetchMusicInPlaylist = createAsyncThunk(
-  "playlist/view",
+  'playlist/view',
   async ({ token, playlistId }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/playlist/musics/" + playlistId,
+        'http://localhost:3000/playlist/musics/' + playlistId,
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -62,7 +59,7 @@ export const fetchMusicInPlaylist = createAsyncThunk(
 );
 
 export const playlistSlice = createSlice({
-  name: "playlist",
+  name: 'playlist',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -74,7 +71,6 @@ export const playlistSlice = createSlice({
   },
   extraReducers: {
     [fetchMusicInPlaylist.pending]: (state) => {
-      console.log("in");
       state.isFetching = true;
       state.isError = false;
       state.isSuccess = false;
@@ -83,7 +79,7 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not load musics";
+      state.errorMessage = 'Could not load musics';
     },
     [fetchMusicInPlaylist.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -92,7 +88,6 @@ export const playlistSlice = createSlice({
       state.musics = payload.data;
     },
     [fetchPlaylistbyId.pending]: (state) => {
-      console.log("in");
       state.isFetching = true;
       state.isError = false;
       state.isSuccess = false;
@@ -101,7 +96,7 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not load playlist details";
+      state.errorMessage = 'Could not load playlist details';
     },
     [fetchPlaylistbyId.fulfilled]: (state, { payload }) => {
       state.isFetching = false;

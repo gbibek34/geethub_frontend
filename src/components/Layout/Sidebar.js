@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './Sidebar.css';
-import logo from '../images/Geethub-Logo.png';
+import '../../styles/Sidebar.css';
+import logo from '../../images/Geethub-Logo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMyProfile, userSelector } from '../features/User/UserSlice';
+import { fetchMyProfile, userSelector } from '../../features/User/UserSlice';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -44,6 +44,17 @@ const Sidebar = () => {
           <div className='option-text'>Home</div>
         </NavLink>
         <NavLink
+          to='/search'
+          className={(navData) =>
+            navData.isActive ? 'option active-option' : 'option'
+          }
+        >
+          <div className='option-icon'>
+            <i className='fa-solid fa-search'></i>
+          </div>
+          <div className='option-text'>Search</div>
+        </NavLink>
+        <NavLink
           to='/playlist'
           className={(navData) =>
             navData.isActive ? 'option active-option' : 'option'
@@ -79,7 +90,7 @@ const Sidebar = () => {
       </div>
       <div className='sub-class'>
         <div className='class-header'>STUDIO</div>
-        <NavLink
+        {/* <NavLink
           to='/profile'
           className={(navData) =>
             navData.isActive ? 'option active-option' : 'option'
@@ -89,7 +100,7 @@ const Sidebar = () => {
             <i className='fa-solid fa-microphone-lines'></i>
           </div>
           <div className='option-text'>Your Uploads</div>
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to='/monetization'
           className={(navData) =>
@@ -123,17 +134,22 @@ const Sidebar = () => {
         </div>
       </div>
       <div className='sidebar-user-overview'>
-        <img
-          className='sidebar-profile-picture'
-          src={
-            profile_image
-              ? `http://localhost:3000/${profile_image.slice(6)}`
-              : `https://bootdey.com/img/Content/avatar/avatar7.png`
-          }
-          alt=''
-        />
+        <Link to='/profile'>
+          <img
+            className='sidebar-profile-picture'
+            src={
+              profile_image
+                ? `http://localhost:3000/${profile_image.slice(6)}`
+                : `https://bootdey.com/img/Content/avatar/avatar7.png`
+            }
+            alt=''
+          />
+        </Link>
         <div className='sidebar-profile-details'>
-          <div className='sidebar-profile-name'>{name}</div>
+          <Link to='/profile' className='sidebar-profile-name'>
+            {name}
+          </Link>
+
           <div className='wallet-balance'>
             <i className='fa-solid fa-coins vcurrency'></i>
             &nbsp;&nbsp;20

@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import UploadModal from './UploadModal';
-import './uploadsCSS.css';
-import {
-  clearState,
-  fetchMyMusics,
-  musicsSelector,
-} from '../features/Music/MusicsSlice';
+import { useNavigate } from 'react-router-dom';
+import UploadModal from '../components/Profile/UploadModal';
+import '../styles/uploadsCSS.css';
+import { fetchMyMusics, musicsSelector } from '../features/Music/MusicsSlice';
 import { Rings } from 'react-loader-spinner';
-import MusicCard from './MusicCard';
-import AllMusicCard from './AllMusicCard';
+import AllMusicCard from '../components/Music/AllMusicCard';
 
 const AllMusics = () => {
   const navigate = useNavigate();
@@ -36,12 +31,12 @@ const AllMusics = () => {
       <div className='uploaded-music'>
         <div className='upload-header'>
           <div className='sub-header'>My Music</div>
+
           <UploadModal notifyParent={refresh} />
         </div>
-        <div class='allmusic-container'>
+        <div className='allmusic-container'>
           {!isFetching ? (
             musics.map((music) => {
-              console.log(music);
               return <AllMusicCard music={music} key={music._id} />;
             })
           ) : (

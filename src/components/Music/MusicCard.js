@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { updateNowPlayingState, addToQueue } from '../features/Music/NowPlayingSlice';
+import {
+  updateNowPlayingState,
+  addToQueue,
+} from '../../features/Music/NowPlayingSlice';
 
 const MusicCard = ({ music }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString('en-us', {

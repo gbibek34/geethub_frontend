@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import UploadModal from '../components/UploadModal';
-import './MyUploads.css';
-import {
-  clearState,
-  fetchMyMusics,
-  musicsSelector,
-} from '../features/Music/MusicsSlice';
+import { useNavigate } from 'react-router-dom';
+import UploadModal from '../components/Profile/UploadModal';
+import '../styles/MyUploads.css';
+import { fetchMyMusics, musicsSelector } from '../features/Music/MusicsSlice';
 import { Rings } from 'react-loader-spinner';
-import MusicCard from '../components/MusicCard';
-import MusicPlayer from '../components/MusicPlayer';
 import ProfileScreen from './ProfileScreen';
-import AllMusicCard from '../components/AllMusicCard';
+import AllMusicCard from '../components/Music/AllMusicCard';
 
 const MyUploads = () => {
   const navigate = useNavigate();

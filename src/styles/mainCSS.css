@@ -159,10 +159,7 @@ body {
 }
 .create_new_playlist {
   color: #3d85a3;
-  text-decoration: none;
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 700;
+  font-weight: bold !important;
   font-size: 16px;
 }
 .create_new_playlist:hover {
@@ -180,6 +177,17 @@ body {
   height: 75vh;
   overflow-y: scroll;
 }
+
+.artist-music-container {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.playlist-music-container {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
 
 /* individual playlist */
 .indiv_playlist {
@@ -213,10 +221,11 @@ body {
   max-width: 390px;
 }
 .playlist_name {
+  text-decoration: none !important;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
-  color: #000;
+  color: #000 !important;
 }
 .playlist_descr {
   font-family: "Open Sans";

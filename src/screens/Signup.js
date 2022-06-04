@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   signupUser,
@@ -9,7 +8,7 @@ import {
 } from '../features/User/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import './Signup.css';
+import '../styles/Signup.css';
 import signupPicture from '../images/signup.png';
 
 const Signup = () => {

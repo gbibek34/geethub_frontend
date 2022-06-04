@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import AddToPlaylistModal from './AddToPlaylistModal';
-import { useDispatch } from 'react-redux';
-import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
+import React from 'react';
+import AddToPlaylistModal from '../Playlist/AddToPlaylistModal';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  updateNowPlayingState,
+  addToQueue,
+  nowPlayingSelector,
+} from '../../features/Music/NowPlayingSlice';
+const _ = require('lodash');
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -12,8 +16,23 @@ const AllMusicCard = ({ music }) => {
     day: 'numeric',
   });
 
+  const { musics } = useSelector(nowPlayingSelector);
+
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+  };
+
+  const handleAddToQueue = () => {
+    let equal = false;
+    for (let i = 0; i < musics.length; i++) {
+      if (_.isEqual(musics[i], music)) {
+        equal = true;
+        console.log("Already in queue's last element");
+      }
+    }
+    if (equal === false) {
+      dispatch(addToQueue(music));
+    }
   };
 
   return (
@@ -31,7 +50,7 @@ const AllMusicCard = ({ music }) => {
         </div>
         <div className='playlist_title'>
           <div className='playlist_name'>{music.name}</div>
-          <div className='playlist_descr'>Instrumental Pop</div>
+          <div className='playlist_descr'>{music.genre}</div>
         </div>
       </div>
       <div className='playlist_allstats'>
@@ -41,41 +60,22 @@ const AllMusicCard = ({ music }) => {
           type='button'
           data-toggle='tooltip'
           data-placement='top'
-          title='Edit'
+          title='Add to queue'
           className='material-symbols-rounded songs_action_btn'
+          onClick={handleAddToQueue}
         >
-          tune
+          queue_music
         </span>
         <span
           type='button'
           data-toggle='tooltip'
           data-placement='top'
-          title='Delete'
+          title='Edit'
           className='material-symbols-rounded songs_action_btn'
         >
-          delete_forever
+          tune
         </span>
       </div>
-
-      {/* <div className="music-details">
-        <div className="major-details">
-          <AddToPlaylistModal musicId={music._id} />
-          <div className="music-options">
-            <div className="edit-music">
-              <i className="fa-solid fa-sliders"></i>
-            </div>
-            <div className="delete-music">
-              <i className="fa-solid fa-trash"></i>
-            </div>
-          </div>
-        </div>
-        <div className="other-details">
-          <div className="last-updated">{date}</div>
-          <div className="likes">
-            <i className="fa-solid fa-heart"></i>&nbsp; 253
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

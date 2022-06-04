@@ -1,20 +1,20 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialStateValue = {
   playlists: [],
-  _id: "",
-  createdBy: "",
-  name: "",
-  description: "",
+  _id: '',
+  createdBy: '',
+  name: '',
+  description: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export const createNewPlaylist = createAsyncThunk(
-  "playlist/create",
+  'playlist/create',
   async ({ token, name, description }, thunkAPI) => {
     try {
       const playlistData = {
@@ -22,10 +22,10 @@ export const createNewPlaylist = createAsyncThunk(
         description: description,
       };
       const response = await axios.post(
-        "http://localhost:3000/playlist/create",
+        'http://localhost:3000/playlist/create',
         playlistData,
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -44,13 +44,13 @@ export const createNewPlaylist = createAsyncThunk(
 );
 
 export const getUserplaylist = createAsyncThunk(
-  "playlist/get",
+  'playlist/get',
   async (token, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/playlist/getuserplaylist",
+        'http://localhost:3000/playlist/getuserplaylist',
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -69,22 +69,22 @@ export const getUserplaylist = createAsyncThunk(
 );
 
 export const addMusicToPlaylist = createAsyncThunk(
-  "playlist/addmusic",
+  'playlist/addmusic',
   async ({ token, playlistId, musicId }, thunkAPI) => {
     try {
-      console.log(playlistId);
       const musicData = {
         playlistId,
         musicId,
       };
       const response = await axios.post(
-        "http://localhost:3000/playlist/addmusic",
+        'http://localhost:3000/playlist/addmusic',
         musicData,
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
+      console.log(data);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       }
@@ -100,7 +100,7 @@ export const addMusicToPlaylist = createAsyncThunk(
 );
 
 export const playlistsSlice = createSlice({
-  name: "playlists",
+  name: 'playlists',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -125,7 +125,7 @@ export const playlistsSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not create playlist";
+      state.errorMessage = 'Could not create playlist';
     },
     [getUserplaylist.pending]: (state) => {
       state.isFetching = true;
@@ -136,7 +136,7 @@ export const playlistsSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not load playlists";
+      state.errorMessage = 'Could not load playlists';
     },
     [getUserplaylist.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -158,7 +158,7 @@ export const playlistsSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not add music to the playlist";
+      state.errorMessage = 'Could not add music to the playlist';
     },
   },
 });

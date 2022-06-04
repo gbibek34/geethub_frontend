@@ -16,3 +16,10 @@ body{
 
   background-color: #E8E9EC;
 }
+
+.main-container {
+  height: 100vh;
+  position: relative;
+  top: 0;
+  
+}
