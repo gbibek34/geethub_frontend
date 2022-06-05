@@ -13,6 +13,7 @@ const Sidebar = () => {
     // localStorage.removeItem('token');
     localStorage.clear();
     navigate('/login');
+    window.location.reload();
   };
 
   useEffect(() => {
