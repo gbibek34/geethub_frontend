@@ -29,6 +29,7 @@ const Sidebar = () => {
     dispatch(resetUsers());
     dispatch(resetSearch());
     navigate('/login');
+    window.location.reload();
   };
 
   useEffect(() => {
