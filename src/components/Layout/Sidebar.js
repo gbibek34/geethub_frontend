@@ -4,6 +4,14 @@ import logo from '../../images/Geethub-Logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMyProfile, userSelector } from '../../features/User/UserSlice';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { resetMusic } from '../../features/Music/MusicSlice';
+import { resetMusics } from '../../features/Music/MusicsSlice';
+import { resetNowPlaying } from '../../features/Music/NowPlayingSlice';
+import { resetPlaylist } from '../../features/Playlist/PlaylistSlice';
+import { resetPlaylists } from '../../features/Playlist/PlaylistsSlice';
+import { resetUser } from '../../features/User/UserSlice';
+import { resetUsers } from '../../features/User/UsersSlice';
+import { resetSearch } from '../../features/Search/SearchSlice';
 
 const Sidebar = () => {
   const { profile_image, name } = useSelector(userSelector);
@@ -12,6 +20,14 @@ const Sidebar = () => {
   const handleLogout = () => {
     // localStorage.removeItem('token');
     localStorage.clear();
+    dispatch(resetMusic());
+    dispatch(resetMusics());
+    dispatch(resetNowPlaying());
+    dispatch(resetPlaylist());
+    dispatch(resetPlaylists());
+    dispatch(resetUser());
+    dispatch(resetUsers());
+    dispatch(resetSearch());
     navigate('/login');
     window.location.reload();
   };

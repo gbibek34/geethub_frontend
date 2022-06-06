@@ -4,6 +4,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   nowPlayingSelector,
+  resetNowPlaying,
   updateIndex,
 } from '../../features/Music/NowPlayingSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +27,7 @@ const MusicPlayer = () => {
       setCurrentSong(musics[playlistIndex]);
       fetchArtistById();
     }
-  });
+  }, [musics, playlistIndex]);
 
   const fetchArtistById = async () => {
     let response = await axios.get(
@@ -43,6 +44,10 @@ const MusicPlayer = () => {
   };
 
   var queue = useSelector((state) => state.nowPlaying.musics);
+
+  const handleClearQueue = () => {
+    dispatch(resetNowPlaying());
+  };
   // queue = queue.slice(currentIndex + 1);
 
   return (
@@ -60,8 +65,8 @@ const MusicPlayer = () => {
             alt=''
           />
         </div>
-        <div className='music_name'>{currentSong.name}</div>
-        <div className='artist_name'>{artistName}</div>
+        <div className='nowplaying_music_name'>{currentSong.name}</div>
+        <div className='nowplaying_artist_name'>{artistName}</div>
       </div>
       <AudioPlayer
         src={
@@ -141,7 +146,21 @@ const MusicPlayer = () => {
         }}
       />
       <div className='queue-container'>
-        <div className='queue-header'>YOUR QUEUE</div>
+        {queue.length > 0 ? (
+          <div className='d-flex justify-content-between'>
+            <div className='queue-header'>YOUR QUEUE</div>
+            <div
+              type='button'
+              onClick={handleClearQueue}
+              className='clear-queue-button'
+            >
+              CLEAR QUEUE
+            </div>
+          </div>
+        ) : (
+          <div className='queue-header'>YOUR QUEUE</div>
+        )}
+
         <div className='queue'>
           {queue.length > 0 ? (
             queue.map((queue, index) => {

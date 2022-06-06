@@ -51,6 +51,7 @@ export const musicSlice = createSlice({
 
       return state;
     },
+    resetMusic: () => initialStateValue,
   },
   extraReducers: {
     [fetchMusicById.pending]: (state) => {
@@ -82,5 +83,5 @@ export const musicSlice = createSlice({
   },
 });
 
-export const { clearState } = musicSlice.actions;
+export const { clearState, resetMusic } = musicSlice.actions;
 export const musicSelector = (state) => state.music;

@@ -49,3 +49,7 @@
   margin-right: 5px;
 }
 
+.queue {
+  overflow-y: scroll;
+  max-height: 30vh;
+}

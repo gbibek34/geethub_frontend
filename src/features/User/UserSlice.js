@@ -158,6 +158,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       return state;
     },
+    resetUser: () => initialStateValue,
   },
   extraReducers: {
     [signupUser.fulfilled]: (state, { payload }) => {
@@ -262,5 +263,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { clearState } = userSlice.actions;
+export const { clearState, resetUser } = userSlice.actions;
 export const userSelector = (state) => state.user;

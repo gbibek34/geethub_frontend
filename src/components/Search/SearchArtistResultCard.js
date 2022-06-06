@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function SearchResultCard({ result }) {
+export default function SearchArtistResultCard({ result }) {
   return (
     <div className='indiv_artist_card'>
       <Link to={`/artist/${result._id}`} className='artist-card-name'>
