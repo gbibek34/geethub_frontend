@@ -68,6 +68,7 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       return state;
     },
+    resetPlaylist: () => initialStateValue,
   },
   extraReducers: {
     [fetchMusicInPlaylist.pending]: (state) => {
@@ -110,5 +111,5 @@ export const playlistSlice = createSlice({
   },
 });
 
-export const { clearState } = playlistSlice.actions;
+export const { clearState, resetPlaylist } = playlistSlice.actions;
 export const playlistSelector = (state) => state.playlist;

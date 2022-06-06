@@ -109,6 +109,7 @@ export const playlistsSlice = createSlice({
       state.isFetching = false;
       return state;
     },
+    resetPlaylists: () => initialStateValue,
   },
   extraReducers: {
     [createNewPlaylist.fulfilled]: (state, { payload }) => {
@@ -163,5 +164,5 @@ export const playlistsSlice = createSlice({
   },
 });
 
-export const { clearState } = playlistsSlice.actions;
+export const { clearState, resetPlaylists } = playlistsSlice.actions;
 export const playlistsSelector = (state) => state.playlists;

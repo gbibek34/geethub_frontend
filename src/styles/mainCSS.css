@@ -39,7 +39,6 @@ body {
   display: flex;
   align-items: center;
 
-  margin-bottom: 20px;
 }
 
 
@@ -161,6 +160,7 @@ body {
   color: #3d85a3;
   font-weight: bold !important;
   font-size: 16px;
+  cursor: pointer;
 }
 .create_new_playlist:hover {
   color: #698a98;

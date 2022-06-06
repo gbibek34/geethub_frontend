@@ -10,7 +10,7 @@ const QueueMusic = ({ queue, currentIndex, item }) => {
       block: 'start',
     });
   };
-  // scroll();
+  scroll();
 
   return (
     <div className='queue-main'>

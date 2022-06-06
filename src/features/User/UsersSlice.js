@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const initialStateValue = {
   artists: [],
-  total_results: 0,
   isFetching: false,
   isSuccess: false,
   isError: false,
@@ -11,33 +10,6 @@ const initialStateValue = {
   artist: [],
   musics: [],
 };
-
-export const searchForArtists = createAsyncThunk(
-  'artist/search',
-  async ({ token, searchkey }, thunkAPI) => {
-    try {
-      const response = await axios.get(
-        'http://localhost:3000/artist/search/' + searchkey,
-        {
-          headers: { Authorization: 'Bearer ' + token },
-        }
-      );
-      if (searchkey) {
-        let data = response.data;
-        if (data.success === true) {
-          return thunkAPI.fulfillWithValue(data);
-        } else {
-          return thunkAPI.rejectWithValue(data);
-        }
-      } else {
-        return;
-      }
-    } catch (e) {
-      console.log('Error', e.response.data);
-      return thunkAPI.rejectWithValue(e.response.data);
-    }
-  }
-);
 
 export const fetchArtistProfile = createAsyncThunk(
   'artist/profile',
@@ -98,25 +70,9 @@ export const usersSlice = createSlice({
       state.artists = [];
       return state;
     },
+    resetUsers: () => initialStateValue,
   },
   extraReducers: {
-    [searchForArtists.fulfilled]: (state, { payload }) => {
-      state.isFetching = false;
-      state.isSuccess = true;
-      state.isError = false;
-      state.artists = payload.data;
-      state.total_results = payload.data.length;
-    },
-    [searchForArtists.pending]: (state) => {
-      state.isFetching = true;
-      state.isSuccess = false;
-      state.isError = false;
-    },
-    [searchForArtists.rejected]: (state) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = 'Can not search for artist';
-    },
     [fetchArtistProfile.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
@@ -153,5 +109,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { clearState } = usersSlice.actions;
+export const { clearState, resetUsers } = usersSlice.actions;
 export const usersSelector = (state) => state.users;
