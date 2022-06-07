@@ -66,6 +66,39 @@ export const createNewMusic = createAsyncThunk(
   }
 );
 
+export const editMusicDetails = createAsyncThunk(
+  'music/edit',
+  async ({ token, id, name, description, genre, coverArt }, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('description', description);
+      formData.append('genre', genre);
+      formData.append('coverArt', coverArt);
+      const response = await axios.put(
+        `http://localhost:3000/music/edit/${id}`,
+        formData,
+        {
+          headers: { Authorization: 'Bearer ' + token },
+        }
+      );
+
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
 export const musicsSlice = createSlice({
   name: 'musics',
   initialState: initialStateValue,
@@ -108,6 +141,22 @@ export const musicsSlice = createSlice({
       state.errorMessage = 'Could not add music';
     },
     [createNewMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isFetching = false;
+    },
+    [editMusicDetails.pending]: (state) => {
+      state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    [editMusicDetails.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = 'Could not edit music details';
+    },
+    [editMusicDetails.fulfilled]: (state) => {
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;

@@ -126,7 +126,7 @@ export const updateUserProfile = createAsyncThunk(
       formData.append('instagram', instagram);
       formData.append('twitter', twitter);
       formData.append('profile_image', profile_image);
-      const response = await axios.post(
+      const response = await axios.put(
         'http://localhost:3000/user/profile/update',
         formData,
         {

@@ -1,5 +1,6 @@
 import React from 'react';
 import AddToPlaylistModal from '../Playlist/AddToPlaylistModal';
+import EditMusicDetailsModal from '../Music/EditMusicDetailsModal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   updateNowPlayingState,
@@ -66,15 +67,7 @@ const AllMusicCard = ({ music }) => {
         >
           queue_music
         </span>
-        <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Edit'
-          className='material-symbols-rounded songs_action_btn'
-        >
-          tune
-        </span>
+        <EditMusicDetailsModal music={music} />
       </div>
     </div>
   );
