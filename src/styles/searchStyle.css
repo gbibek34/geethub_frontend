@@ -216,6 +216,75 @@ body {
   height: 75vh;
   overflow-y: scroll;
 }
+
+.filter-pill {
+  cursor: pointer;
+  margin: 5px 10px;
+  padding: 5px 10px;
+}
+
+.filter-button {
+  font-weight: 600;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding: 5px 20px;
+  margin: 0px 10px;
+  text-align: center;
+
+  cursor: pointer;
+  transition: ease-in 0.2s;
+
+  color: #3d85a3;
+  border: 2px #fafafa solid;
+  border-radius: 2px;
+}
+
+
+.filter-button:hover {
+  transform: scale(1.01);
+
+  background: #f4f4f5;
+}
+
+.collapsible-div {
+  z-index: 2 !important;
+  position: absolute;
+  height: 200px;
+  width: 300px;
+  right: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: grey 0px 1px;
+  background-color: white;
+  flex-direction: column;
+}
+
+.collapsible-header {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.collapsible-body {
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.save-btn-filter {
+  margin-top: 20px;
+  margin-left: 15px;
+  border-radius: 4px;
+  padding:3px 20px;
+  background-color: #3d85a3;
+  color: white;
+}
+
+.search_container > input {
+  height: 50px;
+}
 /* .search_button label{
   display: flex;
   align-items: center;

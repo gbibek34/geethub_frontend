@@ -16,6 +16,8 @@ const ArtistProfileScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let { artistid } = useParams();
+  const { isFetching, isError, isSuccess, artist, musics } =
+    useSelector(usersSelector);
   useEffect(() => {
     dispatch(
       fetchArtistMusic({ token: localStorage.getItem('token'), artistid })
@@ -28,9 +30,9 @@ const ArtistProfileScreen = () => {
     );
   }, []);
 
-  const { isFetching, isError, isSuccess, artist, musics } =
-    useSelector(usersSelector);
-
+  useEffect(() => {
+    console.log(artist);
+  });
   const handlePlayAll = () => {
     dispatch(updateNowPlayingState(musics));
   };
