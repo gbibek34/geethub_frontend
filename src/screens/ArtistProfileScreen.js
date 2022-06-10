@@ -68,13 +68,13 @@ const ArtistProfileScreen = () => {
             </button>
             <div className='artist_profile_actions'>
               <button type='button' className='btn btn-main-outline mr-2'>
-                <span className='material-symbols-rounded mr-1'>
+                {/* <span className='material-symbols-rounded mr-1'>
                   person_add
-                </span>
+                </span> */}
                 <span>Follow</span>
               </button>
               <button type='button' className='btn btn-primary btn-main'>
-                <span className='material-symbols-rounded'>redeem</span>
+                {/* <span className='material-symbols-rounded'>redeem</span> */}
                 <span>Tip</span>
               </button>
             </div>

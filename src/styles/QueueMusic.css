@@ -50,3 +50,7 @@
   cursor: pointer;
 }
 
+.queue {
+  overflow-y: scroll;
+  max-height: 30vh;
+}

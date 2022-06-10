@@ -18,10 +18,14 @@ export const nowPlayingSlice = createSlice({
     updateIndex: (state, { payload }) => {
       state.playlistIndex = payload;
     },
+    resetNowPlaying: () => initialStateValue,
   },
 });
 
-export const { updateNowPlayingState } = nowPlayingSlice.actions;
+export const {
+  updateNowPlayingState,
+  addToQueue,
+  updateIndex,
+  resetNowPlaying,
+} = nowPlayingSlice.actions;
 export const nowPlayingSelector = (state) => state.nowPlaying;
-export const { addToQueue } = nowPlayingSlice.actions;
-export const { updateIndex } = nowPlayingSlice.actions;
