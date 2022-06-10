@@ -119,3 +119,7 @@
     background: #f4f4f5;
   }
   
+.queue {
+    overflow-y: scroll;
+    max-height: 35vh;
+}
