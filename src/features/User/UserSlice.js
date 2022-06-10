@@ -1,35 +1,36 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialStateValue = {
-  id: '',
-  name: '',
-  email: '',
+  id: "",
+  name: "",
+  email: "",
   is_authenticated: false,
-  joined_date: '',
+  joined_date: "",
   is_verified: false,
-  bio: '',
-  profile_image: '',
+  bio: "",
+  profile_image: "",
   social: {
-    facebook: '',
-    instagram: '',
-    twitter: '',
+    facebook: "",
+    instagram: "",
+    twitter: "",
   },
   music_count: 0,
   followers: 0,
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: '',
+  errorMessage: "",
+  isFollowed: "",
 };
 
 export const signupUser = createAsyncThunk(
-  'user/register',
+  "user/register",
   async (data, thunkAPI) => {
     var passedData = data;
     try {
       const response = await axios.post(
-        'http://localhost:3000/signup',
+        "http://localhost:3000/signup",
         passedData
       );
       let data = response.data;
@@ -39,14 +40,14 @@ export const signupUser = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      console.log('Error', e.response.data);
+      console.log("Error", e.response.data);
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );
 
 export const loginUser = createAsyncThunk(
-  'user/login',
+  "user/login",
   async ({ email, password }, thunkAPI) => {
     try {
       const userData = {
@@ -54,13 +55,13 @@ export const loginUser = createAsyncThunk(
         password: password,
       };
       const response = await axios.post(
-        'http://localhost:3000/login',
+        "http://localhost:3000/login",
         userData
       );
 
       let data = response.data;
       if (data.success === true) {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem("token", data.token);
         return thunkAPI.fulfillWithValue(data);
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -72,11 +73,11 @@ export const loginUser = createAsyncThunk(
 );
 
 export const fetchUserById = createAsyncThunk(
-  'user/id',
+  "user/id",
   async ({ token, id }, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3000/user/' + id, {
-        headers: { Authorization: 'Bearer ' + token },
+      const response = await axios.get("http://localhost:3000/user/" + id, {
+        headers: { Authorization: "Bearer " + token },
       });
       let data = response.data;
 
@@ -91,11 +92,11 @@ export const fetchUserById = createAsyncThunk(
   }
 );
 export const fetchMyProfile = createAsyncThunk(
-  'user/profile',
+  "user/profile",
   async (token, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3000/user/profile', {
-        headers: { Authorization: 'Bearer ' + token },
+      const response = await axios.get("http://localhost:3000/user/profile", {
+        headers: { Authorization: "Bearer " + token },
       });
       let data = response.data;
       if (data.success !== true) {
@@ -113,24 +114,24 @@ export const fetchMyProfile = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  'user/profile/update',
+  "user/profile/update",
   async (
     { token, name, bio, facebook, instagram, twitter, profile_image },
     thunkAPI
   ) => {
     try {
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('bio', bio);
-      formData.append('facebook', facebook);
-      formData.append('instagram', instagram);
-      formData.append('twitter', twitter);
-      formData.append('profile_image', profile_image);
+      formData.append("name", name);
+      formData.append("bio", bio);
+      formData.append("facebook", facebook);
+      formData.append("instagram", instagram);
+      formData.append("twitter", twitter);
+      formData.append("profile_image", profile_image);
       const response = await axios.post(
-        'http://localhost:3000/user/profile/update',
+        "http://localhost:3000/user/profile/update",
         formData,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
       let data = response.data;
@@ -149,7 +150,7 @@ export const updateUserProfile = createAsyncThunk(
 );
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -174,7 +175,7 @@ export const userSlice = createSlice({
     [signupUser.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = 'Registration failed';
+      state.errorMessage = "Registration failed";
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -190,7 +191,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Login failed';
+      state.errorMessage = "Login failed";
     },
     [fetchMyProfile.pending]: (state) => {
       state.isFetching = true;
@@ -201,7 +202,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      state.id = payload.data.id;
+      state.id = payload.data._id;
       state.name = payload.data.name;
       state.email = payload.data.email;
       state.is_authenticated = payload.data.is_authenticated;
@@ -216,7 +217,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Could not load profile';
+      state.errorMessage = "Could not load profile";
     },
     [updateUserProfile.pending]: (state) => {
       state.isFetching = true;
@@ -227,7 +228,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Could not edit profile';
+      state.errorMessage = "Could not edit profile";
     },
     [updateUserProfile.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -238,7 +239,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      state.id = payload.data.id;
+      state.id = payload.data._id;
       state.name = payload.data.name;
       state.email = payload.data.email;
       state.is_authenticated = payload.data.is_authenticated;
@@ -258,7 +259,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'User Retrieval failed';
+      state.errorMessage = "User Retrieval failed";
     },
   },
 });
