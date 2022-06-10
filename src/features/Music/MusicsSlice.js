@@ -156,10 +156,17 @@ export const musicsSlice = createSlice({
       state.isSuccess = false;
       state.errorMessage = 'Could not edit music details';
     },
-    [editMusicDetails.fulfilled]: (state) => {
+    [editMusicDetails.fulfilled]: (state, {payload}) => {
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;
+      // var newMusic = state.musics.filter((musics) => musics._id === payload.data._id);
+      // newMusic.name = payload.data.name;
+      // newMusic.coverArt = payload.data.coverArt;
+      // newMusic.description = payload.data.description;
+      // newMusic.genre = payload.data.genre;
+      // state.musics = state.musics.filter((musics) => musics._id !== payload.data._id);
+      // state.musics = [...state.musics, newMusic];
     },
   },
 });
