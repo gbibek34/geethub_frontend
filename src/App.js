@@ -13,6 +13,7 @@ import PageLayout from './helpers/PageLayout';
 import PlaylistDetailScreen from './screens/PlaylistDetailScreen';
 import ArtistProfileScreen from './screens/ArtistProfileScreen';
 import SearchArtist from './screens/SearchScreen';
+import Terms from './screens/Terms';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             path='/verify/:userId/:uniqueString'
             element={<EmailVerify />}
           />
+          <Route path='/terms' element={<Terms/>}/>
         </Routes>
       </Router>
     </div>

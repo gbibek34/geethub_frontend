@@ -8,7 +8,8 @@ const initialStateValue = {
   description: '',
   genre: '',
   audio: '',
-  uploadedBy: '',
+  uploadedById: '',
+  uploadedByName: '',
   uploadedOn: '',
   views: 0,
   isPublished: false,
@@ -73,7 +74,8 @@ export const musicSlice = createSlice({
       state.description = payload.description;
       state.genre = payload.genre;
       state.audio = payload.audio;
-      state.uploadedBy = payload.uploadedBy;
+      state.uploadedById = payload.uploadedBy.id;
+      state.uploadedByName = payload.uploadedBy.name;
       state.uploadedOn = payload.uploadedOn;
       state.views = payload.views;
       state.isPublished = payload.isPublished;

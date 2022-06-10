@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { editMusicDetails } from "../../features/Music/MusicsSlice";
 import "../../styles/UploadModal.css";
 import ImageUploader from "../../helpers/ImageUploader";
+import { fetchMyMusics } from '../../features/Music/MusicsSlice';
 
 const EditMusicDetailsModal = ({ music }) => {
   const [show, setShow] = useState(false);
@@ -11,6 +12,7 @@ const EditMusicDetailsModal = ({ music }) => {
   const [description, setDescription] = useState(music.description);
   const [genre, setGenre] = useState(music.genre);
   const [coverArt, setCoverArt] = useState("");
+  var [currentCoverArt, setCurrentCoverArt] = useState(music.coverArt);
   const dispatch = useDispatch();
 
   const handleName = (e) => setName(e.target.value);
@@ -23,7 +25,7 @@ const EditMusicDetailsModal = ({ music }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-        editMusicDetails({
+      editMusicDetails({
         token: localStorage.getItem("token"),
         id: music._id,
         name,
@@ -32,6 +34,7 @@ const EditMusicDetailsModal = ({ music }) => {
         coverArt,
       })
     );
+    dispatch(fetchMyMusics(localStorage.getItem('token')));
     handleClose();
   };
 
@@ -103,9 +106,11 @@ const EditMusicDetailsModal = ({ music }) => {
               <label htmlFor="UploadCoverArt">Cover Art</label>
               <ImageUploader
                 coverArt={coverArt}
+                currentCoverArt={currentCoverArt}
                 onFileSelectError={({ error }) => alert(error)}
                 onFileSelectSuccess={(file) => setCoverArt(file)}
                 onFileClear={() => setCoverArt("")}
+                onCurrentCoverArtClear={() => currentCoverArt = setCurrentCoverArt("")}
               />
             </div>
           </div>

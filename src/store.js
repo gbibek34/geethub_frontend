@@ -16,6 +16,5 @@ export default configureStore({
     nowPlaying: nowPlayingSlice.reducer,
     playlists: playlistsSlice.reducer,
     playlist: playlistSlice.reducer,
-    users: usersSlice.reducer,
   },
 });

@@ -12,6 +12,7 @@ import '../../styles/MusicPlayer.css';
 import error from '../../images/error.png';
 import axios from 'axios';
 import QueueMusic from './QueueMusic';
+import { Link } from 'react-router-dom';
 
 const MusicPlayer = () => {
   const dispatch = useDispatch();
@@ -24,23 +25,23 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (musics.length > 0) {
       setCurrentSong(musics[playlistIndex]);
-      fetchArtistById();
+      // fetchArtistById();
     }
   });
 
-  const fetchArtistById = async () => {
-    let response = await axios.get(
-      'http://localhost:3000/user/' + musics[playlistIndex].uploadedBy,
-      {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-        },
-      }
-    );
-    if (response.data.success === true) {
-      setArtistName(response.data.data.name);
-    }
-  };
+  // const fetchArtistById = async () => {
+  //   let response = await axios.get(
+  //     'http://localhost:3000/user/' + musics[playlistIndex].uploadedBy,
+  //     {
+  //       headers: {
+  //         Authorization: 'Bearer ' + localStorage.getItem('token'),
+  //       },
+  //     }
+  //   );
+  //   if (response.data.success === true) {
+  //     setArtistName(response.data.data.name);
+  //   }
+  // };
 
   var queue = useSelector((state) => state.nowPlaying.musics);
   // queue = queue.slice(currentIndex + 1);
@@ -60,8 +61,13 @@ const MusicPlayer = () => {
             alt=''
           />
         </div>
+        { currentSong.audio ? (
+          <>
         <div className='music_name'>{currentSong.name}</div>
-        <div className='artist_name'>{artistName}</div>
+        <Link to={`/artist/${currentSong.uploadedBy._id}`} className='artist-card-name'>
+          <div className='artist_name'>{currentSong.uploadedBy.name}</div>
+        </Link></>):(<></>)
+        }
       </div>
       <AudioPlayer
         src={

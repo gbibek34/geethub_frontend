@@ -204,7 +204,7 @@ body {
 
 .artist-card-name {
   text-decoration: none !important;
-  color: black !important;
+  /* color: black !important; */
 }
 /* .search_button label{
   display: flex;
