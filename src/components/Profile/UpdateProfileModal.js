@@ -89,6 +89,15 @@ const UpdateProfileModal = (props) => {
               />
             </div>
             <div className='form-group'>
+              <label htmlFor='ProfileVisibility'>Profile Visibility</label>
+              <div className="custom-control custom-switch">
+                <input className="form-check-input" type="checkbox" value="" id="ProfileVisibility" />
+                <label className="form-check-label text-secondary" for="defaultCheck1">
+                  Private profile
+                </label>
+              </div>
+            </div>
+            <div className='form-group'>
               <label htmlFor='ProfileFacebook'>Facebook</label>
               <input
                 type='text'

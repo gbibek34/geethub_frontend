@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Rings } from 'react-loader-spinner';
-import '../../styles/mainCSS.css';
+// import '../../styles/mainCSS.css';
 import '../../styles/artistStyle.css';
 import {
   fetchArtistMusic,

@@ -83,7 +83,7 @@ const Sidebar = () => {
           <div className='option-text'>Playlist</div>
         </NavLink>
         <NavLink
-          to='/followed'
+          to='/login'
           className={(navData) =>
             navData.isActive ? 'option active-option' : 'option'
           }
@@ -119,7 +119,7 @@ const Sidebar = () => {
           <div className='option-text'>Your Uploads</div>
         </NavLink> */}
         <NavLink
-          to='/monetization'
+          to='/login'
           className={(navData) =>
             navData.isActive ? 'option active-option' : 'option'
           }
@@ -133,7 +133,7 @@ const Sidebar = () => {
       <div className='sub-class'>
         <div className='class-header'>ACCOUNT</div>
         <NavLink
-          to='/settings'
+          to='/login'
           className={(navData) =>
             navData.isActive ? 'option active-option' : 'option'
           }

@@ -17,6 +17,8 @@ const initialStateValue = {
   },
   music_count: 0,
   followers: 0,
+  isFollowed: '',
+  is_discoverable:false,
   isFetching: false,
   isSuccess: false,
   isError: false,
@@ -149,6 +151,34 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
+export const changeDiscoverable = createAsyncThunk(
+  "user/profile/discoverable",
+  async ({token, is_discoverable}, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        "http://localhost:3000/user/profile/discoverable",
+        {is_discoverable: is_discoverable},
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      console.log(e);
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+
 export const userSlice = createSlice({
   name: "user",
   initialState: initialStateValue,
@@ -273,8 +303,36 @@ export const userSlice = createSlice({
       state.isSuccess = false;
       state.errorMessage = "User Retrieval failed";
     },
+    [changeDiscoverable.pending]: (state) => {
+      state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    [changeDiscoverable.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not change discoverability";
+    },
+    [changeDiscoverable.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isFetching = false;
+      state.id = payload.data._id;
+      state.name = payload.data.name;
+      state.email = payload.data.email;
+      state.is_authenticated = payload.data.is_authenticated;
+      state.is_verified = payload.data.is_verified;
+      state.bio = payload.data.bio;
+      state.music_count = payload.data.MusicCount;
+      state.profile_image = payload.data.profile_image;
+      state.social = payload.data.social;
+      state.followers = payload.data.followers;
+      state.is_discoverable = payload.data.is_discoverable;
+    },
   },
 });
 
 export const { clearState, resetUser } = userSlice.actions;
 export const userSelector = (state) => state.user;
+

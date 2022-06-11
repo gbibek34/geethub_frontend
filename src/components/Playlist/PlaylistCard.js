@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import musicCover from '../../images/musicCover.png';
-import '../../styles/mainCSS.css';
+// import '../../styles/mainCSS.css';
 
 export default function PlaylistCard({ playlist }) {
   return (
