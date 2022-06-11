@@ -17,10 +17,12 @@ const initialStateValue = {
   },
   music_count: 0,
   followers: 0,
+  isFollowed: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
   errorMessage: '',
+
 };
 
 export const signupUser = createAsyncThunk(
@@ -148,6 +150,8 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
+
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: initialStateValue,
@@ -201,7 +205,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      state.id = payload.data.id;
+      state.id = payload.data._id;
       state.name = payload.data.name;
       state.email = payload.data.email;
       state.is_authenticated = payload.data.is_authenticated;
@@ -238,7 +242,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      state.id = payload.data.id;
+      state.id = payload.data._id;
       state.name = payload.data.name;
       state.email = payload.data.email;
       state.is_authenticated = payload.data.is_authenticated;
@@ -260,8 +264,10 @@ export const userSlice = createSlice({
       state.isSuccess = false;
       state.errorMessage = 'User Retrieval failed';
     },
+   
   },
 });
 
 export const { clearState, resetUser } = userSlice.actions;
 export const userSelector = (state) => state.user;
+
