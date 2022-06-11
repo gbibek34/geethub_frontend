@@ -212,6 +212,7 @@ export const userSlice = createSlice({
       state.profile_image = payload.data.profile_image;
       state.social = payload.data.social;
       state.followers = payload.data.followers;
+      state.is_discoverable = payload.data.is_discoverable;
     },
     [fetchMyProfile.rejected]: (state) => {
       state.isFetching = false;
@@ -234,6 +235,17 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;
+      state.id = payload._id;
+      state.name = payload.data.name;
+      state.email = payload.data.email;
+      state.is_authenticated = payload.data.is_authenticated;
+      state.is_verified = payload.data.is_verified;
+      state.bio = payload.data.bio;
+      state.music_count = payload.data.MusicCount;
+      state.profile_image = payload.data.profile_image;
+      state.social = payload.data.social;
+      state.followers = payload.data.followers;
+      state.is_discoverable = payload.data.is_discoverable;
     },
     [fetchUserById.fulfilled]: (state, { payload }) => {
       state.isFetching = false;

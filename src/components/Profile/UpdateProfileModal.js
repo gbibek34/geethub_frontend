@@ -40,7 +40,6 @@ const UpdateProfileModal = (props) => {
         profile_image,
       })
     );
-    props.notifyParent();
     handleClose();
   };
 
