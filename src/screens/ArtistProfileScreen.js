@@ -7,12 +7,12 @@ import {
   fetchArtistMusic,
   fetchArtistProfile,
   usersSelector,
-  followArtist, 
+  followArtist,
   unfollowArtist,
 } from '../features/User/UsersSlice';
 import ArtistMusic from '../components/Artist/ArtistMusics';
 import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
-import {userSelector } from '../features/User/UserSlice';
+import { userSelector } from '../features/User/UserSlice';
 
 //artist profile screen that displays artist details and music uploads
 const ArtistProfileScreen = () => {
@@ -31,46 +31,56 @@ const ArtistProfileScreen = () => {
 
   useEffect(() => {
     dispatch(
-      fetchArtistProfile({ token: localStorage.getItem('token'), artistid, userId:id })
+      fetchArtistProfile({ token: localStorage.getItem('token'), artistid, userId: id })
     );
   }, []);
 
   useEffect(() => {
-    console.log(artist._id!==undefined);
-    if (artist._id!==undefined) {
-      console.log(artist.followed_by);
-      console.log(id);
-      if (isFollowed) {
-        console.log("ee")
+
+    console.log(artist._id !== undefined);
+    if (artist._id !== undefined) {
+      // console.log(artist.followed_by);
+      // console.log(id);
+      console.log("1 if condition OUT",followed);
+      setFollowed(false);
+      if (artist.followed_by.indexOf(id) !== -1) {
+        console.log("2 if condition",followed);
         setFollowed(true);
       }
-      else{
-        setFollowed(false);
-      }
+      // if (isFollowed) {
+      //   console.log("ee")
+      //   setFollowed(true);
+      // }
+      // else {
+      //   setFollowed(false);
+      // }
     }
   });
+
 
   const handlePlayAll = () => {
     dispatch(updateNowPlayingState(musics));
   };
   const onFollow = () => {
+    console.log("3 onFollow",followed);
+    setFollowed(true);
     dispatch(
       followArtist({
         token: localStorage.getItem("token"),
         id: artist._id,
       })
     );
-    setFollowed(true);
   };
   // hello
   const onUnFollow = () => {
+    console.log("4 onUnFollow",followed);
+    setFollowed(false);
     dispatch(
       unfollowArtist({
         token: localStorage.getItem("token"),
         id: artist._id,
       })
     );
-    setFollowed(false);
   };
 
   return (

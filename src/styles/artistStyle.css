@@ -56,9 +56,9 @@ body {
 .symbol-follow-active + span{
   color: #3d85a3;
 }
-.symbol-follow-active div{
+/* .symbol-follow-active div{
 
-}
+} */
 .symbol-follow-inactive{
   color: #9799a0;
 }
