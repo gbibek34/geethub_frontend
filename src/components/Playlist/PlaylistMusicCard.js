@@ -7,6 +7,7 @@ import {
   nowPlayingSelector,
   updateIndex,
 } from '../../features/Music/NowPlayingSlice';
+import { Link } from 'react-router-dom';
 const _ = require('lodash');
 
 const PlaylistMusicCard = ({ music, allMusics, item }) => {
@@ -52,7 +53,9 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
         </div>
         <div className='playlist_title'>
           <div className='playlist_name'>{music.name}</div>
-          <div className='playlist_descr'>{music.genre}</div>
+          <Link to={`/artist/${music.uploadedBy._id}`} className='artist-card-name'>
+            <div className='playlist_descr'>{music.uploadedBy.name}</div>
+          </Link>
         </div>
       </div>
       <div className='playlist_allstats'>
@@ -67,15 +70,6 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
           onClick={handleAddToQueue}
         >
           queue_music
-        </span>
-        <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Edit'
-          className='material-symbols-rounded songs_action_btn'
-        >
-          tune
         </span>
       </div>
     </div>

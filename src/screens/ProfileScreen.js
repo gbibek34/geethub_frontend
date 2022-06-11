@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMyProfile, userSelector } from '../features/User/UserSlice';
+import { changeDiscoverable, fetchMyProfile, userSelector } from '../features/User/UserSlice';
 import '../styles/ProfileScreen.css';
 import { Rings } from 'react-loader-spinner';
 import UpdateProfileModal from '../components/Profile/UpdateProfileModal';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(fetchMyProfile(localStorage.getItem('token')));
@@ -27,6 +28,7 @@ const ProfileScreen = () => {
     music_count,
     followers,
     social,
+    is_discoverable,
   } = useSelector(userSelector);
 
   const refresh = () => {
@@ -34,6 +36,12 @@ const ProfileScreen = () => {
       dispatch(fetchMyProfile(localStorage.getItem('token')));
     }
   };
+  const handleDiscoverable = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const discoverable = e.target.checked;
+    dispatch(changeDiscoverable({ token: token, is_discoverable: discoverable }));
+  }
 
   return (
     <div className='profile'>
@@ -62,6 +70,8 @@ const ProfileScreen = () => {
               <div className='mr-4'>{music_count} UPLOADS</div>
               <div>{followers} FOLLOWERS</div>
             </div>
+            
+
             <div className='profile-social'>
               <a
                 href={`http://facebook.com/${social.facebook}`}
@@ -78,6 +88,13 @@ const ProfileScreen = () => {
               <a href={`http://twitter.com/${social.twitter}`} target='_blank'>
                 <i className='fa-brands fa-twitter-square'></i>
               </a>
+            </div>
+            <div className='profile-bio'>
+              Discoverable: &nbsp;
+              <label className="switch">
+                <input type="checkbox" defaultChecked={is_discoverable} onClick={(e) => handleDiscoverable(e)}/>
+                <span className="slider round"></span>
+              </label>
             </div>
           </div>
         </div>

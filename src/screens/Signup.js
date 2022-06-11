@@ -19,6 +19,7 @@ const Signup = () => {
   const [enteredPassword, setPassword] = useState('');
   const [enteredEmail, setEmail] = useState('');
   const [enteredRePassword, setRePassword] = useState('');
+  const [agree, setAgree] = useState(false);
   const { isFetching, isSuccess, isError, errorMessage } =
     useSelector(userSelector);
 
@@ -154,10 +155,14 @@ const Signup = () => {
                       required
                     />
                   </div>
+                  <div className='agree form-group'>
+                  <label> <input type="checkbox" onClick={(e) => setAgree(e.target.checked)} /> <span>I agreee to <Link to='/terms' target="_blank">Terms and Conditions</Link> of Geethub</span></label>
+                  </div>
                   <div>{fieldError}</div>
 
                   <div className='loginButtonGroup form-group mb-4'>
                     <button
+                      disabled={agree? false : true}
                       className='loginContinue btn btn-lg  btn-info btn-cyan btn-block border-0'
                       type='submit'
                     >

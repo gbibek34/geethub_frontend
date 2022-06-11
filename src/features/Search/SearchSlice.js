@@ -4,6 +4,7 @@ import axios from 'axios';
 const initialStateValue = {
   musics: [],
   artists: [],
+  filters: [],
   isFetching: false,
   isSuccess: false,
   isError: false,
@@ -41,18 +42,22 @@ export const searchForArtists = createAsyncThunk(
 
 export const searchForMusics = createAsyncThunk(
   'music/search',
-  async ({ token, searchkey }, thunkAPI) => {
+  async ({ token, searchkey, filters }, thunkAPI) => {
     try {
+      const stringData = filters.map((value) => `${value}`).join(',');
+      console.log(stringData);
       const response = await axios.get(
-        'http://localhost:3000/music/search/' + searchkey,
+        'http://localhost:3000/music/search/' + searchkey + '/' + stringData,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
         }
       );
       if (searchkey) {
         let data = response.data;
         if (data.success === true) {
-          return thunkAPI.fulfillWithValue(data);
+          return thunkAPI.fulfillWithValue({ data: data, filters: filters });
         } else {
           return thunkAPI.rejectWithValue(data);
         }
@@ -77,6 +82,9 @@ export const searchSlice = createSlice({
       return state;
     },
     resetSearch: () => initialStateValue,
+    setFilters: (state, { payload }) => {
+      state.filters = payload;
+    },
   },
   extraReducers: {
     [searchForArtists.fulfilled]: (state, { payload }) => {
@@ -97,11 +105,13 @@ export const searchSlice = createSlice({
       state.errorMessage = 'Can not search for artist';
     },
     [searchForMusics.fulfilled]: (state, { payload }) => {
+      console.log(payload.filters);
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      state.musics = payload.data;
-      state.total_musics_results = payload.data.length;
+      state.musics = payload.data.data;
+      state.filters = payload.filters;
+      state.total_musics_results = payload.data.data.length;
     },
     [searchForMusics.pending]: (state) => {
       state.isFetching = true;
@@ -116,5 +126,5 @@ export const searchSlice = createSlice({
   },
 });
 
-export const { clearState, resetSearch } = searchSlice.actions;
+export const { clearState, resetSearch, setFilters } = searchSlice.actions;
 export const searchSelector = (state) => state.search;

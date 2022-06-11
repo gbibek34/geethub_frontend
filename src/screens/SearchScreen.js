@@ -13,6 +13,7 @@ import {
   searchForMusics,
 } from '../features/Search/SearchSlice';
 import SearchMusicResultCard from '../components/Search/SearchMusicResultCard';
+import FilterModal from '../components/Search/FilterModal';
 
 export default function SearchArtist() {
   const [searchkey, setsearchkey] = useState('');
@@ -21,6 +22,7 @@ export default function SearchArtist() {
   const {
     artists,
     musics,
+    filters,
     isFetching,
     isSuccess,
     isError,
@@ -41,6 +43,7 @@ export default function SearchArtist() {
         searchForMusics({
           token: localStorage.getItem('token'),
           searchkey: searchkey,
+          filters: filters,
         })
       );
     } else {
@@ -70,11 +73,12 @@ export default function SearchArtist() {
           />
           <button
             type='submit'
-            className='btn btn-main search_button'
+            className='btn search_button'
             onClick={() => onClickHandler()}
           >
             Search
           </button>
+          <FilterModal />
         </div>
         <div className='search_results_container'>
           {total_musics_results > 0 ? (

@@ -26,7 +26,8 @@ body {
 .main-container {
   width: 60%;
   padding: 20px;
-
+  height: 100vh;
+  overflow-y: hidden;
   background-color: #f4f4f5;
 }
 
@@ -44,13 +45,11 @@ body {
   color: #000000;
 }
 
-/* now playing sidebar (right bar) */
 .music-status {
   width: 20%;
   border-left: 1px gray solid;
   background-color: #f4f4f5;
 }
-/* library */
 .clr_primaryFG {
   color: #3d85a3;
 }
@@ -59,6 +58,7 @@ body {
 }
 .btn-main {
   color: #f4f4f5;
+  background-color: #3d85a3;
   width: 160px;
   height: 50px;
   border: #3d85a3;
@@ -90,7 +90,6 @@ body {
   background-color: #698a98;
   border: solid #698a98 3px;
 }
-/* artist profile */
 .back_btn_container {
   align-items: center;
   justify-content: center;
@@ -114,7 +113,6 @@ body {
   width: 100%;
 }
 .artist_profile_picture {
-  /* max-width: 170px; */
   width: 165px;
   height: 165px;
   max-height: 20%;
@@ -133,7 +131,6 @@ body {
   font-weight: 600;
   font-size: 42px;
   line-height: 58px;
-  /* identical to box height */
 
   display: flex;
   align-items: center;
@@ -149,7 +146,6 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  /* line-height: 27px; */
   display: flex;
   align-items: center;
 
@@ -164,17 +160,14 @@ body {
   justify-content: left;
 }
 .artist_profile_buttons{
-  /* width: 100%; */
 }
 .btn-play{
   width: max-content;
-  /* border-radius: 8px; */
   background-color: #f4f4f5;
 }
 .btn-play:hover{
   background-color: #f4f4f5;
   transform: scale(1.5);
-  /* transition: cubic-bezier(0.23, 1, 0.320, 1); */
 }
 
 .artist_profile_play{
@@ -182,7 +175,6 @@ body {
   width: 150px;
 }
 .play_symbol{
-  /* border-radius: 8px; */
   font-size: 48px;
   color: #3d85a3;
   background-color: #f4f4f5;
@@ -196,11 +188,4 @@ body {
 .artist_profile_actions{
   display: flex;
   flex-direction: row;
-}
-
-.playlist-music {
-  border-radius: 5px;
-  height: 55vh;
-  overflow-y: scroll;
-  background-color: #FAFAFA;
 }

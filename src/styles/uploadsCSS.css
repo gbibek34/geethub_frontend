@@ -26,7 +26,8 @@ body {
 .main-container {
   width: 60%;
   padding: 20px;
-
+  height: 100vh;
+  overflow-y: hidden;
   background-color: #f4f4f5;
 }
 
@@ -125,11 +126,6 @@ body {
 }
 .btn-main{
   color: #f4f4f5;
-  background-color: #3d85a3;
-}
-.btn-main:hover{
-  color: #f4f4f5;
-  background-color: #698a98;
 }
 /* all playlists */
 .all_playlists {
@@ -242,8 +238,8 @@ body {
 }
 .material-symbols-rounded{
   color: #9799A0;
-  height: 50px;
-  width: 50px;
+  /* height: 50px;
+  width: 50px; */
   margin: 0;
 }
 .songs_action_btn:hover{
