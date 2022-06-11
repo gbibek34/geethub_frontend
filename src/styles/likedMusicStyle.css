@@ -1,0 +1,70 @@
+
+/* images */
+/* .my-row{
+    background-color: blue;
+} */
+
+.main-container {
+    width: 60%;
+    height: 100vh;
+    padding: 28px 48px;
+    overflow-y: hidden;
+  }
+
+  .liked-header {
+    font-size: 30px;
+    font-weight: 800;
+
+}
+
+
+/* temp, will be in main library css */
+.captiontext {
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 44px;
+  margin-left: -17px;
+  margin-top: 8px;
+}
+/* end temp */
+
+.all_search_artists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 0;
+}
+.indiv_artist_card {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #ffffff; */
+  border-radius: 8px;
+  padding: 0;
+  /* width: 190px; */
+  /* margin-right: 24px; */
+  cursor: pointer;
+}
+.indiv_artist_card:hover {
+  transform: scale(1.05);
+}
+.artist_image {
+  margin: 0px;
+  object-fit: cover;
+  height: 170px;
+  width: 170px;
+  border-radius: 8px;
+}
+.artist_name {
+  padding: 0;
+  margin: 0;
+  margin-top: 4px;
+  height: 20%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}

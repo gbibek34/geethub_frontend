@@ -26,7 +26,8 @@ body {
 .main-container {
     width: 60%;
     padding: 20px;
-
+    height: 100vh;
+    overflow-y: hidden;
     background-color: #F4F4F5;
 }
 
@@ -38,6 +39,8 @@ body {
 
 .uploaded-music {
     border-radius: 5px;
+    height: 85vh;
+    overflow-y: scroll;
     background-color: #FAFAFA;
 }
 

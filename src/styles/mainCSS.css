@@ -26,7 +26,8 @@ body {
 .main-container {
   width: 60%;
   padding: 20px;
-
+  height: 100vh;
+  overflow-y: hidden;
   background-color: #f4f4f5;
 }
 
@@ -126,11 +127,6 @@ body {
 }
 .btn-main{
   color: #f4f4f5;
-  background-color: #3d85a3;
-}
-.btn-main:hover{
-  color: #f4f4f5;
-  background-color: #698a98;
 }
 /* all playlists */
 .all_playlists {
@@ -209,6 +205,8 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+
 .playlist_image {
   width: 71px;
   height: 71px;

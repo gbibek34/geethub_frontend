@@ -13,37 +13,41 @@ import PageLayout from './helpers/PageLayout';
 import PlaylistDetailScreen from './screens/PlaylistDetailScreen';
 import ArtistProfileScreen from './screens/ArtistProfileScreen';
 import SearchArtist from './screens/SearchScreen';
+import Terms from './screens/Terms';
+import LikedMusicScreen from "./screens/LikedMusicScreen";
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Router>
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route element={<PageLayout />}>
               {/* <Route path='/home' element={<MyUploads />} /> */}
-              <Route path='/profile' element={<MyUploads />} />
-              <Route path='/playlist' element={<MyPlaylists />} />
-              <Route path='/' element={<AllMusics />} />
+              <Route path="/profile" element={<MyUploads />} />
+              <Route path="/playlist" element={<MyPlaylists />} />
+              <Route path="/" element={<AllMusics />} />
               <Route
-                path='/playlist/:playlistId'
+                path="/playlist/:playlistId"
                 element={<PlaylistDetailScreen />}
               />
-              <Route path='/search' element={<SearchArtist />} />
+              <Route path="/search" element={<SearchArtist />} />
               <Route
-                path='/artist/:artistid'
+                path="/artist/:artistid"
                 element={<ArtistProfileScreen />}
               />
+              <Route path="/liked" element={<LikedMusicScreen />} />
             </Route>
           </Route>
           <Route element={<ProtectedRoute />}>
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/login' element={<LoginScreen />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<LoginScreen />} />
           </Route>
           <Route
-            path='/verify/:userId/:uniqueString'
+            path="/verify/:userId/:uniqueString"
             element={<EmailVerify />}
           />
+          <Route path='/terms' element={<Terms/>}/>
         </Routes>
       </Router>
     </div>

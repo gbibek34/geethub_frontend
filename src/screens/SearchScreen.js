@@ -73,7 +73,7 @@ export default function SearchArtist() {
           />
           <button
             type='submit'
-            className='btn btn-main search_button'
+            className='btn search_button'
             onClick={() => onClickHandler()}
           >
             Search
