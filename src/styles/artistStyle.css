@@ -155,6 +155,10 @@
   justify-content: left;
 }
 
+.artist_profile_buttons {
+  /* width: 100%; */
+}
+
 .btn-play {
   width: max-content;
 
