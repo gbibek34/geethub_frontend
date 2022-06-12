@@ -1,83 +1,93 @@
-body {
-    font-family: 'Manrope', sans-serif;
-
-    background: #F4F4F5;
-}
-
 .sidebar {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    width: 20%;
-    height: 100vh;
-
     overflow-y: scroll;
+    flex-direction: column;
 
-    background: #E8E9EC;
+    height: 100vh;
+    padding: 20px;
+
+    background-color: #E8E9EC;
 }
 
 .logo {
+    display: grid;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    grid-template-columns: 50px auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.brand-name {
+    font-size: 24px;
+
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
 
-    padding: 10px 0px;
+    color: #3D85A3;
 }
 
-.logo-image {
-    width: 60px;
-    height: 60px;
-}
-
-.logo-name {
-    font-size: 25px;
-    font-weight: 800;
-}
-
-.logo-name:hover {
+.brand-name:hover {
     text-decoration: none;
-    color: black;
+
+    color: #3D85A3;
 }
 
-.class-header {
-    font-size: 12px;
-    font-weight: 800;
+.header {
+    font-weight: 600;
 
-    margin: 0px 0px 0px 20px;
-}
-
-.option {
-    display: flex;
-    flex-direction: row;
-
-    margin: 5px 40px 5px 20px;
-
-    cursor: pointer;
-    transition: 0.5s ease-in-out;
-
-    border-radius: 8px;
-}
-
-.option-icon {
-    width: 40px;
-    padding: 12px 40px 12px 24px;
-}
-
-.option-text {
-    padding: 12px 12px 12px 0px;
+    text-transform: uppercase;
 
     color: #9799A0;
 }
 
-.option:hover {
-    color: #3D85A3;
-    background-color: #F4F4F5;
-    text-decoration: none;
+.option-item {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 10px;
+    padding: 10px;
+
+    transition: ease-in-out 0.3s;
+
+    border-radius: 12px;
 }
 
-.option:hover .option-text {
+.item-icon {
+    font-weight: 600;
+
+    padding: 7px 7px 2px 7px;
+
+    transition: ease-in-out 0.3s;
+
+    color: black;
+}
+
+.item-name {
+    font-weight: 600;
+
+    padding: 7px 7px 7px 15px;
+
+    transition: ease-in-out 0.3s;
+
+    color: #9799A0;
+}
+
+.option-item:hover {
+    text-decoration: none;
+
+    color: #3D85A3;
+    background-color: #F4F4F5;
+}
+
+.option-item:hover .item-name,
+.option-item:hover .item-icon {
     color: #3D85A3;
 }
 
@@ -86,44 +96,137 @@ body {
     background-color: #FAFAFA;
 }
 
-.active-option .option-text {
+.active-option .item-name,
+.active-option .item-icon {
     color: #3D85A3;
 }
 
-.sidebar-profile-picture {
-    width: 40px;
-    height: 40px;
+.sidebar-user-overview {
+    display: grid;
+    align-items: center;
 
-    border: 3px #E54040 solid;
+    padding: 25px 10px;
+
+    border-radius: 12px;
+    background-color: #FAFAFA;
+
+    grid-template-columns: 50px auto auto;
+    grid-column-gap: 10px;
+}
+
+.sidebar-profile-picture img {
+    width: 50px;
+
     border-radius: 50%;
 }
 
-.sidebar-user-overview {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 20px 10px;
-
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    background: #FAFAFA;
-}
-
-.sidebar-profile-details {
-    padding: 0px 0px 0px 5px;
-}
-
 .sidebar-profile-name {
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
+
+    transition: ease-in-out 0.2s;
+    text-decoration: none;
+
+    color: #000000;
 }
 
 .sidebar-profile-name:hover {
-    font-weight: 800;
-    text-decoration: none !important;
-    color: black;
+    text-decoration: none;
+
+    color: #9799A0;
 }
 
-.vcurrency {
+.user-coins {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-coins span {
+    margin-right: 5px;
+
     color: gold;
+}
+
+.get-more-coins {
+    font-weight: 800;
+
+    align-self: center;
+
+    text-transform: uppercase;
+
+    justify-self: end;
+}
+
+@media(max-width: 1500px) {
+    .sidebar-user-overview {
+        grid-template-columns: auto auto;
+    }
+
+    .sidebar-profile-picture {
+        display: none;
+    }
+}
+
+@media(max-width: 1250px) {
+    .sidebar {
+        width: 70px;
+
+        /* height: 90vh; */
+
+        padding: 10px;
+    }
+
+    .brand-name,
+    .header,
+    .item-name,
+    .sidebar-name,
+    .get-more-coins {
+        display: none;
+    }
+
+    .sidebar-user-overview {
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+    }
+
+    .sidebar-profile-picture {
+        display: block;
+
+        margin-bottom: 10px;
+    }
+
+    .sidebar-profile-picture img {
+        width: 30px;
+    }
+
+    .sidebar-profile-name {
+        display: none;
+    }
+
+    .user-coins {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .user-coins span {
+        margin: 0;
+    }
+
+    .item-icon {
+        margin: 0;
+        padding: 3px 0px 0px 3px;
+
+        cursor: pointer;
+
+        justify-self: center;
+    }
+
+    .sub-class {
+        margin-bottom: 10px;
+
+        border-bottom: 1px solid #9799A0;
+    }
 }

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Modal } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNewPlaylist } from '../../features/Playlist/PlaylistsSlice';
+import React, { useState, useEffect } from "react";
+import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { createNewPlaylist } from "../../features/Playlist/PlaylistsSlice";
 
 //playlist modal to create a new playlist
 const PlaylistModal = (props) => {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const dispatch = useDispatch();
 
   const handleName = (e) => setName(e.target.value);
@@ -19,7 +19,7 @@ const PlaylistModal = (props) => {
     e.preventDefault();
     dispatch(
       createNewPlaylist({
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
         name,
         description,
       })
@@ -30,65 +30,65 @@ const PlaylistModal = (props) => {
 
   return (
     <div>
-      <div type='button' onClick={handleShow} className='create_new_playlist'>
+      <div type="button" onClick={handleShow} className="create_new_playlist">
         + CREATE NEW PLAYLIST
       </div>
       <Modal
-        className='modal fade'
+        className="modal fade"
         // id="create_new_playlist_modal"
-        tabIndex='-1'
-        role='dialog'
-        aria-labelledby='CreateNewPlaylistLabel'
-        aria-hidden='true'
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="CreateNewPlaylistLabel"
+        aria-hidden="true"
         show={show}
         onHide={handleClose}
       >
-        <Modal.Header className='modal-header' closeButton>
-          <Modal.Title className='modal-title' id='CreateNewPlaylistLabel'>
+        <Modal.Header className="modal-header" closeButton>
+          <Modal.Title className="modal-title" id="CreateNewPlaylistLabel">
             Create new playlist
           </Modal.Title>
         </Modal.Header>
-        <form action='post' onSubmit={onSubmitHandler}>
-          <div className='modal-body'>
-            <div className='form-group'>
-              <label htmlFor='playlist_name' className=''>
-                Playlist name
+        <form action="post" onSubmit={onSubmitHandler}>
+          <div className="modal-body">
+            <div className="form-group">
+              <label htmlFor="playlist_name" className="">
+                Playlist Name
               </label>
               <input
-                type='text'
-                className='form-control'
-                id='playlist_name'
+                type="text"
+                className="form-control"
+                id="playlist_name"
                 value={name}
                 onChange={handleName}
-                aria-describedby='playlistNameHelp'
-                placeholder='name for the playlist'
+                aria-describedby="playlistNameHelp"
+                placeholder="Name of the playlist"
               />
             </div>
-            <div className='form-group'>
-              <label htmlFor='playlist_desc' className=''>
-                Playlist description
+            <div className="form-group">
+              <label htmlFor="playlist_desc" className="">
+                Playlist Description
               </label>
               <input
-                type='text'
-                className='form-control'
-                id='playlist_desc'
-                aria-describedby='playlistDescHelp'
+                type="text"
+                className="form-control"
+                id="playlist_desc"
+                aria-describedby="playlistDescHelp"
                 value={description}
                 onChange={handleDescription}
-                placeholder='short description for the playlist'
+                placeholder="Short description of the playlist"
               />
             </div>
           </div>
-          <div className='modal-footer'>
+          <div className="modal-footer">
             <button
-              type='button'
-              className='btn btn-secondary'
-              data-dismiss='modal'
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
               onClick={handleClose}
             >
               Close
             </button>
-            <button type='submit' className='btn btn-main'>
+            <button type="submit" className="btn btn-secondary">
               Create
             </button>
           </div>
