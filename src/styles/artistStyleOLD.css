@@ -1,4 +1,49 @@
-/* library */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+
+  background: #f4f4f5;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh;
+
+  background-color: #e8e9ec;
+}
+
+.page-header {
+  font-family: "Open Sans";
+  font-size: 48px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 65px;
+
+  display: flex;
+  align-items: center;
+
+  height: 65px;
+
+  color: #000000;
+}
+
+.music-status {
+  width: 20%;
+
+  border-left: 1px gray solid;
+  background-color: #f4f4f5;
+}
 
 .clr_primaryFG {
   color: #3d85a3;
@@ -46,18 +91,11 @@
   background-color: #f4f4f5;
 }
 
-.btn-main:hover {
-  color: #f4f4f5;
-  background-color: #698a98;
-}
-
 .btn-main-outline:hover {
   color: #f4f4f5;
   border: solid #698a98 3px;
   background-color: #698a98;
 }
-
-/* artist profile */
 
 .back_btn_container {
   font-size: 16px;
@@ -90,8 +128,6 @@
 }
 
 .artist_profile_picture {
-  /* max-width: 170px; */
-
   width: 165px;
   height: 165px;
   max-height: 20%;
@@ -116,8 +152,6 @@
   font-style: normal;
   line-height: 58px;
 
-  /* identical to box height */
-
   display: flex;
   align-items: center;
 
@@ -132,8 +166,6 @@
   font-size: 20px;
   font-weight: 400;
   font-style: normal;
-
-  /* line-height: 27px; */
 
   display: flex;
   overflow-y: hidden;
@@ -155,22 +187,19 @@
   justify-content: left;
 }
 
+.artist_profile_buttons {
+}
+
 .btn-play {
   width: max-content;
-
-  transition: ease-in-out 0.3s;
-
-  /* border-radius: 8px; */
 
   background-color: #f4f4f5;
 }
 
 .btn-play:hover {
-  transform: scale(1.2);
+  transform: scale(1.5);
 
   background-color: #f4f4f5;
-
-  /* transition: cubic-bezier(0.23, 1, 0.320, 1); */
 }
 
 .artist_profile_play {
@@ -179,8 +208,6 @@
 }
 
 .play_symbol {
-  /* border-radius: 8px; */
-
   font-size: 48px;
 
   color: #3d85a3;
@@ -198,13 +225,4 @@
 .artist_profile_actions {
   display: flex;
   flex-direction: row;
-}
-
-.playlist-music {
-  overflow-y: scroll;
-
-  height: 55vh;
-
-  border-radius: 5px;
-  background-color: #FAFAFA;
 }

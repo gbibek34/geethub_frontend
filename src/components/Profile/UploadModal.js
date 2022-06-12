@@ -5,6 +5,7 @@ import { createNewMusic } from '../../features/Music/MusicsSlice';
 import '../../styles/UploadModal.css';
 import MusicUploader from '../../helpers/MusicUploader';
 import ImageUploader from '../../helpers/ImageUploader';
+import { Link } from 'react-router-dom';
 
 const UploadModal = (props) => {
   const [show, setShow] = useState(false);
@@ -13,6 +14,7 @@ const UploadModal = (props) => {
   const [genre, setGenre] = useState('');
   const [audio, setAudio] = useState('');
   const [coverArt, setCoverArt] = useState('');
+  const [agree, setAgree] = useState(false);
   const dispatch = useDispatch();
 
   const handleName = (e) => setName(e.target.value);
@@ -35,6 +37,12 @@ const UploadModal = (props) => {
       })
     );
     props.notifyParent();
+    setName('');
+    setDescription('');
+    setGenre('');
+    setAudio('');
+    setCoverArt('');
+    setAgree(false);
     handleClose();
   };
 
@@ -58,7 +66,7 @@ const UploadModal = (props) => {
             Add Music
           </Modal.Title>
         </Modal.Header>
-        <form action='post' onSubmit={onSubmitHandler}>
+        <form action='post' onSubmit={onSubmitHandler} id="NewMusic">
           <div className='modal-body'>
             <div className='form-group'>
               <label htmlFor='MusicName'>Music Name</label>
@@ -112,9 +120,12 @@ const UploadModal = (props) => {
                 onFileClear={() => setCoverArt('')}
               />
             </div>
+            <div className='agree form-group'>
+                  <label> <input type="checkbox" onClick={(e) => setAgree(e.target.checked)} /> <span>I agreee to <Link to='/terms' target="_blank">Terms and Conditions</Link> of Geethub</span></label>
+            </div>
           </div>
           <div className='modal-footer'>
-            <button type='submit' className='btn btn-primary'>
+            <button type='submit' className='btn btn-primary' disabled={agree? false : true}>
               Submit
             </button>
           </div>

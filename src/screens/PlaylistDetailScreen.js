@@ -82,7 +82,7 @@ const PlaylistDetailScreen = () => {
         <Rings />
       )}
 
-      <div className='uploaded-music'>
+      <div className='playlist-music'>
         <div className='upload-header'>
           <div className='sub-header'>Music</div>
         </div>

@@ -70,16 +70,6 @@
   background-color: #3d85a3;
 }
 
-.btn-main {
-  color: #f4f4f5;
-  background-color: #3d85a3;
-}
-
-.btn-main:hover {
-  color: #f4f4f5;
-  background-color: #698a98;
-}
-
 /* all playlists */
 
 .all_playlists {
@@ -114,6 +104,8 @@
 .create_new_playlist {
   font-size: 16px;
   font-weight: bold !important;
+
+  cursor: pointer;
 
   color: #3d85a3;
 }

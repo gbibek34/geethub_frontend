@@ -2,9 +2,11 @@ import React, { useRef } from 'react';
 
 const ImageUploader = ({
   coverArt,
+  currentCoverArt,
   onFileSelectSuccess,
   onFileSelectError,
   onFileClear,
+  onCurrentCoverArtClear,
 }) => {
   const fileInput = useRef(null);
 
@@ -29,24 +31,37 @@ const ImageUploader = ({
   return (
     <div>
       <div className='file-wrapper'>
-        {coverArt && (
+        {(coverArt && !currentCoverArt) &&(
           <img
             id='CoverArtPreview'
             src={URL.createObjectURL(coverArt)}
             alt=''
           />
         )}
-        {!coverArt && (
+        {(!coverArt && currentCoverArt) &&(
+          <img
+            id='CoverArtPreview'
+            src={`http://localhost:3000/${currentCoverArt.slice(6)}`}
+            alt=''
+          />
+        )}
+        {(!coverArt && !currentCoverArt) &&(
           <i
             id='UploadCoverArtBtn2'
             onClick={onIconClick}
             className='cover-upload fa-solid fa-cloud-arrow-up'
           ></i>
         )}
-        {coverArt && (
+        {(coverArt && !currentCoverArt) &&(
           <i
             className='cover-remove fa-solid fa-xmark'
             onClick={onFileClear}
+          ></i>
+        )}
+        {(!coverArt && currentCoverArt) &&(
+          <i
+            className='cover-remove fa-solid fa-xmark'
+            onClick={onCurrentCoverArtClear}
           ></i>
         )}
       </div>

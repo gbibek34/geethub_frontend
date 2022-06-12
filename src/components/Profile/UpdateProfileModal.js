@@ -15,6 +15,7 @@ const UpdateProfileModal = (props) => {
   const [instagram, setInstagram] = useState(user.social.instagram);
   const [twitter, setTwitter] = useState(user.social.twitter);
   const [profile_image, setProfileImage] = useState('');
+  var [currentProfileImage, setCurrentProfileImage] = useState(user.profile_image);
   const dispatch = useDispatch();
 
   const handleName = (e) => setName(e.target.value);
@@ -39,7 +40,6 @@ const UpdateProfileModal = (props) => {
         profile_image,
       })
     );
-    props.notifyParent();
     handleClose();
   };
 
@@ -89,6 +89,15 @@ const UpdateProfileModal = (props) => {
               />
             </div>
             <div className='form-group'>
+              <label htmlFor='ProfileVisibility'>Profile Visibility</label>
+              <div className="custom-control custom-switch">
+                <input className="form-check-input" type="checkbox" value="" id="ProfileVisibility" />
+                <label className="form-check-label text-secondary" for="defaultCheck1">
+                  Private profile
+                </label>
+              </div>
+            </div>
+            <div className='form-group'>
               <label htmlFor='ProfileFacebook'>Facebook</label>
               <input
                 type='text'
@@ -126,9 +135,11 @@ const UpdateProfileModal = (props) => {
               <label htmlFor='UploadProfileImage'>Profile Image</label>
               <ImageUploader
                 coverArt={profile_image}
+                currentCoverArt={currentProfileImage}
                 onFileSelectError={({ error }) => alert(error)}
                 onFileSelectSuccess={(file) => setProfileImage(file)}
                 onFileClear={() => setProfileImage('')}
+                onCurrentCoverArtClear={() => currentProfileImage = setCurrentProfileImage("")}
               />
             </div>
           </div>

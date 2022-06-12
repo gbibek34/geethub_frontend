@@ -46,6 +46,8 @@
   font-size: 16px;
   font-weight: bold !important;
 
+  cursor: pointer;
+
   color: #3d85a3;
 }
 
@@ -63,23 +65,20 @@
 
 /* individual playlist */
 
-.indiv_playlist {
+.indiv_music_search {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   min-height: 110px;
-
-  /* margin: 20px; */
-
-  margin-bottom: 8px;
-  padding: 5px 0px;
+  margin-bottom: 5px;
   padding-right: 28px;
 
   cursor: default;
+  cursor: default;
 
   border-radius: 8px;
-  background: #f4f4f5;
+  background: white;
 }
 
 /* image, name and description */
@@ -94,21 +93,36 @@
 
 .all_search_artists {
   display: flex;
-  align-items: center;
   flex-direction: row;
-  justify-content: center;
-  justify-content: space-between;
+}
+
+.all_search_musics {
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+
+  height: 35vh;
+}
+
+.all_search_musics-full {
+  display: flex;
+  flex-direction: column;
 }
 
 .indiv_artist_card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
+  width: 160px;
   padding: 0;
 
   /* margin-right: 24px; */
 
   cursor: pointer;
+
+  /* background-color: #ffffff; */
+
+  border-radius: 8px;
 
   /* background-color: #ffffff; */
 
@@ -122,12 +136,13 @@
 }
 
 .artist_image {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   margin: 0px;
 
   border-radius: 8px;
 
+  object-fit: cover;
   object-fit: cover;
 }
 
@@ -172,12 +187,28 @@
 .search_button {
   line-height: 100%;
 
+  position: relative;
+
   display: flex;
   overflow: hidden;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
 
-  width: 17%;
+  width: 160px;
+  height: 50px;
+
+  text-align: center;
+
+  color: #f4f4f5;
+  border: #3d85a3;
+  background-color: #3d85a3;
+}
+
+.search_button:hover {
+  color: #f4f4f5;
+  background-color: #698a98;
 }
 
 .search_icon {
@@ -187,7 +218,89 @@
 .artist-card-name {
   text-decoration: none !important;
 
-  color: black !important;
+  /* color: black !important; */
+}
+
+.search_results_container {
+  overflow-y: scroll;
+
+  height: 75vh;
+}
+
+.filter-pill {
+  margin: 5px 10px;
+  padding: 5px 10px;
+
+  cursor: pointer;
+}
+
+.filter-button {
+  font-weight: 600;
+
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 50px;
+  margin: 0px 10px;
+  padding: 5px 20px;
+
+  cursor: pointer;
+  transition: ease-in 0.2s;
+  text-align: center;
+
+  color: #3d85a3;
+  border: 2px #fafafa solid;
+  border-radius: 2px;
+}
+
+.filter-button:hover {
+  transform: scale(1.01);
+
+  background: #f4f4f5;
+}
+
+.collapsible-div {
+  position: absolute;
+  z-index: 2 !important;
+  right: 10px;
+
+  flex-direction: column;
+
+  width: 300px;
+  height: 200px;
+  margin-top: 8px;
+
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: grey 0px 1px;
+}
+
+.collapsible-header {
+  font-weight: bold;
+
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.collapsible-body {
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.save-btn-filter {
+  margin-top: 20px;
+  margin-left: 15px;
+  padding: 3px 20px;
+
+  color: white;
+  border-radius: 4px;
+  background-color: #3d85a3;
+}
+
+.search_container > input {
+  height: 50px;
 }
 
 /*

@@ -1,4 +1,7 @@
 .uploaded-music {
+    overflow-y: scroll;
+
+    height: 85vh;
     padding: 10px;
 
     border-radius: 5px;

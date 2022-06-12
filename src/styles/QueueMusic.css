@@ -78,3 +78,15 @@
     color: #000;
   }
 }
+
+.queue-main {
+  margin-right: 5px;
+
+  cursor: pointer;
+}
+
+.queue {
+  overflow-y: scroll;
+
+  max-height: 30vh;
+}

@@ -113,6 +113,41 @@
     color: #9799A0;
 }
 
+.nowplaying_music_name {
+    font-size: large;
+    font-weight: 600;
+
+    margin-top: 10px;
+
+    color: white;
+}
+
+.nowplaying_artist_name {
+    font-size: smaller;
+    font-weight: 300;
+
+    color: white;
+}
+
+.clear-queue-button {
+    font-weight: 600;
+
+    padding: 12px 0px;
+
+    cursor: pointer;
+    transition: ease-in 0.2s;
+
+    color: #3d85a3;
+    border: 2px #fafafa solid;
+    border-radius: 2px;
+}
+
+.clear-queue-button:hover {
+    transform: scale(1.01);
+
+    background: #f4f4f5;
+}
+
 .queue {
     overflow-y: scroll;
 
