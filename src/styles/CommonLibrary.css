@@ -1,0 +1,146 @@
+/* common library */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  background-color: #f4f4f5;
+  margin: 0;
+  padding: 0;
+}
+.disp-flex-end{
+  display: flex;
+  justify-content: flex-end;
+}
+/* font library */
+.f-inter {
+  font-family: "Inter", sans-serif;
+}
+.f-opensans {
+  font-family: "Open Sans", sans-serif;
+}
+.f-20{
+  font-size: 20px;
+}
+.f-16{
+  font-size: 16px;
+}
+.f-14{
+  font-size: 14px;
+}
+/* colour library */
+
+.clr-main-fg {
+  color: #3d85a3;
+}
+.clr-main-bg {
+  background-color: #3d85a3;
+}
+.clr-gray {
+  color: #9799a0;
+}
+.clr-light-gray-bg {
+  background-color: #f4f4f5;
+}
+/* common components */
+button {
+  font-weight: 700;
+  font-size: 14px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 8px !important;
+  transition: all 0.2s ease;
+}
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-main {
+  background-color: #3d85a3;
+  color: #f4f4f5;
+  border: solid #3d85a3 2px;
+  transition: all 0.2s ease;
+}
+.btn-main:hover {
+  transform: scale(1.01);
+  background-color: #f4f4f5;
+  color: #3d85a3;
+  border: solid #3d85a3 2px;
+}
+.create_new_playlist {
+  color: #3d85a3;
+  text-decoration: none;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}
+.create_new_playlist:hover {
+  color: #698a98;
+}
+
+/* main containers */
+.container-fluid {
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: #e8e9ec;
+}
+.main-container {
+  width: 60%;
+  padding: 28px 48px;
+  overflow-y: scroll;
+}
+.musicbar {
+  width: 20%;
+  height: 100vh;
+  border-left: solid #e8e9ec 2px;
+
+  /* temporarily */
+  background-color: #3d85a3;
+}
+
+/* text */
+.material-symbols-rounded {
+  /* color: #fff; */
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.captiontext {
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 44px;
+  margin-left: -17px;
+  margin-top: 8px;
+}
+h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 65px;
+  margin-bottom: 32px;
+}
+h1 > .semibold {
+  font-weight: 600;
+}
+.remove-h1-mb {
+  margin-bottom: 0px;
+}
+.sub-heading {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #9799a0;
+  margin-top: -4px;
+}

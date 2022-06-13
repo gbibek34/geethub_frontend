@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import loginbg from '../images/login-bg.jpg';
-import '../styles/LoginScreen.css';
+// import '../styles/LoginScreen.css';
 import {
   loginUser,
   userSelector,

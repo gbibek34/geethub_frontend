@@ -1,0 +1,28 @@
+.terms-background{
+  background-color: #3d85a3 ;
+  height: 100vh;
+  padding: 5vh 5vw;
+}
+
+.terms-container{
+  height: 90vh;
+  overflow-y: scroll;
+  /* margin-top: 5vh; */
+  /* opacity: 0.9; */
+  padding: 50px 70px;
+}
+
+/* responsive */
+
+@media (max-width: 960px) {
+  .terms-background{
+    /* background-color: red; */
+    padding: 0;
+  }
+  .terms-container{
+    padding: 10px;
+    margin: 0;
+    height: 100vh;
+    font-size: 14px;
+  }
+}

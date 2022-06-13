@@ -1,9 +1,11 @@
 import React from 'react';
+import "../styles/termsStyle.css";
 
 const Terms = () => {
 
   return (
-    <div className='p-4'>
+    <div className='overflow-auto terms-background'>
+      <div className='rounded bg-white overflow-auto terms-container'>
       <h2><strong>Terms and Conditions</strong></h2>
 
       <p>Welcome to Geethub!</p>
@@ -32,7 +34,7 @@ const Terms = () => {
         <li>Redistribute content from Geethub</li>
       </ul>
 
-      <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the <a href="https://www.termsfeed.com/terms-conditions-generator/">TermsFeed Free Terms and Conditions Generator</a>.</p>
+      <p>This Agreement shall begin on the date hereof.</p>
 
       <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Geethub does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Geethub,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Geethub shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
 
@@ -127,6 +129,7 @@ const Terms = () => {
       <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
 
       <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
+    </div>
     </div>
   );
 };

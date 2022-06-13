@@ -1,56 +1,3 @@
-.navbar {
-  color: white;
-  background-color: #913059;
-}
-
-.btn-purple {
-  color: white;
-  background-color: #913059;
-}
-
-/* homepage css */
-
-.homeElement1 {
-  min-height: 600px;
-
-  border-radius: 20px;
-  background-color: #ffffff;
-}
-
-.homeElement2 {
-  height: 300px;
-
-  border-radius: 20px;
-  background: linear-gradient(to top right, #0066ff 0%, #cc99ff 100%);
-}
-
-.homeElement3 {
-  min-height: 450px;
-
-  border-radius: 20px;
-}
-
-.homeElement3t {
-  height: 450px;
-
-  border-radius: 20px;
-}
-
-.indivLecturerCard {
-  width: 300px;
-  height: 450px;
-
-  background-color: white;
-}
-
-.quoteText {
-  font-size: 2.5em;
-}
-
-.homeHeadingTextBody {
-  font-size: 1.5em;
-}
-
 /* responsive */
 
 @media only screen and(max-width: 989px) {
@@ -67,29 +14,6 @@
   .quoteText {
     font-size: 1.5em;
   }
-}
-
-/* individual course */
-
-.indivCourseOverviewText {
-  font-size: 1.3em;
-}
-
-.indivCourseElement2 {
-  background: linear-gradient(to top right, #6600cc 0%, #ff9900 100%);
-}
-
-.indivCourseAssignment {
-  border-radius: 20px;
-  background-color: white;
-}
-
-.journalElement2 {
-  background: linear-gradient(to bottom right, #cc33ff 0%, #ffcc00 100%);
-}
-
-.gradientCustom {
-  color: #6600cc;
 }
 
 /* asignment submission */

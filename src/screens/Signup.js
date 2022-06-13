@@ -135,7 +135,7 @@ const Signup = () => {
                     />
                   </div>
 
-                  <div className='form-group mb-5 mx-1 row p-0'>
+                  <div className='form-group mx-1 mb-0 row p-0'>
                     <input
                       type='password'
                       id='inputPassword'
@@ -155,14 +155,14 @@ const Signup = () => {
                       required
                     />
                   </div>
-                  <div className='agree form-group'>
-                  <label> <input type="checkbox" onClick={(e) => setAgree(e.target.checked)} /> <span>I agreee to <Link to='/terms' target="_blank">Terms and Conditions</Link> of Geethub</span></label>
+                  <div className='m-0 p-0 text-danger text-start'>{fieldError}</div>
+                  <div className='agree form-group mt-2'>
+                    <label> <input type="checkbox" onClick={(e) => setAgree(e.target.checked)} /> <span>I agree to <Link to='/terms' target="_blank">Terms and Conditions</Link> of Geethub</span></label>
                   </div>
-                  <div>{fieldError}</div>
 
                   <div className='loginButtonGroup form-group mb-4'>
                     <button
-                      disabled={agree? false : true}
+                      disabled={agree ? false : true}
                       className='loginContinue btn btn-lg  btn-info btn-cyan btn-block border-0'
                       type='submit'
                     >
