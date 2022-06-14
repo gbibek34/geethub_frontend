@@ -13,6 +13,7 @@ import {
 import ArtistMusic from '../components/Artist/ArtistMusics';
 import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
 import { userSelector } from '../features/User/UserSlice';
+import ReportUserModal from '../components/Report/ReportUserModal';
 
 //artist profile screen that displays artist details and music uploads
 const ArtistProfileScreen = () => {
@@ -162,6 +163,7 @@ const ArtistProfileScreen = () => {
               </span>
               <span className='f-14'>Tip</span>
             </button>
+            <ReportUserModal userId={artist._id} />
           </div>
         </div>
       </div>
