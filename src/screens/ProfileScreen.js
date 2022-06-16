@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeDiscoverable, fetchMyProfile, userSelector } from '../features/User/UserSlice';
+import { verificationRequest, changeDiscoverable, fetchMyProfile, userSelector } from '../features/User/UserSlice';
 import '../styles/ProfileScreen.css';
 import { Rings } from 'react-loader-spinner';
 import UpdateProfileModal from '../components/Profile/UpdateProfileModal';
@@ -29,6 +29,7 @@ const ProfileScreen = () => {
     followers,
     social,
     is_discoverable,
+    verification_request,
   } = useSelector(userSelector);
 
   const refresh = () => {
@@ -36,11 +37,17 @@ const ProfileScreen = () => {
       dispatch(fetchMyProfile(localStorage.getItem('token')));
     }
   };
+
   const handleDiscoverable = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const discoverable = e.target.checked;
     dispatch(changeDiscoverable({ token: token, is_discoverable: discoverable }));
+  }
+
+  const handleVerification = () => {
+    const token = localStorage.getItem('token');
+    dispatch(verificationRequest({ token: token }));
   }
 
   return (
@@ -59,7 +66,21 @@ const ProfileScreen = () => {
           </div>
           <div className='profile-details'>
             <div className='profile-head'>
-              <div className='profile-name'>{name}</div>
+              <div className='profile-name'>
+                {name} &nbsp;
+                {
+                  is_verified &&  <span className="material-symbols-rounded">
+                  verified
+                </span>
+                }
+                {
+                  (!is_verified && !verification_request) &&
+                  <button className='btn' onClick={handleVerification}>Request</button>
+                }
+                {
+                  (!is_verified && verification_request) && <button className='btn' disabled>Pending Verification</button>
+                }
+              </div>
               <div className='profile-action'>
                 <UpdateProfileModal notifyParent={refresh} />
               </div>

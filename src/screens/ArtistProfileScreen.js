@@ -107,7 +107,9 @@ const ArtistProfileScreen = () => {
           />
           <div className='header-right'>
             <div className='header-details'>
-              <h1 className='semibold f-inter'>{artist.name}</h1>
+              <h1 className='semibold f-inter'>{artist.name} {artist.is_verified? <span className="material-symbols-rounded">
+                  verified
+                </span>: ""}</h1>
               <p className='sub-heading'>{artist.bio}</p>
               <hr />
               <div className='header-all-stats'>

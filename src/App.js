@@ -15,6 +15,7 @@ import ArtistProfileScreen from "./screens/ArtistProfileScreen";
 import SearchArtist from "./screens/SearchScreen";
 import Terms from "./screens/Terms";
 import LikedMusicScreen from "./screens/LikedMusicScreen";
+import UserVerification from "./screens/admin/UserVerification";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                 element={<ArtistProfileScreen />}
               />
               <Route path="/liked" element={<LikedMusicScreen />} />
+              <Route path="admin/userverification" element={<UserVerification />}/>
             </Route>
           </Route>
           <Route element={<ProtectedRoute />}>
