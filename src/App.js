@@ -19,6 +19,7 @@ import AllUsersScreen from "./screens/AllUsersScreen";
 import AdminPageLayout from "./helpers/AdminPageLayout";
 import ReportedMusicScreen from "./screens/ReportedMusicScreen";
 import ReportedUserScreen from "./screens/ReportedUserScreen";
+import UserVerification from "./screens/admin/UserVerification";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="" element={<AllUsersScreen />} />
               <Route path="reportedmusic" element={<ReportedMusicScreen />} />
               <Route path="reporteduser" element={<ReportedUserScreen />} />
+              <Route path="userverification" element={<UserVerification />}/>
             </Route>
           </Route>
 
@@ -48,6 +50,7 @@ function App() {
                 element={<ArtistProfileScreen />}
               />
               <Route path="/liked" element={<LikedMusicScreen />} />
+             
             </Route>
           </Route>
 

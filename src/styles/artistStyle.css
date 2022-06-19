@@ -155,9 +155,9 @@
   justify-content: left;
 }
 
-.artist_profile_buttons {
-  /* width: 100%; */
-}
+/* .artist_profile_buttons {
+  width: 100%;
+} */
 
 .btn-play {
   width: max-content;
@@ -211,4 +211,211 @@
 
   border-radius: 5px;
   background-color: #FAFAFA;
+}
+
+/* artist and playlist header */
+/* subcontainers */
+.artist-header-subcontainer {
+  padding: 0;
+  margin: 0;
+}
+.artist-header-top {
+  display: inline-flex;
+  margin-bottom: 8px;
+}
+.header-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
+  object-fit: fill;
+}
+.header-right{
+  width: 100%;
+  min-width: 500px;
+  /* background-color: #3d85a3; */
+  display: block;
+  
+}
+.header-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  padding: 4px 42px;
+}
+.header-details > h1 {
+  /* width: ; */
+  margin-bottom: 8px;
+}
+.header-details > p{
+  min-width: 68%;
+}
+.header-all-stats {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+.header-all-stats > label{
+  background-color: #e8e9ec;
+  border-radius: 4px;
+  padding: 0px 8px;
+  cursor: default;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.header-action-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* height: 50px; */
+  /* background-color: #000000; */
+}
+.header-action-bar>div{
+  /* width: 45%; */
+  /* background-color: #3d85a3; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* buttons artist/playlists page */
+.btn-gradient-hover{
+  width: 150px;
+  color: #fff;
+  cursor: pointer;
+  height: 52px;
+  text-align: center;
+  background-size: 300% 100%;
+  border-radius:8px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn-profile-play{
+  width: 200px;
+  background-image: linear-gradient(
+    to right,
+    #3d85a3,
+    #4fbaca,
+    #45abc0
+  );
+}
+.btn-follow , .btn-edit{
+  background-color: #f4f4f5;
+  width: 150px;
+  color: #9799a0;
+  border: solid #9799a0 2px;
+  transition: all 0.2s ease;
+}
+.btn-follow:hover, .btn-edit:hover{
+  color: #9799a0;
+}
+.btn-follow:active, .btn-follow-active{
+  color: #3d85a3;
+  border: solid #9799a0 2px;
+}
+.btn-alt-tip {
+  background-image: linear-gradient(
+    to right,
+    #edbb08,
+    #fbd877,
+    #ffb01f
+  );
+}
+.btn-gradient-hover:hover {
+  color: #fff;
+  background-position: 100% 0;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover >.material-symbols-rounded{
+  font-size: 32px;
+  transition: all 0.2s ease-in-out;
+}
+/* END -- artist and playlist header */
+/* artists/playlists/songs cards grid */
+
+/* images */
+.all_search_artists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 0;
+}
+.indiv_artist_card {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #ffffff; */
+  border-radius: 8px;
+  padding: 0;
+  /* width: 190px; */
+  /* margin-right: 24px; */
+  cursor: pointer;
+  margin: 16px 0px;
+}
+.indiv_artist_card:hover > .artist_image{
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  opacity: 1;
+}
+/* .indiv_artist_card:hover > .artist_name{
+  transform: scale(1.05);
+} */
+.artist_image {
+  margin: auto;
+  object-fit: cover;
+  max-height: 170px;
+  max-width: 170px;
+  border-radius: 8px;
+  opacity: 0.9;
+}
+.artist_name {
+  padding: 0;
+  margin: 0;
+  margin-top: 4px;
+  height: 20%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+/* end artists/playlists/songs cards */
+
+/* music/playlist list scrollable */
+.list-component{
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  height: 60vh;
+}
+.list-component-header{
+  display: flex;
+}
+/* END -- music/playlist list scrollable */
+.upload-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  /* padding: 8px 24px; */
+}
+.sub-header {
+  font-weight: 400;
+  font-size: 18px;
+  /* line-height: 27px; */
+  display: flex;
+  align-items: center;
+  color: #9799a0;
+}
+
+.all_playlists{
+  overflow-y: scroll;
+  height: 50vh;
+  margin-top: 20px;
 }
