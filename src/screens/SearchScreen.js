@@ -69,7 +69,7 @@ export default function SearchArtist() {
             }}
             className='form-control searchbar'
             type='text'
-            placeholder='Search for Artists'
+            placeholder='Search for Music or Artists'
           />
           <button
             type='submit'
