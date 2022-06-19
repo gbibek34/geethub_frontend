@@ -17,13 +17,14 @@ const initialStateValue = {
   },
   music_count: 0,
   followers: 0,
-  isFollowed: '',
-  is_discoverable:false,
+  isFollowed: "",
+  is_discoverable: false,
   isFetching: false,
   isSuccess: false,
   isError: false,
   errorMessage: "",
   isFollowed: "",
+  isAdmin: false,
 };
 
 export const signupUser = createAsyncThunk(
@@ -64,6 +65,14 @@ export const loginUser = createAsyncThunk(
       let data = response.data;
       if (data.success === true) {
         localStorage.setItem("token", data.token);
+        console.log(data.isAdmin);
+
+        if (data.isAdmin == true) {
+          console.log("admin");
+          localStorage.setItem("role", "geethub-admin");
+        } else {
+          localStorage.setItem("role", "geethub-user");
+        }
         return thunkAPI.fulfillWithValue(data);
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -123,14 +132,14 @@ export const updateUserProfile = createAsyncThunk(
   ) => {
     try {
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('bio', bio);
-      formData.append('facebook', facebook);
-      formData.append('instagram', instagram);
-      formData.append('twitter', twitter);
-      formData.append('profile_image', profile_image);
+      formData.append("name", name);
+      formData.append("bio", bio);
+      formData.append("facebook", facebook);
+      formData.append("instagram", instagram);
+      formData.append("twitter", twitter);
+      formData.append("profile_image", profile_image);
       const response = await axios.put(
-        'http://localhost:3000/user/profile/update',
+        "http://localhost:3000/user/profile/update",
         formData,
         {
           headers: { Authorization: "Bearer " + token },
@@ -153,11 +162,11 @@ export const updateUserProfile = createAsyncThunk(
 
 export const changeDiscoverable = createAsyncThunk(
   "user/profile/discoverable",
-  async ({token, is_discoverable}, thunkAPI) => {
+  async ({ token, is_discoverable }, thunkAPI) => {
     try {
       const response = await axios.put(
         "http://localhost:3000/user/profile/discoverable",
-        {is_discoverable: is_discoverable},
+        { is_discoverable: is_discoverable },
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -177,7 +186,6 @@ export const changeDiscoverable = createAsyncThunk(
     }
   }
 );
-
 
 export const userSlice = createSlice({
   name: "user",
@@ -243,6 +251,7 @@ export const userSlice = createSlice({
       state.social = payload.data.social;
       state.followers = payload.data.followers;
       state.is_discoverable = payload.data.is_discoverable;
+      state.isAdmin = payload.data.isAdmin;
     },
     [fetchMyProfile.rejected]: (state) => {
       state.isFetching = false;
@@ -291,6 +300,7 @@ export const userSlice = createSlice({
       state.profile_image = payload.data.profile_image;
       state.followers = payload.followers;
       state.social = payload.data.social;
+      state.isAdmin = payload.data.isAdmin;
     },
     [fetchUserById.pending]: (state) => {
       state.isError = false;
@@ -329,10 +339,10 @@ export const userSlice = createSlice({
       state.social = payload.data.social;
       state.followers = payload.data.followers;
       state.is_discoverable = payload.data.is_discoverable;
+      state.isAdmin = payload.data.isAdmin;
     },
   },
 });
 
 export const { clearState, resetUser } = userSlice.actions;
 export const userSelector = (state) => state.user;
-

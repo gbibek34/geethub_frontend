@@ -3,14 +3,14 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 
 const initialStateValue = {
-  _id: '',
-  name: '',
-  description: '',
-  genre: '',
-  audio: '',
-  uploadedById: '',
-  uploadedByName: '',
-  uploadedOn: '',
+  _id: "",
+  name: "",
+  description: "",
+  genre: "",
+  audio: "",
+  uploadedById: "",
+  uploadedByName: "",
+  uploadedOn: "",
   views: 0,
   isPublished: false,
   coverArt: "",
@@ -90,7 +90,7 @@ export const unlikeMusic = createAsyncThunk(
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {
-        return data.data;
+        return data;
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.data);
@@ -106,7 +106,7 @@ export const musicSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.isFetching = false;
-
+      state.loadedmusic = [];
       return state;
     },
     resetMusic: () => initialStateValue,
