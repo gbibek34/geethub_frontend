@@ -29,7 +29,7 @@ const FilterModal = () => {
     <div>
       <div type='button' onClick={toggleShow} className='filter-button'>
         <span className='d-flex justify-content-between'>
-          Filter&nbsp;<i class='fa-solid fa-filter'></i>
+          Filter&nbsp;<i className='fa-solid fa-filter'></i>
         </span>
       </div>
       <div
@@ -47,7 +47,7 @@ const FilterModal = () => {
                     style={{ backgroundColor: '#FFE455' }}
                     onClick={() => onFilterRemove(genre)}
                   >
-                    {genre}&nbsp;<i class='fa-solid fa-xmark'></i>
+                    {genre}&nbsp;<i className='fa-solid fa-xmark'></i>
                   </span>
                 ) : (
                   <span
@@ -88,7 +88,7 @@ const FilterModal = () => {
                   className='badge badge-pill badge-primary filter-pill'
                   onClick={() => onFilterRemove(genre)}
                 >
-                  {genre}&nbsp;<i class='fa-solid fa-xmark'></i>
+                  {genre}&nbsp;<i className='fa-solid fa-xmark'></i>
                 </span>
               ) : (
                 <span
