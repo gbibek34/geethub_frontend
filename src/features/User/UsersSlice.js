@@ -1,50 +1,77 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialStateValue = {
   artists: [],
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: '',
+  errorMessage: "",
   artist: [],
   musics: [],
-  followers:0,
+  followers: 0,
   isFollowed: false,
+  reportedusers: [],
 };
 
 export const fetchArtistProfile = createAsyncThunk(
-  'artist/profile',
+  "artist/profile",
   async ({ token, artistid, userId }, thunkAPI) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/artist/profile/' + artistid,
+        "http://localhost:3000/artist/profile/" + artistid,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
 
       let data = response.data;
       if (data.success === true) {
-        return thunkAPI.fulfillWithValue({data, userId});
+        return thunkAPI.fulfillWithValue({ data, userId });
       } else {
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      console.log('Error', e.response.data);
+      console.log("Error", e.response.data);
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );
 
+export const fetchReportedUser = createAsyncThunk(
+  "music/reported/all",
+  async ({ token }, thunkAPI) => {
+    try {
+      console.log(token);
+      const response = await axios.get(
+        "http://localhost:3000/admin/userreport/users",
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
 export const fetchArtistMusic = createAsyncThunk(
-  'artist/musics',
+  "artist/musics",
   async ({ token, artistid }, thunkAPI) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/artist/musics/' + artistid,
+        "http://localhost:3000/artist/musics/" + artistid,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
 
@@ -55,7 +82,7 @@ export const fetchArtistMusic = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      console.log('Error', e.response.data);
+      console.log("Error", e.response.data);
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
@@ -80,7 +107,7 @@ export const followArtist = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       } else {
         console.log("fulfilled");
-        return thunkAPI.fulfillWithValue({data, id});
+        return thunkAPI.fulfillWithValue({ data, id });
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.data);
@@ -107,7 +134,7 @@ export const unfollowArtist = createAsyncThunk(
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {
-        return thunkAPI.fulfillWithValue({data, id});
+        return thunkAPI.fulfillWithValue({ data, id });
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.data);
@@ -116,7 +143,7 @@ export const unfollowArtist = createAsyncThunk(
 );
 
 export const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -135,7 +162,8 @@ export const usersSlice = createSlice({
       state.isError = false;
       state.artist = payload.data.data;
       state.followers = payload.data.data.followed_by.length;
-      state.isFollowed = payload.data.data.followed_by.indexOf(payload.userId)!==-1;
+      state.isFollowed =
+        payload.data.data.followed_by.indexOf(payload.userId) !== -1;
       console.log(state.artist);
     },
     [fetchArtistProfile.pending]: (state) => {
@@ -146,7 +174,7 @@ export const usersSlice = createSlice({
     [fetchArtistProfile.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = 'Could not load artist music';
+      state.errorMessage = "Could not load artist music";
     },
 
     [fetchArtistMusic.fulfilled]: (state, { payload }) => {
@@ -163,7 +191,7 @@ export const usersSlice = createSlice({
     [fetchArtistMusic.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = 'Could not load artist profile';
+      state.errorMessage = "Could not load artist profile";
     },
     [followArtist.pending]: (state) => {
       state.isFetching = true;
@@ -180,7 +208,7 @@ export const usersSlice = createSlice({
     [followArtist.fulfilled]: (state, { payload }) => {
       console.log(payload);
       state.artist.followed_by = [...state.artist.followed_by, payload.id];
-      state.followers = state.followers +1;
+      state.followers = state.followers + 1;
       state.isFetching = false;
       state.isSuccess = true;
       state.isFollowed = true;
@@ -197,13 +225,35 @@ export const usersSlice = createSlice({
       state.errorMessage = "Could not like music";
     },
     [unfollowArtist.fulfilled]: (state, { payload }) => {
-      console.log("this",state.artist.followed_by.filter((id)=>id!==payload.id));
-      state.artist.followed_by = state.artist.followed_by.filter((id)=>id!==payload.id);
-      state.followers = state.followers -1;
+      console.log(
+        "this",
+        state.artist.followed_by.filter((id) => id !== payload.id)
+      );
+      state.artist.followed_by = state.artist.followed_by.filter(
+        (id) => id !== payload.id
+      );
+      state.followers = state.followers - 1;
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;
       state.isFollowed = false;
+    },
+    [fetchReportedUser.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchReportedUser.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not load users";
+    },
+    [fetchReportedUser.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.reportedusers = payload.data;
     },
   },
 });

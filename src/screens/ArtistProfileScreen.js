@@ -13,6 +13,7 @@ import {
 import ArtistMusic from '../components/Artist/ArtistMusics';
 import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
 import { userSelector } from '../features/User/UserSlice';
+import ReportUserModal from '../components/Report/ReportUserModal';
 
 //artist profile screen that displays artist details and music uploads
 const ArtistProfileScreen = () => {
@@ -107,7 +108,9 @@ const ArtistProfileScreen = () => {
           />
           <div className='header-right'>
             <div className='header-details'>
-              <h1 className='semibold f-inter'>{artist.name}</h1>
+              <h1 className='semibold f-inter'>{artist.name} {artist.is_verified? <span className="material-symbols-rounded">
+                  verified
+                </span>: ""}</h1>
               <p className='sub-heading'>{artist.bio}</p>
               <hr />
               <div className='header-all-stats'>
@@ -162,6 +165,7 @@ const ArtistProfileScreen = () => {
               </span>
               <span className='f-14'>Tip</span>
             </button>
+            <ReportUserModal userId={artist._id} />
           </div>
         </div>
       </div>

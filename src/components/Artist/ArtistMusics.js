@@ -21,7 +21,7 @@ export default function ArtistMusic({ artistid }) {
   const { isFetching, isError, isSuccess, musics } = useSelector(usersSelector);
 
   return (
-    <div className='all_playlists mt-0'>
+    <div className='all_playlists'>
       <div className='upload-header'>
         <div className='sub-header'>ALL</div>
         <button

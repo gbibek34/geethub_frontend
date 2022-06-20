@@ -1,0 +1,42 @@
+/* Music Reports Screen CSS */
+
+.music-reports {
+    display: grid;
+    padding: 10px;
+/* background-color: blue; */
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+.pending-reports,
+.resolved-reports,
+.rejected-reports {
+    margin: 5px;
+}
+
+.pending-reports .report-status-header {
+    color: gold;
+}
+
+.resolved-reports .report-status-header {
+    color: green;
+}
+
+.rejected-reports .report-status-header {
+    color: red;
+}
+
+.report-status-header {
+    font-size: 24px;
+    font-weight: 800;
+
+    padding: 10px 0px;
+
+    text-align: center;
+}
+
+.all-music-reports {
+    overflow-y: scroll;
+
+    height: 90vh;
+    padding: 10px;
+}

@@ -8,6 +8,7 @@ const initialStateValue = {
   isError: false,
   errorMessage: "",
   likedmusics: [],
+  reportedmusic: [],
 };
 
 export const fetchMyMusics = createAsyncThunk(
@@ -18,6 +19,32 @@ export const fetchMyMusics = createAsyncThunk(
         headers: { Authorization: "Bearer " + token },
       });
 
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const fetchReportedMusic = createAsyncThunk(
+  "music/reported/all",
+  async ({token}, thunkAPI) => {
+    try {
+      console.log(token);
+      const response = await axios.get(
+        "http://localhost:3000/admin/musicreport/musics",
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       let data = response.data;
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
@@ -94,19 +121,19 @@ export const fetchLikedMusic = createAsyncThunk(
 );
 
 export const editMusicDetails = createAsyncThunk(
-  'music/edit',
+  "music/edit",
   async ({ token, id, name, description, genre, coverArt }, thunkAPI) => {
     try {
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('description', description);
-      formData.append('genre', genre);
-      formData.append('coverArt', coverArt);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("genre", genre);
+      formData.append("coverArt", coverArt);
       const response = await axios.put(
         `http://localhost:3000/music/edit/${id}`,
         formData,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
 
@@ -181,9 +208,9 @@ export const musicsSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Could not edit music details';
+      state.errorMessage = "Could not edit music details";
     },
-    [editMusicDetails.fulfilled]: (state, {payload}) => {
+    [editMusicDetails.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;
@@ -211,6 +238,23 @@ export const musicsSlice = createSlice({
       state.isSuccess = true;
       state.isError = false;
       state.likedmusics = payload.data;
+    },
+    [fetchReportedMusic.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchReportedMusic.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not load musics";
+    },
+    [fetchReportedMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.reportedmusic = payload.data;
     },
   },
 });
