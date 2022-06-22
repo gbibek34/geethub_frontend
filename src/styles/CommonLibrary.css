@@ -1,15 +1,4 @@
 /* common library */
-* {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  background-color: #f4f4f5;
-  margin: 0;
-  padding: 0;
-}
 .disp-flex-end{
   display: flex;
   justify-content: flex-end;
@@ -18,8 +7,8 @@ body {
 .f-inter {
   font-family: "Inter", sans-serif;
 }
-.f-opensans {
-  font-family: "Open Sans", sans-serif;
+.f-manrope {
+  font-family: "Manrope", sans-serif;
 }
 .f-20{
   font-size: 20px;
@@ -73,7 +62,7 @@ button {
   color: #3d85a3;
   border: solid #3d85a3 2px;
 }
-.create_new_playlist {
+.create-new-playlist {
   color: #3d85a3;
   text-decoration: none;
   font-family: "Open Sans";
@@ -81,7 +70,7 @@ button {
   font-weight: 700;
   font-size: 16px;
 }
-.create_new_playlist:hover {
+.create-new-playlist:hover {
   color: #698a98;
 }
 

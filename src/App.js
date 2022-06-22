@@ -18,6 +18,8 @@ import LikedMusicScreen from "./screens/LikedMusicScreen";
 
 function App() {
   return (
+    // splash screen here?
+    
     <div className="App">
       <Router>
         <Routes>

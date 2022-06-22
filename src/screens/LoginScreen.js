@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import loginbg from '../images/login-bg.jpg';
-// import '../styles/LoginScreen.css';
 import {
   loginUser,
   userSelector,
@@ -93,7 +92,7 @@ const LoginScreen = () => {
                   </div>
 
                   <button
-                    className='loginContinue btn btn-lg btn-info btn-block border-0 btn-purple'
+                    className='loginContinue btn btn-lg btn-info btn-block border-0 btn-main'
                     type='submit'
                   >
                     Continue
@@ -103,7 +102,7 @@ const LoginScreen = () => {
                   <Link
                     to='/signup'
                     type='button'
-                    className='gotoSignup btn btn-link'
+                    className='btn btn-link gotoSignup'
                   >
                     New here? Create an account
                   </Link>

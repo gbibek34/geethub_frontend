@@ -22,6 +22,7 @@ const initialStateValue = {
   isFetching: false,
   isSuccess: false,
   isError: false,
+  isAdmin:false,
   errorMessage: "",
   isFollowed: "",
 };

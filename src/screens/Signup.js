@@ -163,7 +163,7 @@ const Signup = () => {
                   <div className='loginButtonGroup form-group mb-4'>
                     <button
                       disabled={agree ? false : true}
-                      className='loginContinue btn btn-lg  btn-info btn-cyan btn-block border-0'
+                      className='loginContinue btn btn-lg btn-main btn-block border-0'
                       type='submit'
                     >
                       Continue
