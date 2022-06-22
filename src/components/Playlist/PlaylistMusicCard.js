@@ -9,6 +9,7 @@ import {
 } from '../../features/Music/NowPlayingSlice';
 import { removeMusicFromPlaylist } from '../../features/Playlist/PlaylistSlice';
 import { Link } from 'react-router-dom';
+import { updateViewCount } from '../../helpers/UpdateViewCount';
 const _ = require('lodash');
 
 const PlaylistMusicCard = ({ playlistId, music, allMusics, item }) => {
@@ -24,6 +25,10 @@ const PlaylistMusicCard = ({ playlistId, music, allMusics, item }) => {
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState(allMusics));
     dispatch(updateIndex(item));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   const handleRemoveMusic = () => {
@@ -45,6 +50,11 @@ const PlaylistMusicCard = ({ playlistId, music, allMusics, item }) => {
     }
     if (equal === false) {
       dispatch(addToQueue(music));
+      console.log(localStorage.getItem('token'));
+      updateViewCount({
+        token: localStorage.getItem('token'),
+        musicId: music._id,
+      });
     }
   };
 

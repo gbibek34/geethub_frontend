@@ -8,6 +8,7 @@ import {
   nowPlayingSelector,
 } from '../../features/Music/NowPlayingSlice';
 import ReportMusicModal from '../Report/ReportMusicModal';
+import { updateViewCount } from '../../helpers/UpdateViewCount';
 const _ = require('lodash');
 
 const AllMusicCard = ({ music }) => {
@@ -22,6 +23,10 @@ const AllMusicCard = ({ music }) => {
 
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   const handleAddToQueue = () => {
@@ -33,6 +38,10 @@ const AllMusicCard = ({ music }) => {
     }
     if (equal === false) {
       dispatch(addToQueue(music));
+      updateViewCount({
+        token: localStorage.getItem('token'),
+        musicId: music._id,
+      });
     }
   };
 
