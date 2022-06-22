@@ -16,7 +16,6 @@ const FilterModal = () => {
   };
 
   const onFilterAdd = (value) => {
-    console.log(value);
     setSelectedGenres([...selectedGenres, value]);
   };
   const onFilterRemove = (value) => {

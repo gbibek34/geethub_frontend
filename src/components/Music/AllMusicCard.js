@@ -29,7 +29,6 @@ const AllMusicCard = ({ music }) => {
     for (let i = 0; i < musics.length; i++) {
       if (_.isEqual(musics[i], music)) {
         equal = true;
-        console.log("Already in queue's last element");
       }
     }
     if (equal === false) {

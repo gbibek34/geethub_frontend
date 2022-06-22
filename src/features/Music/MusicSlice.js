@@ -1,35 +1,35 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const initialStateValue = {
-  _id: "",
-  name: "",
-  description: "",
-  genre: "",
-  audio: "",
-  uploadedById: "",
-  uploadedByName: "",
-  uploadedOn: "",
+  _id: '',
+  name: '',
+  description: '',
+  genre: '',
+  audio: '',
+  uploadedById: '',
+  uploadedByName: '',
+  uploadedOn: '',
   views: 0,
   isPublished: false,
-  coverArt: "",
+  coverArt: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: "",
-  isLiked: "",
+  errorMessage: '',
+  isLiked: '',
   total_likes: 0,
 };
 
 export const fetchMusicById = createAsyncThunk(
-  "music/get",
+  'music/get',
   async ({ token, id }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/music/get/" + id,
+        'http://localhost:3000/music/get/' + id,
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -44,25 +44,22 @@ export const fetchMusicById = createAsyncThunk(
 );
 
 export const likeMusic = createAsyncThunk(
-  "music/like",
+  'music/like',
   async ({ token, id }, thunkAPI) => {
-    console.log(token);
     try {
       const response = await axios.put(
-        "http://localhost:3000/music/like/",
+        'http://localhost:3000/music/like/',
         {
           musicid: id,
         },
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
-      console.log(response.data);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       } else {
-        console.log("fulfilled");
         return thunkAPI.fulfillWithValue(data);
       }
     } catch (e) {
@@ -72,17 +69,17 @@ export const likeMusic = createAsyncThunk(
 );
 
 export const unlikeMusic = createAsyncThunk(
-  "music/unlike",
+  'music/unlike',
   async ({ token, id }, thunkAPI) => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/music/unlike/",
+        'http://localhost:3000/music/unlike/',
 
         {
           musicid: id,
         },
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -99,7 +96,7 @@ export const unlikeMusic = createAsyncThunk(
 );
 
 export const musicSlice = createSlice({
-  name: "music",
+  name: 'music',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -121,7 +118,7 @@ export const musicSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.isError = "Could not load music";
+      state.isError = 'Could not load music';
     },
     [fetchMusicById.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -145,14 +142,12 @@ export const musicSlice = createSlice({
       state.isError = false;
     },
     [likeMusic.rejected]: (state) => {
-      console.log("rejected");
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not like music";
+      state.errorMessage = 'Could not like music';
     },
     [likeMusic.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.isFetching = false;
       state.isSuccess = true;
       state.isLiked = true;
@@ -166,7 +161,7 @@ export const musicSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not like music";
+      state.errorMessage = 'Could not like music';
     },
     [unlikeMusic.fulfilled]: (state, { payload }) => {
       state.isFetching = false;

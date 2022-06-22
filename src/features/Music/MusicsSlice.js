@@ -38,7 +38,6 @@ export const fetchReportedMusic = createAsyncThunk(
   "music/reported/all",
   async ({token}, thunkAPI) => {
     try {
-      console.log(token);
       const response = await axios.get(
         "http://localhost:3000/admin/musicreport/musics",
         {

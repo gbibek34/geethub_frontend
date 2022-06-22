@@ -45,7 +45,6 @@ export const searchForMusics = createAsyncThunk(
   async ({ token, searchkey, filters }, thunkAPI) => {
     try {
       const stringData = filters.map((value) => `${value}`).join(',');
-      console.log(stringData);
       const response = await axios.get(
         'http://localhost:3000/music/search/' + searchkey + '/' + stringData,
         {
@@ -105,7 +104,6 @@ export const searchSlice = createSlice({
       state.errorMessage = 'Can not search for artist';
     },
     [searchForMusics.fulfilled]: (state, { payload }) => {
-      console.log(payload.filters);
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
