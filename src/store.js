@@ -1,12 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { musicSlice } from './features/Music/MusicSlice';
-import { musicsSlice } from './features/Music/MusicsSlice';
-import { nowPlayingSlice } from './features/Music/NowPlayingSlice';
-import { playlistsSlice } from './features/Playlist/PlaylistsSlice';
-import { userSlice } from './features/User/UserSlice';
-import { playlistSlice } from './features/Playlist/PlaylistSlice';
-import { usersSlice } from './features/User/UsersSlice';
-import { searchSlice } from './features/Search/SearchSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { musicSlice } from "./features/Music/MusicSlice";
+import { musicsSlice } from "./features/Music/MusicsSlice";
+import { nowPlayingSlice } from "./features/Music/NowPlayingSlice";
+import { playlistsSlice } from "./features/Playlist/PlaylistsSlice";
+import { userSlice } from "./features/User/UserSlice";
+import { playlistSlice } from "./features/Playlist/PlaylistSlice";
+import { usersSlice } from "./features/User/UsersSlice";
+import { searchSlice } from "./features/Search/SearchSlice";
+import { adminSlice } from "./features/Admin/AdminSlice";
+import { reportedMusicSlice } from "./features/Admin/ReportedMusicSlice";
+import { reportedUserSlice } from "./features/Admin/ReportedUserSlice";
+import { userVerificationSlice } from './features/Admin/userVerificationSlice';
 
 export default configureStore({
   reducer: {
@@ -18,5 +22,9 @@ export default configureStore({
     playlists: playlistsSlice.reducer,
     playlist: playlistSlice.reducer,
     search: searchSlice.reducer,
+    admin: adminSlice.reducer,
+    reportedmusic: reportedMusicSlice.reducer,
+    reporteduser: reportedUserSlice.reducer,
+    userVerificationRequest: userVerificationSlice.reducer,
   },
 });
