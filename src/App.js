@@ -28,10 +28,10 @@ function App() {
 
   useEffect(() => {
 
-    // Wait for 1 seconds
+    // Wait for 2 seconds
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
