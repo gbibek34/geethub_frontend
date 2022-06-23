@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MyUploads from "./screens/MyUploads";
 import Signup from "./screens/Signup";
@@ -20,54 +20,71 @@ import AdminPageLayout from "./helpers/AdminPageLayout";
 import ReportedMusicScreen from "./screens/ReportedMusicScreen";
 import ReportedUserScreen from "./screens/ReportedUserScreen";
 import UserVerification from "./screens/admin/UserVerification";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
+
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+
+    // Wait for 1 seconds
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     // splash screen here?
-    
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/admin" element={<ProtectedAdminRoute />}>
-            <Route element={<AdminPageLayout />}>
-              <Route path="" element={<AllUsersScreen />} />
-              <Route path="reportedmusic" element={<ReportedMusicScreen />} />
-              <Route path="reporteduser" element={<ReportedUserScreen />} />
-              <Route path="userverification" element={<UserVerification />}/>
-            </Route>
-          </Route>
+    <>
+      {isLoading === false ? (
+        <div className="App">
+          <Router>
+            <Routes>
+              <Route path="/admin" element={<ProtectedAdminRoute />}>
+                <Route element={<AdminPageLayout />}>
+                  <Route path="" element={<AllUsersScreen />} />
+                  <Route path="reportedmusic" element={<ReportedMusicScreen />} />
+                  <Route path="reporteduser" element={<ReportedUserScreen />} />
+                  <Route path="userverification" element={<UserVerification />} />
+                </Route>
+              </Route>
 
-          <Route path="/" element={<PrivateRoute />}>
-            <Route element={<PageLayout />}>
-              <Route path="/profile" element={<MyUploads />} />
-              <Route path="/playlist" element={<MyPlaylists />} />
-              <Route path="/" element={<AllMusics />} />
-              <Route
-                path="/playlist/:playlistId"
-                element={<PlaylistDetailScreen />}
-              />
-              <Route path="/search" element={<SearchArtist />} />
-              <Route
-                path="/artist/:artistid"
-                element={<ArtistProfileScreen />}
-              />
-              <Route path="/liked" element={<LikedMusicScreen />} />
-             
-            </Route>
-          </Route>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route element={<PageLayout />}>
+                  <Route path="/profile" element={<MyUploads />} />
+                  <Route path="/playlist" element={<MyPlaylists />} />
+                  <Route path="/" element={<AllMusics />} />
+                  <Route
+                    path="/playlist/:playlistId"
+                    element={<PlaylistDetailScreen />}
+                  />
+                  <Route path="/search" element={<SearchArtist />} />
+                  <Route
+                    path="/artist/:artistid"
+                    element={<ArtistProfileScreen />}
+                  />
+                  <Route path="/liked" element={<LikedMusicScreen />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<LoginScreen />} />
-          </Route>
-          <Route
-            path="/verify/:userId/:uniqueString"
-            element={<EmailVerify />}
-          />
-          <Route path="/terms" element={<Terms />} />
-        </Routes>
-      </Router>
-    </div>
+                </Route>
+              </Route>
+
+              <Route element={<ProtectedRoute />}>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<LoginScreen />} />
+              </Route>
+              <Route
+                path="/verify/:userId/:uniqueString"
+                element={<EmailVerify />}
+              />
+              <Route path="/terms" element={<Terms />} />
+            </Routes>
+          </Router>
+        </div>
+      ) : (
+        <SplashScreen />
+      )}
+    </>
   );
 }
 
