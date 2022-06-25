@@ -5,7 +5,7 @@ import {
   acceptUserVerificationRequest,
   rejectUserVerificationRequest,
   userVerificationRequestSelector,
-} from "../../features/Admin/userVerificationSlice.js";
+} from "../../features/admin/userVerificationSlice.js";
 import {Link} from 'react-router-dom';
 import { Rings } from "react-loader-spinner";
 

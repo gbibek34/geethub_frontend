@@ -20,21 +20,26 @@ import AdminPageLayout from "./helpers/AdminPageLayout";
 import ReportedMusicScreen from "./screens/ReportedMusicScreen";
 import ReportedUserScreen from "./screens/ReportedUserScreen";
 import UserVerification from "./screens/admin/UserVerification";
+import ForgotPassword from "./screens/ForgotPassword";
+import ChangePassword from "./screens/ChangePassword";
+import ResetPassword from "./screens/ResetPassword";
+import NotFound from "./screens/NotFound";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
+          {/* admin path */}
           <Route path="/admin" element={<ProtectedAdminRoute />}>
-            <Route element={<AdminPageLayout />}>
+            <Route element={<PageLayout />}>
               <Route path="" element={<AllUsersScreen />} />
               <Route path="reportedmusic" element={<ReportedMusicScreen />} />
               <Route path="reporteduser" element={<ReportedUserScreen />} />
               <Route path="userverification" element={<UserVerification />}/>
             </Route>
           </Route>
-
+          {/* // user path */}
           <Route path="/" element={<PrivateRoute />}>
             <Route element={<PageLayout />}>
               <Route path="/profile" element={<MyUploads />} />
@@ -50,19 +55,26 @@ function App() {
                 element={<ArtistProfileScreen />}
               />
               <Route path="/liked" element={<LikedMusicScreen />} />
-             
+              <Route path="/change-password" element={<ChangePassword/>} />
             </Route>
           </Route>
-
+          {/* not login path */}
           <Route element={<ProtectedRoute />}>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<LoginScreen />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route
+            path="/reset-password/:userId/:uniqueString"
+            element={<ResetPassword />}
+          />
           </Route>
+          {/* open path */}
           <Route
             path="/verify/:userId/:uniqueString"
             element={<EmailVerify />}
           />
           <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>

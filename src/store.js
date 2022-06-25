@@ -10,7 +10,7 @@ import { searchSlice } from "./features/Search/SearchSlice";
 import { adminSlice } from "./features/Admin/AdminSlice";
 import { reportedMusicSlice } from "./features/Admin/ReportedMusicSlice";
 import { reportedUserSlice } from "./features/Admin/ReportedUserSlice";
-import { userVerificationSlice } from './features/Admin/userVerificationSlice';
+import { userVerificationSlice } from './features/admin/userVerificationSlice';
 
 export default configureStore({
   reducer: {

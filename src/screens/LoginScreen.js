@@ -96,6 +96,13 @@ const LoginScreen = () => {
                       onChange={handlePassword}
                     />
                   </div>
+                  <Link
+                    to="/forgot-password"
+                    type="button"
+                    className="gotoSignup btn btn-link"
+                  >
+                    Forget Password?
+                  </Link>
 
                   <button
                     className="loginContinue btn btn-lg btn-info btn-block border-0 btn-purple"
