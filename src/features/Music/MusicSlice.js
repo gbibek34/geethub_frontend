@@ -98,6 +98,33 @@ export const unlikeMusic = createAsyncThunk(
   }
 );
 
+export const deleteMusic = createAsyncThunk(
+  "music/delete",
+  async ({ token, id }, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/music/delete/",
+
+        {
+          musicid: id,
+        },
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return data;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
 export const musicSlice = createSlice({
   name: "music",
   initialState: initialStateValue,
@@ -173,6 +200,22 @@ export const musicSlice = createSlice({
       state.isSuccess = true;
       state.isFetching = false;
       state.isLiked = false;
+    },
+    [deleteMusic.pending]: (state) => {
+      state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    [deleteMusic.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not delete music";
+    },
+    [deleteMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isFetching = false;
     },
   },
 });

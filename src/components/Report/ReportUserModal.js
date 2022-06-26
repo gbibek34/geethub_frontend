@@ -37,7 +37,7 @@ const ReportUserModal = ({ userId }) => {
           {
             text: reportTexts.filter((text) => text.id === selectedReport)[0]
               .text,
-            reportedMusic: userId,
+            reportedUser: userId,
           },
           {
             headers: {
