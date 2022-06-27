@@ -12,6 +12,7 @@ import {
 import { updateNowPlayingState } from '../features/Music/NowPlayingSlice';
 import PlaylistMusicCard from '../components/Playlist/PlaylistMusicCard';
 import DeletePlaylistModal from '../components/Delete/DeletePlaylistModal';
+import UpdatePlaylistModal from '../components/Playlist/UpdatePlaylistModal';
 
 //playlist details screen that displays all the music in the playlist
 const PlaylistDetailScreen = () => {
@@ -65,6 +66,7 @@ const PlaylistDetailScreen = () => {
                 {musics.length} songs
               </div>
               <div className='artist_profile_stat'>16:49</div>
+              <UpdatePlaylistModal />
             </div>
             <div className='artist_profile_buttons'>
               <button
@@ -94,6 +96,7 @@ const PlaylistDetailScreen = () => {
               return (
                 <PlaylistMusicCard
                   key={music._id}
+                  playlistId={playlistId}
                   music={music}
                   item={index}
                   allMusics={musics}

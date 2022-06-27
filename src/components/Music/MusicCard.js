@@ -4,6 +4,7 @@ import {
   updateNowPlayingState,
   addToQueue,
 } from '../../features/Music/NowPlayingSlice';
+import { updateViewCount } from '../../helpers/UpdateViewCount';
 
 const MusicCard = ({ music }) => {
   const date = new Date(music.uploadedOn).toLocaleDateString('en-us', {
@@ -15,10 +16,18 @@ const MusicCard = ({ music }) => {
 
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   const handleAddToQueue = () => {
     dispatch(addToQueue(music));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   return (

@@ -45,7 +45,6 @@ const ReportUserModal = ({ userId }) => {
             },
           }
         );
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

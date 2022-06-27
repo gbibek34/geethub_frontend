@@ -45,7 +45,6 @@ const ReportMusicModal = ({ musicId }) => {
             },
           }
         );
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

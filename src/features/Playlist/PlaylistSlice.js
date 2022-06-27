@@ -77,6 +77,59 @@ export const deletePlaylist = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       } else {
         return data;
+        return thunkAPI.fulfillWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const removeMusicFromPlaylist = createAsyncThunk(
+  "playlist/music/remove",
+  async ({ token, playlistId, musicId }, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        "http://localhost:3000/playlist/music/remove",
+        {
+          playlistId,
+          musicId,
+        },
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return data;
+        return thunkAPI.fulfillWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const editPlaylist = createAsyncThunk(
+  "playlist/edit",
+  async ({ token, playlistId, name, description }, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        "http://localhost:3000/playlist/edit",
+        {
+          playlistId,
+          name,
+          description,
+        },
+        { headers: { Authorization: "Bearer " + token } }
+      );
+
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return thunkAPI.fulfillWithValue(data);
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.data);
@@ -149,6 +202,45 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isFetching = false;
+    },
+    [removeMusicFromPlaylist.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [removeMusicFromPlaylist.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not remove music from playlist";
+    },
+    [removeMusicFromPlaylist.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.musics.splice(
+        state.musics.findIndex((arrow) => arrow === payload.data),
+        1
+      );
+    },
+    [editPlaylist.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [editPlaylist.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not load playlist details";
+    },
+    [editPlaylist.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      console.log(payload);
+      state.name = payload.data.name;
+      state.description = payload.data.description;
     },
   },
 });

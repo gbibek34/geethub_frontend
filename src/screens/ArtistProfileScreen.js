@@ -48,14 +48,11 @@ const ArtistProfileScreen = () => {
   }, []);
 
   useEffect(() => {
-    console.log(artist._id !== undefined);
     if (artist._id !== undefined) {
       // console.log(artist.followed_by);
       // console.log(id);
-      console.log('1 if condition OUT', followed);
       setFollowed(false);
       if (artist.followed_by.indexOf(id) !== -1) {
-        console.log('2 if condition', followed);
         setFollowed(true);
       }
       // if (isFollowed) {
@@ -72,7 +69,6 @@ const ArtistProfileScreen = () => {
     dispatch(updateNowPlayingState(musics));
   };
   const onFollow = () => {
-    console.log('3 onFollow', followed);
     setFollowed(true);
     dispatch(
       followArtist({
@@ -83,7 +79,6 @@ const ArtistProfileScreen = () => {
   };
   // hello
   const onUnFollow = () => {
-    console.log('4 onUnFollow', followed);
     setFollowed(false);
     dispatch(
       unfollowArtist({
@@ -108,9 +103,14 @@ const ArtistProfileScreen = () => {
           />
           <div className='header-right'>
             <div className='header-details'>
-              <h1 className='semibold f-inter'>{artist.name} {artist.is_verified? <span className="material-symbols-rounded">
-                  verified
-                </span>: ""}</h1>
+              <h1 className='semibold f-inter'>
+                {artist.name}{' '}
+                {artist.is_verified ? (
+                  <span className='material-symbols-rounded'>verified</span>
+                ) : (
+                  ''
+                )}
+              </h1>
               <p className='sub-heading'>{artist.bio}</p>
               <hr />
               <div className='header-all-stats'>

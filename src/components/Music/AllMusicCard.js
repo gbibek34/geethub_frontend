@@ -9,7 +9,8 @@ import {
 } from "../../features/Music/NowPlayingSlice";
 import ReportMusicModal from "../Report/ReportMusicModal";
 import DeleteMusicModal from "../Delete/DeleteMusicModal";
-const _ = require("lodash");
+import { updateViewCount } from '../../helpers/UpdateViewCount';
+const _ = require('lodash');
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ const AllMusicCard = ({ music }) => {
 
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   const handleAddToQueue = () => {
@@ -30,11 +35,14 @@ const AllMusicCard = ({ music }) => {
     for (let i = 0; i < musics.length; i++) {
       if (_.isEqual(musics[i], music)) {
         equal = true;
-        console.log("Already in queue's last element");
       }
     }
     if (equal === false) {
       dispatch(addToQueue(music));
+      updateViewCount({
+        token: localStorage.getItem('token'),
+        musicId: music._id,
+      });
     }
   };
 
