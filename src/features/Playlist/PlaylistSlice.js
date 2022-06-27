@@ -1,26 +1,26 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialStateValue = {
   musics: [],
-  _id: '',
-  createdBy: '',
-  name: '',
-  description: '',
+  _id: "",
+  createdBy: "",
+  name: "",
+  description: "",
   isFetching: false,
   isSuccess: false,
   isError: false,
-  errorMessage: '',
+  errorMessage: "",
 };
 
 export const fetchPlaylistbyId = createAsyncThunk(
-  'playlist/details',
+  "playlist/details",
   async ({ token, playlistId }, thunkAPI) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/playlist/details/' + playlistId,
+        "http://localhost:3000/playlist/details/" + playlistId,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
       let data = response.data;
@@ -36,13 +36,13 @@ export const fetchPlaylistbyId = createAsyncThunk(
 );
 
 export const fetchMusicInPlaylist = createAsyncThunk(
-  'playlist/view',
+  "playlist/view",
   async ({ token, playlistId }, thunkAPI) => {
     try {
       const response = await axios.get(
-        'http://localhost:3000/playlist/musics/' + playlistId,
+        "http://localhost:3000/playlist/musics/" + playlistId,
         {
-          headers: { Authorization: 'Bearer ' + token },
+          headers: { Authorization: "Bearer " + token },
         }
       );
       let data = response.data;
@@ -58,8 +58,34 @@ export const fetchMusicInPlaylist = createAsyncThunk(
   }
 );
 
+export const deletePlaylist = createAsyncThunk(
+  "playlist/delete",
+  async ({ token, id }, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/playlist/delete/",
+        {
+          playlistid: id,
+        },
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return data;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
 export const playlistSlice = createSlice({
-  name: 'playlist',
+  name: "playlist",
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -80,7 +106,7 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Could not load musics';
+      state.errorMessage = "Could not load musics";
     },
     [fetchMusicInPlaylist.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -97,7 +123,7 @@ export const playlistSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = 'Could not load playlist details';
+      state.errorMessage = "Could not load playlist details";
     },
     [fetchPlaylistbyId.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -107,6 +133,22 @@ export const playlistSlice = createSlice({
       state.createdBy = payload.data.createdBy;
       state.name = payload.data.name;
       state.description = payload.data.description;
+    },
+    [deletePlaylist.pending]: (state) => {
+      state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    [deletePlaylist.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not delete user";
+    },
+    [deletePlaylist.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isFetching = false;
     },
   },
 });

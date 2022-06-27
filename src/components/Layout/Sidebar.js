@@ -14,9 +14,9 @@ const Sidebar = () => {
     logout();
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchMyProfile(localStorage.getItem('token')));
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchMyProfile(localStorage.getItem('token')));
+  }, []);
 
   return (
     <Fragment>

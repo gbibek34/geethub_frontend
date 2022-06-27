@@ -189,8 +189,8 @@ export const changeDiscoverable = createAsyncThunk(
 );
 
 export const verificationRequest = createAsyncThunk(
-"user/profile/verification",
-  async ({token}, thunkAPI) => {
+  "user/profile/verification",
+  async ({ token }, thunkAPI) => {
     try {
       const response = await axios.put(
         "http://localhost:3000/user/profile/verification",
@@ -199,7 +199,7 @@ export const verificationRequest = createAsyncThunk(
           headers: { Authorization: "Bearer " + token },
         }
       );
-      console.log(response)
+      console.log(response);
       let data = response.data;
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(response.msg);
@@ -211,6 +211,31 @@ export const verificationRequest = createAsyncThunk(
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const deleteUserProfile = createAsyncThunk(
+  "user/delete",
+  async ({ token }, thunkAPI) => {
+    console.log(token);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/delete/",
+        {},
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      } else {
+        return data;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
     }
   }
 );
@@ -382,7 +407,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = true;
-      console.log(payload)
+      console.log(payload);
       state.errorMessage = payload;
     },
     [verificationRequest.fulfilled]: (state, { payload }) => {
@@ -401,6 +426,22 @@ export const userSlice = createSlice({
       state.followers = payload.data.followers;
       state.is_discoverable = payload.data.is_discoverable;
       state.verification_request = payload.data.verification_request;
+    },
+    [deleteUserProfile.pending]: (state) => {
+      state.isFetching = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    [deleteUserProfile.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+      state.errorMessage = "Could not delete user";
+    },
+    [deleteUserProfile.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isFetching = false;
     },
   },
 });
