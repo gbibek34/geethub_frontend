@@ -65,7 +65,7 @@ const DeleteProfileModal = ({ userid }) => {
       <div
         className="modal fade"
         id={`deleteProfileModal-${userid}`}
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

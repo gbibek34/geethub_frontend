@@ -43,7 +43,7 @@ const DeletePlaylistModal = ({ name, playlistId }) => {
       <div
         className="modal fade"
         id={`deleteMusicModal-${playlistId}`}
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

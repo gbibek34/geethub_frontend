@@ -11,7 +11,13 @@
 
     border-radius: 5px 5px 0px 0px;
     background-image: linear-gradient(rgba( 61, 133, 163, 1) , rgba( 103, 170, 197, 0.63) );
+    /* background-image: linear-gradient(rgb(42, 44, 45) , rgba(81, 81, 81, 0.63) ); */
 }
+
+.no-music-container{
+    background-image: linear-gradient(rgb(42, 44, 45) , rgba(81, 81, 81, 0.63) );
+}
+
 
 .now-playing {
     padding: 20px;
@@ -55,6 +61,11 @@
 
     border-radius: 0 0 5px 5px;
     background-color: #567784;
+    /* background-color: #393939; */
+
+}
+.no-music-rhap-container{
+    background-color: #393939;
 }
 
 #rhap_current-time {
@@ -188,6 +199,9 @@
         grid-column-end: 2;
         grid-row-start: 1;
         grid-row-end: 2;
+    }
+    .no-music-cover-container{
+        background-color: #393939;
     }
 
     .now-playing {
