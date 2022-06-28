@@ -13,7 +13,7 @@ import { resetSearch } from "../features/Search/SearchSlice";
 import { resetReportedMusic } from "../features/Admin/ReportedMusicSlice";
 import { resetUserDetails } from "../features/Admin/AdminSlice";
 import { resetReportedUser } from "../features/Admin/ReportedUserSlice";
-import { resetUserVerification } from "../features/admin/userVerificationSlice";
+import { resetUserVerification } from "../features/Admin/userVerificationSlice";
 
 const useLogout = () => {
   const dispatch = useDispatch();

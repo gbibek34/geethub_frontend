@@ -16,7 +16,6 @@ import SearchArtist from "./screens/SearchScreen";
 import Terms from "./screens/Terms";
 import LikedMusicScreen from "./screens/LikedMusicScreen";
 import AllUsersScreen from "./screens/AllUsersScreen";
-import AdminPageLayout from "./helpers/AdminPageLayout";
 import ReportedMusicScreen from "./screens/ReportedMusicScreen";
 import ReportedUserScreen from "./screens/ReportedUserScreen";
 import UserVerification from "./screens/admin/UserVerification";
@@ -69,6 +68,10 @@ function App() {
                     element={<PlaylistDetailScreen />}
                   />
                   <Route path="/search" element={<SearchArtist />} />
+                  <Route
+                    path="/artist/:artistid"
+                    element={<ArtistProfileScreen />}
+                  />
                   <Route
                     path="/verify/:userId/:uniqueString"
                     element={<EmailVerify />}
