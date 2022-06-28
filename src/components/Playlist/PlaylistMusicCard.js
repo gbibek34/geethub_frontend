@@ -7,10 +7,12 @@ import {
   nowPlayingSelector,
   updateIndex,
 } from '../../features/Music/NowPlayingSlice';
+import { removeMusicFromPlaylist } from '../../features/Playlist/PlaylistSlice';
 import { Link } from 'react-router-dom';
+import { updateViewCount } from '../../helpers/UpdateViewCount';
 const _ = require('lodash');
 
-const PlaylistMusicCard = ({ music, allMusics, item }) => {
+const PlaylistMusicCard = ({ playlistId, music, allMusics, item }) => {
   const dispatch = useDispatch();
   const date = new Date(music.uploadedOn).toLocaleDateString('en-us', {
     year: 'numeric',
@@ -23,6 +25,20 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState(allMusics));
     dispatch(updateIndex(item));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
+  };
+
+  const handleRemoveMusic = () => {
+    dispatch(
+      removeMusicFromPlaylist({
+        playlistId: playlistId,
+        musicId: music._id,
+        token: localStorage.getItem('token'),
+      })
+    );
   };
 
   const handleAddToQueue = () => {
@@ -30,11 +46,15 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
     for (let i = 0; i < musics.length; i++) {
       if (_.isEqual(musics[i], music)) {
         equal = true;
-        console.log("Already in queue's last element");
       }
     }
     if (equal === false) {
       dispatch(addToQueue(music));
+      console.log(localStorage.getItem('token'));
+      updateViewCount({
+        token: localStorage.getItem('token'),
+        musicId: music._id,
+      });
     }
   };
 
@@ -53,7 +73,10 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
         </div>
         <div className='playlist_title'>
           <div className='playlist_name'>{music.name}</div>
-          <Link to={`/artist/${music.uploadedBy._id}`} className='artist-card-name'>
+          <Link
+            to={`/artist/${music.uploadedBy._id}`}
+            className='artist-card-name'
+          >
             <div className='playlist_descr'>{music.uploadedBy.name}</div>
           </Link>
         </div>
@@ -70,6 +93,16 @@ const PlaylistMusicCard = ({ music, allMusics, item }) => {
           onClick={handleAddToQueue}
         >
           queue_music
+        </span>
+        <span
+          type='button'
+          data-toggle='tooltip'
+          data-placement='top'
+          title='Remove Music'
+          className='material-symbols-rounded songs_action_btn'
+          onClick={handleRemoveMusic}
+        >
+          delete
         </span>
       </div>
     </div>

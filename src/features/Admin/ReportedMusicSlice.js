@@ -1,26 +1,25 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialStateValue = {
   pendingMusic: [],
   rejectedMusic: [],
   resolvedMusic: [],
-  isSuccess: "",
-  isError: "",
-  errorMessage: "",
-  isFetchingReport: "",
-  isAdmin: "",
+  isSuccess: '',
+  isError: '',
+  errorMessage: '',
+  isFetchingReport: '',
+  isAdmin: '',
 };
 
-
 export const pendingReportedMusic = createAsyncThunk(
-  "admin/reportedmusic/pending",
+  'admin/reportedmusic/pending',
   async ({ token }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/admin/musicreport/pending",
+        'http://localhost:3000/admin/musicreport/pending',
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -36,13 +35,13 @@ export const pendingReportedMusic = createAsyncThunk(
 );
 
 export const rejectedReportedMusic = createAsyncThunk(
-  "admin/reportedmusic/rejected",
+  'admin/reportedmusic/rejected',
   async ({ token }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/admin/musicreport/rejected",
+        'http://localhost:3000/admin/musicreport/rejected',
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -58,13 +57,13 @@ export const rejectedReportedMusic = createAsyncThunk(
 );
 
 export const resolvedReportedMusic = createAsyncThunk(
-  "admin/reportedmusic/resolved",
+  'admin/reportedmusic/resolved',
   async ({ token }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/admin/musicreport/resolved",
+        'http://localhost:3000/admin/musicreport/resolved',
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -80,15 +79,14 @@ export const resolvedReportedMusic = createAsyncThunk(
 );
 
 export const rejectReportedMusic = createAsyncThunk(
-  "admin/reportedmusic/reject",
+  'admin/reportedmusic/reject',
   async ({ token, reportid }, thunkAPI) => {
     try {
-      console.log(token);
       const response = await axios.put(
-        "http://localhost:3000/admin/musicreport/reject",
+        'http://localhost:3000/admin/musicreport/reject',
         { reportid: reportid },
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -104,14 +102,14 @@ export const rejectReportedMusic = createAsyncThunk(
 );
 
 export const resolveReportedMusic = createAsyncThunk(
-  "/admin/reportedmusic/resolve",
+  '/admin/reportedmusic/resolve',
   async ({ token, reportid }, thunkAPI) => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/admin/musicreport/resolve",
+        'http://localhost:3000/admin/musicreport/resolve',
         { reportid: reportid },
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -127,7 +125,7 @@ export const resolveReportedMusic = createAsyncThunk(
 );
 
 export const reportedMusicSlice = createSlice({
-  name: "reportedmusic",
+  name: 'reportedmusic',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -148,7 +146,7 @@ export const reportedMusicSlice = createSlice({
       state.isFetchingReport = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not fetch pending musics";
+      state.errorMessage = 'Could not fetch pending musics';
     },
     [pendingReportedMusic.fulfilled]: (state, { payload }) => {
       state.isFetchingReport = false;
@@ -165,7 +163,7 @@ export const reportedMusicSlice = createSlice({
       state.isFetchingReport = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not fetch rejected musics";
+      state.errorMessage = 'Could not fetch rejected musics';
     },
     [rejectedReportedMusic.fulfilled]: (state, { payload }) => {
       state.isFetchingReport = false;
@@ -182,7 +180,7 @@ export const reportedMusicSlice = createSlice({
       state.isFetchingReport = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not fetch resolved musics";
+      state.errorMessage = 'Could not fetch resolved musics';
     },
     [resolvedReportedMusic.fulfilled]: (state, { payload }) => {
       state.isFetchingReport = false;
@@ -199,7 +197,7 @@ export const reportedMusicSlice = createSlice({
       state.isFetchingReport = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not fetch reject reported music";
+      state.errorMessage = 'Could not fetch reject reported music';
     },
     [rejectReportedMusic.fulfilled]: (state, { payload }) => {
       state.isFetchingReport = false;
@@ -215,7 +213,7 @@ export const reportedMusicSlice = createSlice({
       state.isFetchingReport = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Could not fetch resolve reported music";
+      state.errorMessage = 'Could not fetch resolve reported music';
     },
     [resolveReportedMusic.fulfilled]: (state, { payload }) => {
       state.isFetchingReport = false;

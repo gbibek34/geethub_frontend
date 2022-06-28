@@ -1,22 +1,22 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialStateValue = {
   isFetching: false,
   isError: false,
   isSuccess: false,
   userVerificationRequest: [],
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export const fetchUserVerificationRequest = createAsyncThunk(
-  "admin/userVerificationRequest/get",
+  'admin/userVerificationRequest/get',
   async (token, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/admin/user/verification/requests",
+        'http://localhost:3000/admin/user/verification/requests',
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -33,14 +33,14 @@ export const fetchUserVerificationRequest = createAsyncThunk(
 );
 
 export const acceptUserVerificationRequest = createAsyncThunk(
-  "admin/userVerificationRequest/accept",
+  'admin/userVerificationRequest/accept',
   async ({ id, token }, thunkAPI) => {
     try {
       const response = await axios.put(
         `http://localhost:3000/admin/user/verify/${id}`,
         {},
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -57,14 +57,14 @@ export const acceptUserVerificationRequest = createAsyncThunk(
 );
 
 export const rejectUserVerificationRequest = createAsyncThunk(
-  "admin/userVerificationRequest/reject",
+  'admin/userVerificationRequest/reject',
   async ({ id, token }, thunkAPI) => {
     try {
       const response = await axios.put(
         `http://localhost:3000/admin/user/reject/${id}`,
         {},
         {
-          headers: { Authorization: "Bearer " + token },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       let data = response.data;
@@ -81,7 +81,7 @@ export const rejectUserVerificationRequest = createAsyncThunk(
 );
 
 export const userVerificationSlice = createSlice({
-  name: "userVerificationRequest",
+  name: 'userVerificationRequest',
   initialState: initialStateValue,
   reducers: {
     clearState: (state) => {
@@ -108,7 +108,7 @@ export const userVerificationSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Something went wrong";
+      state.errorMessage = 'Something went wrong';
     },
     [acceptUserVerificationRequest.pending]: (state, { payload }) => {
       state.isFetching = true;
@@ -119,16 +119,16 @@ export const userVerificationSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(payload.data);
       state.userVerificationRequest = state.userVerificationRequest.filter(
-        (userVerificationRequest) => userVerificationRequest._id !== payload.data._id
+        (userVerificationRequest) =>
+          userVerificationRequest._id !== payload.data._id
       );
     },
     [acceptUserVerificationRequest.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Something went wrong";
+      state.errorMessage = 'Something went wrong';
     },
     [rejectUserVerificationRequest.pending]: (state, { payload }) => {
       state.isFetching = true;
@@ -139,16 +139,16 @@ export const userVerificationSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(payload.data);
       state.userVerificationRequest = state.userVerificationRequest.filter(
-        (userVerificationRequest) => userVerificationRequest._id !== payload.data.userId
+        (userVerificationRequest) =>
+          userVerificationRequest._id !== payload.data.userId
       );
     },
     [rejectUserVerificationRequest.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.isSuccess = false;
-      state.errorMessage = "Something went wrong";
+      state.errorMessage = 'Something went wrong';
     },
   },
 });

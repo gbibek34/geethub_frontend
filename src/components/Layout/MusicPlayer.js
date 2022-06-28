@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "../../styles/MusicPlayer.css";
 import error from "../../images/error.png";
+import empty from "../../images/music-empty.png";
 import axios from "axios";
 import QueueMusic from "./QueueMusic";
 import { userSelector } from "../../features/User/UserSlice";
@@ -68,7 +69,6 @@ const MusicPlayer = () => {
   // queue = queue.slice(currentIndex + 1);
 
   const handleLike = () => {
-    console.log(currentSong._id);
     setLiked(true);
     dispatch(
       likeMusic({
@@ -79,7 +79,6 @@ const MusicPlayer = () => {
   };
 
   const handleUnLike = () => {
-    console.log(currentSong._id);
     setLiked(false);
     dispatch(
       unlikeMusic({
@@ -98,7 +97,7 @@ const MusicPlayer = () => {
           src={
             currentSong.coverArt
               ? `http://localhost:3000/${currentSong.coverArt.slice(6)}`
-              : error
+              : empty
           }
           alt=""
         />
@@ -114,7 +113,7 @@ const MusicPlayer = () => {
               </Link>
             </>
           ) : (
-            <></>
+            <> </>
           )}
         </div>
       </div>

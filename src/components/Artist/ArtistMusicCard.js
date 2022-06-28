@@ -7,6 +7,7 @@ import {
   nowPlayingSelector,
   updateIndex,
 } from '../../features/Music/NowPlayingSlice';
+import { updateViewCount } from '../../helpers/UpdateViewCount';
 const _ = require('lodash');
 
 const ArtistMusicCard = ({ music, artistMusics, item }) => {
@@ -22,6 +23,10 @@ const ArtistMusicCard = ({ music, artistMusics, item }) => {
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState(artistMusics));
     dispatch(updateIndex(item));
+    updateViewCount({
+      token: localStorage.getItem('token'),
+      musicId: music._id,
+    });
   };
 
   const handleAddToQueue = () => {
@@ -29,11 +34,14 @@ const ArtistMusicCard = ({ music, artistMusics, item }) => {
     for (let i = 0; i < musics.length; i++) {
       if (_.isEqual(musics[i], music)) {
         equal = true;
-        console.log("Already in queue's last element");
       }
     }
     if (equal === false) {
       dispatch(addToQueue(music));
+      updateViewCount({
+        token: localStorage.getItem('token'),
+        musicId: music._id,
+      });
     }
   };
 

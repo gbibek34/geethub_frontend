@@ -15,7 +15,6 @@ const PrivateRoute = () => {
   const isAuth = useAuth();
   const location = useLocation();
 
-  console.log(isUser);
   return isAuth ? (
     isUser ? (
       <Outlet />
