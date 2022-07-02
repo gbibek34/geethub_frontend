@@ -236,3 +236,20 @@
 .image_container {
   cursor: pointer;
 }
+
+
+/* Load Money*/
+.coin-box {
+  background-color: white;
+  border-radius: 8px;
+  height: 100px;
+  width: 200px;
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.amount-container {
+  display: flex;
+  justify-content: start;
+
+}
