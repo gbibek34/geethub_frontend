@@ -10,7 +10,8 @@ import { searchSlice } from "./features/Search/SearchSlice";
 import { adminSlice } from "./features/Admin/AdminSlice";
 import { reportedMusicSlice } from "./features/Admin/ReportedMusicSlice";
 import { reportedUserSlice } from "./features/Admin/ReportedUserSlice";
-import { userVerificationSlice } from './features/Admin/userVerificationSlice';
+import { userVerificationSlice } from "./features/Admin/userVerificationSlice";
+import { tipArtistSlice } from "./features/Tip/TipArtistSlice";
 
 export default configureStore({
   reducer: {
@@ -26,5 +27,6 @@ export default configureStore({
     reportedmusic: reportedMusicSlice.reducer,
     reporteduser: reportedUserSlice.reducer,
     userVerificationRequest: userVerificationSlice.reducer,
+    tip: tipArtistSlice.reducer,
   },
 });
