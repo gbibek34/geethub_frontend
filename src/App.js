@@ -25,6 +25,7 @@ import ResetPassword from "./screens/ResetPassword";
 import NotFound from "./screens/NotFound";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import Monetization from "./screens/admin/Monetization";
+import LoadMoney from './screens/LoadMoney';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,65 +41,66 @@ function App() {
     // splash screen here?
     <>
       {isLoading === false ? (
-        <div className="App">
+        <div className='App'>
           <Router>
             <Routes>
               {/* admin path */}
-              <Route path="/admin" element={<ProtectedAdminRoute />}>
+              <Route path='/admin' element={<ProtectedAdminRoute />}>
                 <Route element={<PageLayout />}>
-                  <Route path="" element={<AllUsersScreen />} />
+                  <Route path='' element={<AllUsersScreen />} />
                   <Route
-                    path="reportedmusic"
+                    path='reportedmusic'
                     element={<ReportedMusicScreen />}
                   />
-                  <Route path="reporteduser" element={<ReportedUserScreen />} />
+                  <Route path='reporteduser' element={<ReportedUserScreen />} />
                   <Route
-                    path="userverification"
+                    path='userverification'
                     element={<UserVerification />}
                   />
                   <Route path="monetization" element={<Monetization />} />
                 </Route>
               </Route>
               {/* // user path */}
-              <Route path="/" element={<PrivateRoute />}>
+              <Route path='/' element={<PrivateRoute />}>
                 <Route element={<PageLayout />}>
-                  <Route path="/profile" element={<MyUploads />} />
-                  <Route path="/playlist" element={<MyPlaylists />} />
-                  <Route path="/" element={<AllMusics />} />
+                  <Route path='/profile' element={<MyUploads />} />
+                  <Route path='/playlist' element={<MyPlaylists />} />
+                  <Route path='/' element={<AllMusics />} />
                   <Route
-                    path="/playlist/:playlistId"
+                    path='/playlist/:playlistId'
                     element={<PlaylistDetailScreen />}
                   />
-                  <Route path="/search" element={<SearchArtist />} />
+                  <Route path='/search' element={<SearchArtist />} />
                   <Route
-                    path="/artist/:artistid"
+                    path='/artist/:artistid'
                     element={<ArtistProfileScreen />}
                   />
                   <Route
-                    path="/verify/:userId/:uniqueString"
+                    path='/verify/:userId/:uniqueString'
                     element={<EmailVerify />}
                   />
-                  <Route path="/liked" element={<LikedMusicScreen />} />
-                  <Route path="/change-password" element={<ChangePassword />} />
+                  <Route path='/liked' element={<LikedMusicScreen />} />
+                  <Route path='/change-password' element={<ChangePassword />} />
+                  <Route path='/monetization' element={<LoadMoney />} />
                 </Route>
               </Route>
               {/* not login path */}
               <Route element={<ProtectedRoute />}>
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<LoginScreen />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/login' element={<LoginScreen />} />
+                <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route
-                  path="/reset-password/:userId/:uniqueString"
+                  path='/reset-password/:userId/:uniqueString'
                   element={<ResetPassword />}
                 />
               </Route>
               {/* open path */}
               <Route
-                path="/verify/:userId/:uniqueString"
+                path='/verify/:userId/:uniqueString'
                 element={<EmailVerify />}
               />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path='/terms' element={<Terms />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </Router>
         </div>
