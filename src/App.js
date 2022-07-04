@@ -24,6 +24,7 @@ import ChangePassword from "./screens/ChangePassword";
 import ResetPassword from "./screens/ResetPassword";
 import NotFound from "./screens/NotFound";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
+import Monetization from "./screens/admin/Monetization";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +56,7 @@ function App() {
                     path="userverification"
                     element={<UserVerification />}
                   />
+                  <Route path="monetization" element={<Monetization />} />
                 </Route>
               </Route>
               {/* // user path */}

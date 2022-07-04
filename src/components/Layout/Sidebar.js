@@ -87,6 +87,19 @@ const Sidebar = () => {
                   </div>
                   <div className="item-name">Reported User</div>
                 </NavLink>
+                <NavLink
+                  to="/admin/monetization"
+                  className={(navData) =>
+                    navData.isActive
+                      ? "option-item active-option"
+                      : "option-item"
+                  }
+                >
+                  <div className="item-icon">
+                    <span className="material-symbols-rounded">payments</span>
+                  </div>
+                  <div className="item-name">Monetization</div>
+                </NavLink>
                 <div className="option-item" onClick={handleLogout}>
                   <div className="item-icon">
                     <span className="material-symbols-rounded">logout</span>
