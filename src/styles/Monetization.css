@@ -1,0 +1,31 @@
+.monetization-container {
+  overflow-y: scroll;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}
+
+.bg-soft-danger {
+  background-color: #ffd6e0;
+}
+
+.bg-soft-success {
+  background-color: #ccf5e7;
+}
