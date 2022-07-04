@@ -7,7 +7,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import useLogout from "../../helpers/Logout";
 
 const Sidebar = () => {
-  const { profile_image, name } = useSelector(userSelector);
+  const { profile_image, name, balance } = useSelector(userSelector);
   const dispatch = useDispatch();
   const { logout } = useLogout();
   const handleLogout = () => {
@@ -15,7 +15,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchMyProfile(localStorage.getItem('token')));
+    dispatch(fetchMyProfile(localStorage.getItem("token")));
   }, []);
 
   return (

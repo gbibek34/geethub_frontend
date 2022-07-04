@@ -24,6 +24,7 @@ const initialStateValue = {
   isError: false,
   errorMessage: "",
   isFollowed: "",
+  balance: 0,
   isAdmin: false,
   verification_request: false,
 };
@@ -109,6 +110,7 @@ export const fetchMyProfile = createAsyncThunk(
         headers: { Authorization: "Bearer " + token },
       });
       let data = response.data;
+      console.log(data);
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
       }
@@ -304,6 +306,7 @@ export const userSlice = createSlice({
       state.is_discoverable = payload.data.is_discoverable;
       state.isAdmin = payload.data.isAdmin;
       state.verification_request = payload.data.verification_request;
+      state.balance = payload.data.balance;
     },
     [fetchMyProfile.rejected]: (state) => {
       state.isFetching = false;
@@ -355,6 +358,7 @@ export const userSlice = createSlice({
       state.social = payload.data.social;
       state.isAdmin = payload.data.isAdmin;
       state.verification_request = payload.data.verification_request;
+      state.balance = payload.data.balance;
     },
     [fetchUserById.pending]: (state) => {
       state.isError = false;
@@ -395,6 +399,7 @@ export const userSlice = createSlice({
       state.is_discoverable = payload.data.is_discoverable;
       state.isAdmin = payload.data.isAdmin;
       state.verification_request = payload.data.verification_request;
+      state.balance = payload.data.balance;
     },
     [verificationRequest.pending]: (state) => {
       state.isFetching = true;
@@ -424,6 +429,7 @@ export const userSlice = createSlice({
       state.followers = payload.data.followers;
       state.is_discoverable = payload.data.is_discoverable;
       state.verification_request = payload.data.verification_request;
+      state.balance = payload.data.balance;
     },
     [deleteUserProfile.pending]: (state) => {
       state.isFetching = true;

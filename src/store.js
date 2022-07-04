@@ -12,6 +12,7 @@ import { reportedMusicSlice } from "./features/Admin/ReportedMusicSlice";
 import { reportedUserSlice } from "./features/Admin/ReportedUserSlice";
 import { userVerificationSlice } from "./features/Admin/userVerificationSlice";
 import { monetizationSlice } from "./features/Admin/MonetizationSlice";
+import { tipArtistSlice } from "./features/Tip/TipArtistSlice";
 
 export default configureStore({
   reducer: {
@@ -28,5 +29,6 @@ export default configureStore({
     reporteduser: reportedUserSlice.reducer,
     userVerificationRequest: userVerificationSlice.reducer,
     monetization: monetizationSlice.reducer,
+    tip: tipArtistSlice.reducer,
   },
 });
