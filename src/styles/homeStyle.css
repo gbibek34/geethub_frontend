@@ -1,0 +1,68 @@
+/* main containers */
+.container-fluid {
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+
+.main-containerA {
+  width: 60%;
+  padding: 48px;
+  background-color: #f4f4f5;
+}
+
+
+
+/* artists/playlists/songs cards grid */
+
+/* images */
+.all_search_artists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 0;
+}
+.indiv_artist_card {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #ffffff; */
+  border-radius: 8px;
+  padding: 0;
+  /* width: 190px; */
+  /* margin-right: 24px; */
+  cursor: pointer;
+  margin: 16px 0px;
+}
+.indiv_artist_card:hover > .artist_image {
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  opacity: 1;
+}
+
+.artist_image {
+  margin: auto;
+  object-fit: cover;
+  max-height: 170px;
+  max-width: 170px;
+  border-radius: 8px;
+  opacity: 0.9;
+}
+.artist_name {
+  padding: 0;
+  margin: 0;
+  margin-top: 4px;
+  height: 20%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+/* end artists/playlists/songs cards */

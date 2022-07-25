@@ -27,6 +27,7 @@ import NotFound from "./screens/NotFound";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import Monetization from "./screens/admin/Monetization";
 import LoadMoney from "./screens/LoadMoney";
+import HomeScreen from "./screens/HomeScreen";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +67,7 @@ function App() {
                 <Route element={<PageLayout />}>
                   <Route path="/profile" element={<MyUploads />} />
                   <Route path="/playlist" element={<MyPlaylists />} />
+                  <Route path='/home' element={<HomeScreen/>} />
                   <Route path="/" element={<AllMusics />} />
                   <Route
                     path="/playlist/:playlistId"

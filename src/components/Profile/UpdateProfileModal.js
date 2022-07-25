@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, userSelector } from '../../features/User/UserSlice';
 import ImageUploader from '../../helpers/ImageUploader';
 import '../../styles/UploadModal.css';
+import { toast } from "react-toastify";
 
 const UpdateProfileModal = (props) => {
   const user = useSelector(userSelector);
@@ -41,7 +42,20 @@ const UpdateProfileModal = (props) => {
       })
     );
     handleClose();
+    notify("Profile Updated !!");
   };
+
+  const notify = (message) =>
+  toast.success(message, {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   return (
     <div>

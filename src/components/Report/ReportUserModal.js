@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Rings } from 'react-loader-spinner';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Rings } from "react-loader-spinner";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ReportUserModal = ({ userId }) => {
   const navigate = useNavigate();
@@ -10,13 +11,36 @@ const ReportUserModal = ({ userId }) => {
   const reportTexts = [
     {
       id: 1,
-      text: 'Violates Terms & Agreement',
+      text: "Violates Terms & Agreement",
     },
     {
       id: 2,
-      text: 'User is suspicious',
+      text: "User is suspicious",
     },
   ];
+
+  const notify = (message) =>
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const notifySucess = (message) =>
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const [show, setShow] = useState(false);
   const [selectedReport, setSelectedReport] = useState(-1);
@@ -41,12 +65,15 @@ const ReportUserModal = ({ userId }) => {
           },
           {
             headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
           }
         );
+        if (response) {
+          notifySucess("Your report has been submited");
+        }
       } catch (error) {
-        console.log(error);
+        notify("Your previous request is still pending !!");
       }
     };
     reportMusic();
@@ -56,61 +83,61 @@ const ReportUserModal = ({ userId }) => {
   return (
     <>
       <div
-        type='button'
-        className='blank_div'
-        data-toggle='modal'
+        type="button"
+        className="blank_div"
+        data-toggle="modal"
         data-target={`#reportUserModal-${userId}`}
       >
         <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Report Music'
-          className='material-symbols-outlined songs_action_btn'
-          style={{ color: 'red' }}
+          type="button"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Report Music"
+          className="material-symbols-outlined songs_action_btn"
+          style={{ color: "red" }}
         >
           report
         </span>
       </div>
 
       <div
-        className='modal fade'
+        className="modal fade"
         id={`reportUserModal-${userId}`}
-        tabIndex='-1'
-        role='dialog'
-        aria-labelledby='exampleModalCenterTitle'
-        aria-hidden='true'
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
       >
         <div
-          className='modal-dialog modal-dialog-centered modal-dialog-scrollable'
-          role='document'
+          className="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          role="document"
         >
-          <div className='modal-content'>
-            <div className='modal-header'>
-              <h5 className='modal-title' id='exampleModalCenterTitle'>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalCenterTitle">
                 Report Artist
               </h5>
               <button
-                type='button'
-                className='close'
-                data-dismiss='modal'
-                aria-label='Close'
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
               >
-                <span aria-hidden='true'>&times;</span>
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className='modal-body overflow-auto maxH_200'>
-              <div className='question_header'>
+            <div className="modal-body overflow-auto maxH_200">
+              <div className="question_header">
                 Why do you want to report this artist?
               </div>
               {reportTexts.map((text) => (
                 <button
-                  type='button'
+                  type="button"
                   onClick={() => onClickHandler(text.id)}
                   className={
                     selectedReport === text.id
-                      ? 'btn btn-secondary w-100 text-left'
-                      : 'btn btn-outline-secondary w-100 text-left'
+                      ? "btn btn-secondary w-100 text-left"
+                      : "btn btn-outline-secondary w-100 text-left"
                   }
                   key={text.id}
                 >
@@ -118,29 +145,29 @@ const ReportUserModal = ({ userId }) => {
                 </button>
               ))}
             </div>
-            <div className='modal-footer'>
+            <div className="modal-footer">
               {selectedReport === -1 ? (
                 <button
-                  type='button'
+                  type="button"
                   onClick={onSubmitHandler}
-                  className='btn btn-primary'
+                  className="btn btn-primary"
                   disabled
                 >
                   Submit
                 </button>
               ) : (
                 <button
-                  type='button'
+                  type="button"
                   onClick={onSubmitHandler}
-                  className='btn btn-primary'
+                  className="btn btn-primary"
                 >
                   Submit
                 </button>
               )}
               <button
-                type='button'
-                className='btn btn-secondary'
-                data-dismiss='modal'
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
               >
                 Close
               </button>
