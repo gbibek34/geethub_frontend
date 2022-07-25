@@ -59,12 +59,6 @@
     opacity: 0;
 }
 
-.music-card:hover .edit-music,
-.music-card:hover .delete-music,
-.music-card:hover .queue-music {
-    opacity: 1;
-}
-
 .other-details {
     font-family: 'Dosis', sans-serif;
 

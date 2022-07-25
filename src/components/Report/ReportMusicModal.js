@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Rings } from 'react-loader-spinner';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Rings } from "react-loader-spinner";
+import axios from "axios";
+import { Modal } from "react-bootstrap";
 
 const ReportMusicModal = ({ musicId }) => {
   const navigate = useNavigate();
@@ -10,11 +11,11 @@ const ReportMusicModal = ({ musicId }) => {
   const reportTexts = [
     {
       id: 1,
-      text: 'Violates Terms & Agreement',
+      text: "Violates Terms & Agreement",
     },
     {
       id: 2,
-      text: 'Music is vulgar',
+      text: "Music is vulgar",
     },
   ];
 
@@ -28,7 +29,7 @@ const ReportMusicModal = ({ musicId }) => {
     setSelectedReport(textId);
   };
 
-  const onSubmitHandler = () => {
+  const onReportHandler = () => {
     const reportMusic = async () => {
       try {
         const url = `http://localhost:3000/report/music`;
@@ -41,7 +42,7 @@ const ReportMusicModal = ({ musicId }) => {
           },
           {
             headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
           }
         );
@@ -55,134 +56,79 @@ const ReportMusicModal = ({ musicId }) => {
 
   return (
     <>
-      <div
-        type='button'
-        className='blank_div'
-        data-toggle='modal'
-        data-target={`#reportMusicModal-${musicId}`}
-      >
+      <div>
         <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Report Music'
-          className='material-symbols-outlined songs_action_btn'
-          style={{ color: 'red' }}
+          type="button"
+          data-toggle="modal"
+          data-placement="top"
+          title="Report Music"
+          className="material-symbols-rounded songs_action_btn"
+          style={{ color: "red" }}
+          onClick={handleShow}
+          data-target={`#reportMusicModal-${musicId}`}
         >
-          report
+          flag
         </span>
-      </div>
-
-      <div
-        className='modal fade'
-        id={`reportMusicModal-${musicId}`}
-        tabIndex='-1'
-        role='dialog'
-        aria-labelledby='exampleModalCenterTitle'
-        aria-hidden='true'
-      >
-        <div
-          className='modal-dialog modal-dialog-centered modal-dialog-scrollable'
-          role='document'
+        <Modal
+          className="modal fade"
+          id={`#reportMusicModal-${musicId}`}
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="reportMusicModalTitle"
+          aria-hidden="true"
+          show={show}
+          onHide={handleClose}
         >
-          <div className='modal-content'>
-            <div className='modal-header'>
-              <h5 className='modal-title' id='exampleModalCenterTitle'>
-                Report Music
-              </h5>
+          <Modal.Header className="modal-header" closeButton>
+            <Modal.Title className="modal-title" id="reportMusicModalTitle">
+              Why do you want to report this music?
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {reportTexts.map((text) => (
               <button
-                type='button'
-                className='close'
-                data-dismiss='modal'
-                aria-label='Close'
+                type="button"
+                onClick={() => onClickHandler(text.id)}
+                className={
+                  selectedReport === text.id
+                    ? "btn btn-secondary w-100 text-left mb-2"
+                    : "btn btn-outline-secondary w-100 text-left mb-2"
+                }
+                key={text.id}
               >
-                <span aria-hidden='true'>&times;</span>
+                {text.text}
               </button>
-            </div>
-            <div className='modal-body overflow-auto maxH_200'>
-              <div className='question_header'>
-                Why do you want to report this music?
-              </div>
-              {reportTexts.map((text) => (
-                <button
-                  type='button'
-                  onClick={() => onClickHandler(text.id)}
-                  className={
-                    selectedReport === text.id
-                      ? 'btn btn-secondary w-100 text-left'
-                      : 'btn btn-outline-secondary w-100 text-left'
-                  }
-                  key={text.id}
-                >
-                  {text.text}
-                </button>
-              ))}
-            </div>
-            <div className='modal-footer'>
-              {selectedReport === -1 ? (
-                <button
-                  type='button'
-                  onClick={onSubmitHandler}
-                  className='btn btn-primary'
-                  disabled
-                >
-                  Submit
-                </button>
-              ) : (
-                <button
-                  type='button'
-                  onClick={onSubmitHandler}
-                  className='btn btn-primary'
-                >
-                  Submit
-                </button>
-              )}
+            ))}
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+            {selectedReport === -1 ? (
               <button
-                type='button'
-                className='btn btn-secondary'
-                data-dismiss='modal'
+                type="button"
+                onClick={onReportHandler}
+                className="btn btn-primary"
+                disabled
               >
-                Close
+                Submit
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{musicId}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {" "}
-          <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-            {!isFetching ? (
-              playlists.map((playlist) => (
-                <Dropdown.Item
-                  eventKey={playlist.id}
-                  onClick={() => onClickHandler(playlist._id)}
-                >
-                  {playlist.name}
-                  {playlist._id}
-                </Dropdown.Item>
-              ))
             ) : (
-              <Rings />
+              <button
+                type="button"
+                onClick={onReportHandler}
+                className="btn btn-primary"
+              >
+                Submit
+              </button>
             )}
-          </DropdownButton>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 };

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { editMusicDetails } from "../../features/Music/MusicsSlice";
 import "../../styles/UploadModal.css";
 import ImageUploader from "../../helpers/ImageUploader";
-import { fetchMyMusics } from '../../features/Music/MusicsSlice';
+import { fetchMyMusics } from "../../features/Music/MusicsSlice";
 
 const EditMusicDetailsModal = ({ music }) => {
   const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ const EditMusicDetailsModal = ({ music }) => {
         coverArt,
       })
     );
-    dispatch(fetchMyMusics(localStorage.getItem('token')));
+    dispatch(fetchMyMusics(localStorage.getItem("token")));
     handleClose();
   };
 
@@ -44,7 +44,7 @@ const EditMusicDetailsModal = ({ music }) => {
         type="button"
         data-toggle="tooltip"
         data-placement="top"
-        title="Edit"
+        title="Edit Music"
         className="material-symbols-rounded songs_action_btn"
         onClick={handleShow}
       >
@@ -110,7 +110,9 @@ const EditMusicDetailsModal = ({ music }) => {
                 onFileSelectError={({ error }) => alert(error)}
                 onFileSelectSuccess={(file) => setCoverArt(file)}
                 onFileClear={() => setCoverArt("")}
-                onCurrentCoverArtClear={() => currentCoverArt = setCurrentCoverArt("")}
+                onCurrentCoverArtClear={() =>
+                  (currentCoverArt = setCurrentCoverArt(""))
+                }
               />
             </div>
           </div>

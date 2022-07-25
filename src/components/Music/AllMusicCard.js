@@ -9,8 +9,10 @@ import {
 } from "../../features/Music/NowPlayingSlice";
 import ReportMusicModal from "../Report/ReportMusicModal";
 import DeleteMusicModal from "../Delete/DeleteMusicModal";
-import { updateViewCount } from '../../helpers/UpdateViewCount';
-const _ = require('lodash');
+import { updateViewCount } from "../../helpers/UpdateViewCount";
+import "../../styles/MusicCard.css";
+
+const _ = require("lodash");
 
 const AllMusicCard = ({ music }) => {
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const AllMusicCard = ({ music }) => {
   const handleMusicClick = () => {
     dispatch(updateNowPlayingState([music]));
     updateViewCount({
-      token: localStorage.getItem('token'),
+      token: localStorage.getItem("token"),
       musicId: music._id,
     });
   };
@@ -40,46 +42,56 @@ const AllMusicCard = ({ music }) => {
     if (equal === false) {
       dispatch(addToQueue(music));
       updateViewCount({
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
         musicId: music._id,
       });
     }
   };
 
   return (
-    <div className="indiv_playlist">
-      <div className="playlist_details">
-        <div className="image_container" onClick={handleMusicClick}>
+    <div className="music-card mb-2">
+      <div className="lside-music-card">
+        <div className="music-cover-art" onClick={handleMusicClick}>
           <img
             src={
               music.coverArt
                 ? `http://localhost:3000/${music.coverArt.slice(6)}`
                 : ""
             }
-            className="playlist_image"
+            alt=""
           />
+          <span class="material-symbols-outlined play-music-btn">
+            play_circle
+          </span>
         </div>
-        <div className="playlist_title">
-          <div className="playlist_name">{music.name}</div>
-          <div className="playlist_descr">{music.genre}</div>
+        <div className="music-information">
+          <div className="music-name">{music.name}</div>
+          <div className="music-genre-name">{music.genre}</div>
+          <div className="music-total-likes">
+            <span class="material-symbols-outlined">favorite</span>
+            &nbsp; {music.likes.length}
+          </div>
         </div>
       </div>
-      <div className="playlist_allstats">
-        <div className="playlist_stat">{music.likes.length} likes</div>
-        <AddToPlaylistModal musicId={music._id} />
-        <span
-          type="button"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Add to queue"
-          className="material-symbols-rounded songs_action_btn"
-          onClick={handleAddToQueue}
-        >
-          queue_music
-        </span>
-        <EditMusicDetailsModal music={music} />
-        <ReportMusicModal musicId={music._id} />
-        <DeleteMusicModal music={music} />
+      <div className="mside-music-card">
+        <div className="music-playtime">{music.length}</div>
+      </div>
+      <div className="rside-music-card">
+        <div className="music-action-buttons">
+          <AddToPlaylistModal musicId={music._id} />
+          <span
+            type="button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Add to Queue"
+            className="material-symbols-rounded songs_action_btn"
+            onClick={handleAddToQueue}
+          >
+            queue_music
+          </span>
+          <EditMusicDetailsModal music={music} />
+          <DeleteMusicModal music={music} />
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
     overflow-y: scroll;
     flex-direction: column;
 
-    height: 100vh;
+    height: 85vh;
     padding: 20px;
 
     background-color: #E8E9EC;
@@ -52,7 +52,7 @@
     flex-direction: row;
 
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 5px 10px;
 
     transition: ease-in-out 0.3s;
 
@@ -70,7 +70,7 @@
 }
 
 .item-name {
-    font-weight: 600;
+    font-weight: 500;
 
     padding: 7px 7px 7px 15px;
 
@@ -102,15 +102,20 @@
 }
 
 .sidebar-user-overview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20vw;
+    height: 15vh;
     display: grid;
     align-items: center;
 
-    padding: 25px 10px;
+    padding: 20px;
 
-    border-radius: 12px;
     background-color: #FAFAFA;
 
-    grid-template-columns: 50px auto auto;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
     grid-column-gap: 10px;
 }
 
@@ -118,6 +123,11 @@
     width: 50px;
 
     border-radius: 50%;
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .sidebar-profile-name {
@@ -147,31 +157,12 @@
     color: gold;
 }
 
-.get-more-coins {
-    font-weight: 800;
-
-    align-self: center;
-
-    text-transform: uppercase;
-
-    justify-self: end;
-}
-
-@media(max-width: 1500px) {
-    .sidebar-user-overview {
-        grid-template-columns: auto auto;
-    }
-
-    .sidebar-profile-picture {
-        display: none;
-    }
-}
-
 @media(max-width: 1250px) {
     .sidebar {
         width: 70px;
+        height: 90vh;
 
-        /* height: 90vh; */
+        /* overflow-y: hidden; */
 
         padding: 10px;
     }
@@ -179,16 +170,20 @@
     .brand-name,
     .header,
     .item-name,
-    .sidebar-name,
-    .get-more-coins {
+    .sidebar-name {
         display: none;
     }
 
     .sidebar-user-overview {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        width: auto;
+        background-color: #E8E9EC;
 
         padding: 10px;
+        /* bottom: 10vh; */
+        position: inherit;
     }
 
     .sidebar-profile-picture {
@@ -208,7 +203,7 @@
     .user-coins {
         display: flex;
         align-items: center;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .user-coins span {

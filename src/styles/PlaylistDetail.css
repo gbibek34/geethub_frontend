@@ -1,0 +1,59 @@
+.detail-playlist-overview {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-playlist-image {
+    width: 200px;
+    height: 200px;
+}
+
+.detail-playlist-image img {
+    width: 50%;
+    height: 50%;
+
+    object-fit: cover;
+}
+
+.detail-playlist-info {
+    padding: 10px;
+}
+
+.detail-playlist-name {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.detail-playlist-description {
+    font-size: 20px;
+
+    color: #9799a0;
+}
+
+.other-playlist-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.other-playlist-details div {
+    padding: 10px 20px;
+
+    color: #9799a0;
+    border-radius: 5px;
+    background: #E8E9EC;
+}
+
+.playlist-action-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.playlist-action-ud {
+    display: flex;
+    flex-direction: row;
+}
+
+.playlist-music-container {
+    padding: 20px;
+}

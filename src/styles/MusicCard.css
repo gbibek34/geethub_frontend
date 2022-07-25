@@ -1,89 +1,87 @@
 .music-card {
     display: flex;
-
-    margin-top: 10px;
-    padding: 10px;
-
-    border-radius: 5px;
-    background: #f3f3f3;
-}
-
-.music-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
-    width: 100%;
-    padding: 0 10px;
-}
-
-.major-details {
-    display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+    background: #F4F4F5;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
-.music-name {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.music-options {
+.lside-music-card {
     display: flex;
+    align-items: center;
     flex-direction: row;
+
+    width: 50%;
 }
 
-.edit-music {
-    cursor: pointer;
-    opacity: 0;
-    transition: ease-in-out 0.5s;
-}
-
-.delete-music {
-    margin-left: 15px;
-
-    cursor: pointer;
-    opacity: 0;
-    transition: ease-in-out 0.5s;
-}
-
-.music-card:hover .edit-music, .music-card:hover .delete-music {
-    opacity: 1;
-}
-
-.other-details {
-    font-family: 'Dosis', sans-serif;
-
-    display: flex;
-    justify-content: space-between;
-}
-
-.cover-art {
+.music-cover-art {
     position: relative;
 
     width: 100px;
-
-    cursor: pointer;
-}
-
-.cover-art img {
-    width: 100px;
     height: 100px;
-    object-fit: cover;
-
-    opacity: 0.7;
-    border-radius: 5px;
 }
 
-.play-button {
-    font-size: 35px;
+.music-cover-art img {
+    width: 100%;
+    height: 100%;
 
+    border-radius: 5px;
+
+    object-fit: cover;
+}
+
+.play-music-btn {
     position: absolute;
     top: 50%;
     left: 50%;
 
     transform: translate(-50%, -50%);
 
-    color: #FAFAFA;
+    color: white;
+}
+
+.music-information {
+    padding: 5px 5px 5px 10px;
+}
+
+.music-information .music-name {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.music-total-likes {
+    color: gray;
+}
+
+.music-total-likes {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.music-playtime {
+    color: gray;
+}
+
+.music-action-buttons {
+    display: grid;
+
+    transition: ease-in-out 0.3s;
+
+    opacity: 0;
+
+    grid-gap: 20px;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+
+.music-card:hover .music-action-buttons {
+    opacity: 1;
 }

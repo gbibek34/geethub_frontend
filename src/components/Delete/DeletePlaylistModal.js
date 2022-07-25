@@ -29,15 +29,16 @@ const DeletePlaylistModal = ({ name, playlistId }) => {
         data-toggle="modal"
         data-target={`#deleteMusicModal-${playlistId}`}
       >
-        <span
+        <button
           type="button"
           data-toggle="tooltip"
           data-placement="top"
           title="Delete Playlist"
-          className="material-symbols-outlined songs_action_btn"
+          className="btn btn-delete"
         >
-          delete
-        </span>
+          <span class="material-symbols-rounded mr-2">delete</span>
+          <span class="f-14">Delete</span>
+        </button>
       </div>
 
       <div

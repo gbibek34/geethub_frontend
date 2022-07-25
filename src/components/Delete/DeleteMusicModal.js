@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Rings } from "react-loader-spinner";
 import axios from "axios";
 import { deleteMusic } from "../../features/Music/MusicSlice";
+import { Modal } from "react-bootstrap";
 
 const DeleteMusicModal = ({ music }) => {
   const musicId = music._id;
@@ -14,79 +15,52 @@ const DeleteMusicModal = ({ music }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const onSubmitHandler = () => {
+  const deleteHandler = () => {
     dispatch(
       deleteMusic({ token: localStorage.getItem("token"), id: musicId })
     );
-
-    
+    setShow(false);
   };
 
   return (
-    <>
-      <div
+    <div>
+      <span
         type="button"
-        className="blank_div"
         data-toggle="modal"
+        data-placement="top"
+        title="Delete Music"
+        className="material-symbols-rounded songs_action_btn"
+        onClick={handleShow}
         data-target={`#deleteMusicModal-${musicId}`}
       >
-        <span
-          type="button"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Report Music"
-          className="material-symbols-outlined songs_action_btn"
-        >
-          delete
-        </span>
-      </div>
-
-      <div
+        delete
+      </span>
+      <Modal
         className="modal fade"
-        id={`deleteMusicModal-${musicId}`}
+        id={`#deleteMusicModal-${musicId}`}
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="MusicDeleteLabel"
         aria-hidden="true"
+        show={show}
+        onHide={handleClose}
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              Are you sure you want to delete {music.name}?
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={onSubmitHandler}
-              >
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+        <Modal.Header className="modal-header" closeButton>
+          <Modal.Title className="modal-title" id="MusicDeleteLabel">
+            Delete {music.name}?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete {music.name}?</Modal.Body>
+        <Modal.Footer>
+          <button className="btn btn-secondary" onClick={handleClose}>
+            Cancel
+          </button>
+          <button className="btn btn-danger" onClick={deleteHandler}>
+            Delete
+          </button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 

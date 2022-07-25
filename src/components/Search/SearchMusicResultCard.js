@@ -1,13 +1,14 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   addToQueue,
   nowPlayingSelector,
   updateNowPlayingState,
-} from '../../features/Music/NowPlayingSlice';
-import AddToPlaylistModal from '../Playlist/AddToPlaylistModal';
-const _ = require('lodash');
+} from "../../features/Music/NowPlayingSlice";
+import AddToPlaylistModal from "../Playlist/AddToPlaylistModal";
+import ReportMusicModal from "../Report/ReportMusicModal";
+const _ = require("lodash");
 
 export default function SearchMusicResultCard({ result }) {
   const dispatch = useDispatch();
@@ -29,36 +30,48 @@ export default function SearchMusicResultCard({ result }) {
     }
   };
   return (
-    <div className='indiv_music_search'>
-      <div className='playlist_details'>
-        <div className='image_container' onClick={handleMusicClick}>
+    <div className="music-card mb-2">
+      <div className="lside-music-card">
+        <div className="music-cover-art" onClick={handleMusicClick}>
           <img
             src={
               result.coverArt
                 ? `http://localhost:3000/${result.coverArt.slice(6)}`
-                : ''
+                : ""
             }
-            className='playlist_image'
+            alt=""
           />
+          <span class="material-symbols-outlined play-music-btn">
+            play_circle
+          </span>
         </div>
-        <div className='playlist_title'>
-          <div className='playlist_name'>{result.name}</div>
-          <div className='playlist_descr'>{result.genre}</div>
+        <div className="music-information">
+          <div className="music-name">{result.name}</div>
+          <div className="music-genre-name">{result.genre}</div>
+          <div className="music-total-likes">
+            <span class="material-symbols-outlined">favorite</span>
+            &nbsp; {result.likes.length}
+          </div>
         </div>
       </div>
-      <div className='playlist_allstats'>
-        <div className='playlist_stat'>5 likes</div>
-        <AddToPlaylistModal musicId={result._id} />
-        <span
-          type='button'
-          data-toggle='tooltip'
-          data-placement='top'
-          title='Add to queue'
-          className='material-symbols-rounded songs_action_btn'
-          onClick={handleAddToQueue}
-        >
-          queue_music
-        </span>
+      <div className="mside-music-card">
+        <div className="music-playtime">{result.length}</div>
+      </div>
+      <div className="rside-music-card">
+        <div className="music-action-buttons">
+          <AddToPlaylistModal musicId={result._id} />
+          <span
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Add to queue"
+            class="material-symbols-outlined"
+            onClick={handleAddToQueue}
+          >
+            queue_music
+          </span>
+          <ReportMusicModal musicId={result._id} />
+          <span class="material-symbols-outlined">favorite</span>
+        </div>
       </div>
     </div>
   );

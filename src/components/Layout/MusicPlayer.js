@@ -7,17 +7,11 @@ import {
   resetNowPlaying,
   updateIndex,
 } from "../../features/Music/NowPlayingSlice";
-import {
-  musicSelector,
-  likeMusic,
-  unlikeMusic,
-} from "../../features/Music/MusicSlice";
+import { likeMusic, unlikeMusic } from "../../features/Music/MusicSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "../../styles/MusicPlayer.css";
-import error from "../../images/error.png";
 import empty from "../../images/music-empty.png";
-import axios from "axios";
 import QueueMusic from "./QueueMusic";
 import { userSelector } from "../../features/User/UserSlice";
 import { Link } from "react-router-dom";
@@ -69,6 +63,7 @@ const MusicPlayer = () => {
   // queue = queue.slice(currentIndex + 1);
 
   const handleLike = () => {
+    console.log(currentSong._id);
     setLiked(true);
     dispatch(
       likeMusic({
@@ -79,6 +74,7 @@ const MusicPlayer = () => {
   };
 
   const handleUnLike = () => {
+    console.log(currentSong._id);
     setLiked(false);
     dispatch(
       unlikeMusic({
@@ -90,112 +86,121 @@ const MusicPlayer = () => {
 
   return (
     <div className="player-container">
-      <div className="cover-container">
-        <div className="now-playing">NOW PLAYING</div>
-        <img
-          className="player-cover-art"
-          src={
-            currentSong.coverArt
-              ? `http://localhost:3000/${currentSong.coverArt.slice(6)}`
-              : empty
-          }
-          alt=""
-        />
-        <div className="player-music-details">
-          {currentSong.audio ? (
-            <>
-              <div className="music_name">{currentSong.name}</div>
-              <Link
-                to={`/artist/${currentSong.uploadedBy._id}`}
-                className="artist-card-name"
-              >
-                <div className="artist_name">{currentSong.uploadedBy.name}</div>
-              </Link>
-            </>
-          ) : (
-            <> </>
-          )}
-        </div>
-      </div>
-      <AudioPlayer
-        src={
-          currentSong.audio &&
-          `http://localhost:3000/${currentSong.audio.slice(6)}`
-        }
-        autoPlay
-        showSkipControls={true}
-        customAdditionalControls={[
-          <div>
-            {!liked ? (
-              <FontAwesomeIcon
-                icon={regular("heart")}
-                className="rhap_heart"
-                color="#FFE455"
-                size="lg"
-                onClick={handleLike}
-              />
+      <div className="music-player-container">
+        <div className="cover-container">
+          <div className="now-playing">NOW PLAYING</div>
+          <div className="player-cover-art">
+            <img
+              className=""
+              src={
+                currentSong.coverArt
+                  ? `http://localhost:3000/${currentSong.coverArt.slice(6)}`
+                  : empty
+              }
+              alt=""
+            />
+          </div>
+          <div className="player-music-details">
+            {currentSong.audio ? (
+              <>
+                <div className="player-music-name">{currentSong.name}</div>
+                <Link
+                  to={`/artist/${currentSong.uploadedBy._id}`}
+                  className="artist-card-name"
+                >
+                  <div className="player-artist-name">
+                    {currentSong.uploadedBy.name}
+                  </div>
+                </Link>
+              </>
             ) : (
-              <FontAwesomeIcon
-                icon={solid("heart")}
-                className="rhap_heart"
-                color="#FFE455"
-                size="lg"
-                onClick={handleUnLike}
-              />
+              <></>
             )}
-          </div>,
-        ]}
-        defaultCurrentTime="0:00"
-        defaultDuration="0:00"
-        customVolumeControls={[RHAP_UI.VOLUME]}
-        onEnded={() =>
-          playlistIndex + 1 < musics.length
-            ? dispatch(updateIndex((playlistIndex += 1)))
-            : null
-        }
-        onClickNext={() =>
-          playlistIndex + 1 < musics.length
-            ? dispatch(updateIndex((playlistIndex += 1)))
-            : dispatch(updateIndex((playlistIndex = 0)))
-        }
-        onClickPrevious={() =>
-          playlistIndex > 0
-            ? dispatch(updateIndex((playlistIndex -= 1)))
-            : dispatch(updateIndex((playlistIndex = 0)))
-        }
-        customIcons={{
-          play: <FontAwesomeIcon icon={solid("circle-play")} color="white" />,
-          pause: <FontAwesomeIcon icon={solid("circle-pause")} color="white" />,
-          previous: (
-            <FontAwesomeIcon
-              icon={solid("backward-step")}
-              color="white"
-              size="xs"
-            />
-          ),
-          next: (
-            <FontAwesomeIcon
-              icon={solid("forward-step")}
-              color="white"
-              size="xs"
-            />
-          ),
-          volume: (
-            <FontAwesomeIcon
-              icon={solid("volume-high")}
-              color="#FFE455"
-              size="xs"
-            />
-          ),
-          volumeMute: (
-            <FontAwesomeIcon
-              icon={solid("volume-xmark")}
-              color="yellow"
-              size="xs"
-            />
-          ),
-        }}
-      />
+          </div>
+        </div>
+        <AudioPlayer
+          src={
+            currentSong.audio &&
+            `http://localhost:3000/${currentSong.audio.slice(6)}`
+          }
+          autoPlay
+          showSkipControls={true}
+          customAdditionalControls={[
+            <div>
+              {!liked ? (
+                <FontAwesomeIcon
+                  icon={regular("heart")}
+                  className="rhap_heart"
+                  color="#FFE455"
+                  size="lg"
+                  onClick={handleLike}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={solid("heart")}
+                  className="rhap_heart"
+                  color="#FFE455"
+                  size="lg"
+                  onClick={handleUnLike}
+                />
+              )}
+            </div>,
+          ]}
+          defaultCurrentTime="0:00"
+          defaultDuration="0:00"
+          customVolumeControls={[RHAP_UI.VOLUME]}
+          onEnded={() =>
+            playlistIndex + 1 < musics.length
+              ? dispatch(updateIndex((playlistIndex += 1)))
+              : null
+          }
+          onClickNext={() =>
+            playlistIndex + 1 < musics.length
+              ? dispatch(updateIndex((playlistIndex += 1)))
+              : dispatch(updateIndex((playlistIndex = 0)))
+          }
+          onClickPrevious={() =>
+            playlistIndex > 0
+              ? dispatch(updateIndex((playlistIndex -= 1)))
+              : dispatch(updateIndex((playlistIndex = 0)))
+          }
+          customIcons={{
+            play: <FontAwesomeIcon icon={solid("circle-play")} color="white" />,
+            pause: (
+              <FontAwesomeIcon icon={solid("circle-pause")} color="white" />
+            ),
+
+            previous: (
+              <FontAwesomeIcon
+                icon={solid("backward-step")}
+                color="white"
+                size="xs"
+              />
+            ),
+            next: (
+              <FontAwesomeIcon
+                icon={solid("forward-step")}
+                color="white"
+                size="xs"
+              />
+            ),
+            volume: (
+              <FontAwesomeIcon
+                icon={solid("volume-high")}
+                color="#FFE455"
+                size="xs"
+              />
+            ),
+            volumeMute: (
+              <FontAwesomeIcon
+                icon={solid("volume-xmark")}
+                color="yellow"
+                size="xs"
+              />
+            ),
+          }}
+        />
+      </div>
       <div className="queue-puller" onClick={activeQueueHandler}>
         <span className="material-symbols-rounded">
           keyboard_double_arrow_up
@@ -209,20 +214,22 @@ const MusicPlayer = () => {
             : "queue-container"
         }
       >
-        {queue.length > 0 ? (
-          <div className="d-flex justify-content-between">
+        <div className="queue-header-container">
+          {queue.length > 0 ? (
+            <>
+              <div className="queue-header">YOUR QUEUE</div>
+              <div
+                type="button"
+                onClick={handleClearQueue}
+                className="clear-queue-button"
+              >
+                CLEAR QUEUE
+              </div>
+            </>
+          ) : (
             <div className="queue-header">YOUR QUEUE</div>
-            <div
-              type="button"
-              onClick={handleClearQueue}
-              className="clear-queue-button"
-            >
-              CLEAR QUEUE
-            </div>
-          </div>
-        ) : (
-          <div className="queue-header">YOUR QUEUE</div>
-        )}
+          )}
+        </div>
 
         <div className="queue">
           {queue.length > 0 ? (

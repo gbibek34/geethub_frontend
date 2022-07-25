@@ -25,8 +25,8 @@ const LikedMusicScreen = () => {
 
   return (
     <div className="main-container">
-      <div className="liked-header">Liked Music</div>
-      <div className="row">
+      <div className="page-header">Liked Music</div>
+      <div className="overflow-auto">
         {!isFetching ? (
           likedmusics.map((music) => {
             return <LikedMusicCard key={music._id} music={music} />;

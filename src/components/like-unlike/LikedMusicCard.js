@@ -16,16 +16,24 @@ const LikedMusicCard = ({ music }) => {
   };
 
   return (
-    <div className="indiv_artist_card col-3" onClick={handleMusicClick}>
+    <div className="liked-music-card">
       <img
-        className="artist_image"
+        className="liked-music-image"
         src={
           music.coverArt
             ? `http://localhost:3000/${music.coverArt.slice(6)}`
             : ""
         }
+        alt=""
       />
-      <div className="artist_name text-center">{music.name}</div>
+      <div className="liked-music-details">
+        <div className="liked-music-name">{music.name}</div>
+        <div className="liked-music-genre">{music.genre}</div>
+        <div className="liked-music-likes music-total-likes">
+          <span class="material-symbols-outlined">favorite</span>
+          &nbsp; {music.likes.length}
+        </div>
+      </div>
     </div>
   );
 };

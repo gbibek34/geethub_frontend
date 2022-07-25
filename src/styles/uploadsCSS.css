@@ -17,7 +17,7 @@
   background: #f4f4f5;
 }
 
-.music-card {
+/* .music-card {
   display: flex;
 
   margin-top: 10px;
@@ -25,7 +25,7 @@
 
   border-radius: 5px;
   background: #f3f3f3;
-}
+} */
 
 .major-details {
   display: flex;
