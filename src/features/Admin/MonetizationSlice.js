@@ -124,7 +124,6 @@ export const monetizationSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(payload);
       state.amount = payload.amount;
       state.load_count = payload.load_count;
       state.withdraw_count = payload.withdraw_count;
@@ -145,7 +144,6 @@ export const monetizationSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(payload);
       state.loadData = payload.load_data;
       state.withdrawData = payload.withdraw_data;
       state.tipData = payload.tip_data;

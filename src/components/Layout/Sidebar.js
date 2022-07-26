@@ -49,7 +49,20 @@ const Sidebar = () => {
                   <div className="item-name">Users</div>
                 </NavLink>
                 <NavLink
-                  to="/admin/userverification"
+                  to='/admin/music'
+                  className={(navData) =>
+                    navData.isActive
+                      ? 'option-item active-option'
+                      : 'option-item'
+                  }
+                >
+                  <div className='item-icon'>
+                    <span className='material-symbols-rounded'>audio_file</span>
+                  </div>
+                  <div className='item-name'>Musics</div>
+                </NavLink>
+                <NavLink
+                  to='/admin/userverification'
                   className={(navData) =>
                     navData.isActive
                       ? "option-item active-option"

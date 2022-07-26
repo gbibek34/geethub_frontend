@@ -45,6 +45,7 @@ const ProfileScreen = () => {
   };
 
   const handleDiscoverable = (e) => {
+    notify();
     e.preventDefault();
     const token = localStorage.getItem("token");
     const discoverable = e.target.checked;

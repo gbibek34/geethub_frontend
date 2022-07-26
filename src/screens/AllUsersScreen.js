@@ -1,101 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { adminSelector, fetchUsersDetails } from '../features/Admin/AdminSlice';
-import { Rings } from 'react-loader-spinner';
-import { userSelector } from '../features/User/UserSlice';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { adminSelector, fetchUserInsight } from "../features/Admin/AdminSlice";
+import { Rings } from "react-loader-spinner";
+import { userSelector } from "../features/User/UserSlice";
+import LineChart from "../components/Charts/LineChart";
+import "../styles/allUser.css";
+import AdminUserCard from "../components/Admin/AdminUserCard";
+import AdminUserTable from "../components/Admin/AdminUserTable";
 
 const AllUsersScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isError, users, isFetching } = useSelector(adminSelector);
+  const { isError, isFetching, isSuccess, isUserInsightSuccess, userInsight } =
+    useSelector(adminSelector);
 
   useEffect(() => {
-    dispatch(fetchUsersDetails({ token: localStorage.getItem('token') }));
+    dispatch(fetchUserInsight({ token: localStorage.getItem("token") }));
   }, []);
 
-  return (
-    <div className='main-container'>
-      <div className='table-responsive'>
-        <table className='table table-sm table-striped table-hover'>
-          <thead>
-            <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Name</th>
-              <th scope='col'>Email</th>
-              <th scope='col'>Uploads</th>
-              <th scope='col'>Playlists</th>
-              <th scope='col'>Status</th>
-              <th scope='col'>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {!isFetching ? (
-              users.map((user, index) => {
-                return (
-                  <tr key={user._id}>
-                    <th scope='row'>{index + 1}</th>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>
-                      {user.is_authenticated ? (
-                        <span className='badge badge-success'>
-                          <span className='material-symbols-rounded mr-1'>
-                            verified_user
-                          </span>
-                          Authenticated
-                        </span>
-                      ) : (
-                        <span />
-                      )}
+  const [musicData, setMusicData] = useState({
+    labels: userInsight.map((data) => data._id.month),
+    datasets: [
+      {
+        label: "New Users",
+        data: userInsight.map((data) => data.count),
+        backgroundColor: "#3d85a3",
+        borderColor: "#3d85a3",
+        borderWidth: 2,
+      },
+    ],
+  });
 
-                      {user.is_verified ? (
-                        <span className='badge badge-info'>
-                          <span className='material-symbols-rounded mr-1 f-20'>
-                            verified
-                          </span>
-                          Verified
-                        </span>
-                      ) : (
-                        <span />
-                      )}
-                    </td>
-                    <td className='text-center'>
-                      <button
-                        type='button'
-                        className='btn btn-sm material-symbols-rounded bg-danger'
-                      >
-                        delete_forever
-                      </button>
-                      <button
-                        type='button'
-                        className='btn btn-sm  material-symbols-rounded bg-warning'
-                      >
-                        warning
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })
-            ) : (
-              <Rings />
-            )}
-          </tbody>
-        </table>
+  return (
+    <div className="main-container monetization-container">
+      <AdminUserCard />
+      <h4 className="mt-3">New User Registered per Month</h4>
+      <div className="m-5">
+      {isUserInsightSuccess?(
+        <LineChart chartData={musicData} />
+        ) : (
+          <Rings />
+        )}
       </div>
+      <h4 className="mt-3">User Details</h4>
+      <AdminUserTable />
     </div>
-    // <div>
-    //   {!isFetching ? (
-    //     users.map((user) => {
-    //       return <h2>{user.name}</h2>;
-    //     })
-    //   ) : (
-    //     <Rings />
-    //   )}
-    // </div>
   );
 };
 
