@@ -51,7 +51,6 @@ const ProfileScreen = () => {
     dispatch(
       changeDiscoverable({ token: token, is_discoverable: discoverable })
     );
- 
     if (isSuccess) {
       notify("Status changed !!");
     }
