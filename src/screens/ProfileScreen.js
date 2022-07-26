@@ -10,6 +10,7 @@ import "../styles/ProfileScreen.css";
 import { Rings } from "react-loader-spinner";
 import UpdateProfileModal from "../components/Profile/UpdateProfileModal";
 import DeleteProfileModal from "../components/Delete/DeleteProfileModal";
+import { toast } from "react-toastify";
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const ProfileScreen = () => {
   };
 
   const handleDiscoverable = (e) => {
+    notify();
     e.preventDefault();
     const token = localStorage.getItem("token");
     const discoverable = e.target.checked;
@@ -56,6 +58,17 @@ const ProfileScreen = () => {
     const token = localStorage.getItem("token");
     dispatch(verificationRequest({ token: token }));
   };
+  const notify = () =>
+    toast.success("Wow so easy!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   return (
     <div className="profile">

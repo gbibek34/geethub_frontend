@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import '../../styles/Sidebar.css';
-import logo from '../../images/logo-pride.png';
+import logo from '../../images/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMyProfile, userSelector } from '../../features/User/UserSlice';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -47,6 +47,19 @@ const Sidebar = () => {
                     <span className='material-symbols-rounded'>group</span>
                   </div>
                   <div className='item-name'>Users</div>
+                </NavLink>
+                <NavLink
+                  to='/admin/music'
+                  className={(navData) =>
+                    navData.isActive
+                      ? 'option-item active-option'
+                      : 'option-item'
+                  }
+                >
+                  <div className='item-icon'>
+                    <span className='material-symbols-rounded'>audio_file</span>
+                  </div>
+                  <div className='item-name'>Musics</div>
                 </NavLink>
                 <NavLink
                   to='/admin/userverification'
