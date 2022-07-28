@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialStateValue = {
   tips: [],
@@ -7,6 +8,29 @@ const initialStateValue = {
   isSuccess: false,
   isError: false,
 };
+
+const notify = (message) =>
+  toast.success(message, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+const notifyError = (message) =>
+  toast.error(message, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
 export const createTransaction = createAsyncThunk(
   "artist/tip",
@@ -26,14 +50,20 @@ export const createTransaction = createAsyncThunk(
       );
       let data = response.data;
       if (data.success !== true) {
+        notifyError("Insufficent balance");
         return thunkAPI.rejectWithValue(data);
       }
       if (data.success === true) {
+        notify(
+          "Sucessfully transferred " + amount + " coins from your account."
+        );
         return thunkAPI.fulfillWithValue(data);
       } else {
+        notifyError("Something went wrong");
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
+      notifyError("Something went wrong");
       return thunkAPI.rejectWithValue(e.data);
     }
   }

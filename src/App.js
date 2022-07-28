@@ -27,6 +27,9 @@ import NotFound from "./screens/NotFound";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import Monetization from "./screens/admin/Monetization";
 import LoadMoney from "./screens/LoadMoney";
+import HomeScreen from "./screens/HomeScreen";
+import MusicDashboard from "./screens/admin/MusicDashboard";
+import ArtistProfileAdmin from "./screens/admin/ArtistProfileAdmin";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +52,7 @@ function App() {
               <Route path="/admin" element={<ProtectedAdminRoute />}>
                 <Route element={<PageLayout />}>
                   <Route path="" element={<AllUsersScreen />} />
+                  <Route path="music" element={<MusicDashboard />} />
                   <Route
                     path="reportedmusic"
                     element={<ReportedMusicScreen />}
@@ -59,12 +63,17 @@ function App() {
                     element={<UserVerification />}
                   />
                   <Route path="monetization" element={<Monetization />} />
+                  <Route
+                    path="artist/:artistid"
+                    element={<ArtistProfileAdmin />}
+                  />
                 </Route>
               </Route>
               {/* // user path */}
               <Route path="/" element={<PrivateRoute />}>
                 <Route element={<PageLayout />}>
                   <Route path="/profile" element={<MyUploads />} />
+                  <Route path="/home" element={<HomeScreen />} />
                   <Route path="/playlist" element={<MyPlaylists />} />
                   <Route path="/" element={<AllMusics />} />
                   <Route

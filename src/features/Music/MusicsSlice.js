@@ -9,6 +9,9 @@ const initialStateValue = {
   errorMessage: "",
   likedmusics: [],
   reportedmusic: [],
+  popularmusic: [],
+  latestmusic: [],
+  followedmusic: [],
 };
 
 export const fetchMyMusics = createAsyncThunk(
@@ -36,7 +39,7 @@ export const fetchMyMusics = createAsyncThunk(
 
 export const fetchReportedMusic = createAsyncThunk(
   "music/reported/all",
-  async ({token}, thunkAPI) => {
+  async ({ token }, thunkAPI) => {
     try {
       const response = await axios.get(
         "http://localhost:3000/admin/musicreport/musics",
@@ -136,6 +139,83 @@ export const editMusicDetails = createAsyncThunk(
         }
       );
 
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const fetchPopularMusic = createAsyncThunk(
+  "music/popular",
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/music/discover/popular",
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      console.log(e);
+
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const fetchLatestMusic = createAsyncThunk(
+  "music/latest",
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/music/discover/latest",
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      let data = response.data;
+      if (data.success !== true) {
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.success === true) {
+        return thunkAPI.fulfillWithValue(data);
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.data);
+    }
+  }
+);
+
+export const fetchFollowedMusic = createAsyncThunk(
+  "music/followed",
+  async ({ token }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/music/discover/followed",
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       let data = response.data;
       if (data.success !== true) {
         return thunkAPI.rejectWithValue(data);
@@ -254,6 +334,62 @@ export const musicsSlice = createSlice({
       state.isSuccess = true;
       state.isError = false;
       state.reportedmusic = payload.data;
+    },
+
+    [fetchPopularMusic.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchPopularMusic.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      console.log("failed");
+      state.isSuccess = false;
+      state.errorMessage = "Could not load musics";
+    },
+    [fetchPopularMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      console.log(payload.data);
+      state.popularmusic = payload.data;
+    },
+    [fetchLatestMusic.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchLatestMusic.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+
+      state.errorMessage = "Could not load musics";
+    },
+    [fetchLatestMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.latestmusic = payload.data;
+    },
+    [fetchFollowedMusic.pending]: (state) => {
+      state.isFetching = true;
+      state.isError = false;
+      state.isSuccess = false;
+    },
+    [fetchFollowedMusic.rejected]: (state) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.isSuccess = false;
+
+      state.errorMessage = "Could not load musics";
+    },
+    [fetchFollowedMusic.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.followedmusic = payload.data;
     },
   },
 });

@@ -90,7 +90,7 @@ const PlaylistMusicCard = ({ playlistId, music, allMusics, item }) => {
         </div>
       </div>
       <div className="mside-music-card">
-        <div className="music-playtime">{music.length}</div>
+        <div className="music-playtime">{(music.length/60).toFixed(2)}</div>
       </div>
       <div className="rside-music-card">
         <div className="music-action-buttons">

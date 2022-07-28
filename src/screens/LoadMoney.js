@@ -7,8 +7,9 @@ import { useState } from 'react';
 const LoadMoney = () => {
   const amountTable = [
     { id: 1, coins: 500, price: 100 },
-    { id: 2, coins: 1000, price: 195 },
-    { id: 3, coins: 5000, price: 800 },
+    { id: 2, coins: 1000, price: 200 },
+    { id: 3, coins: 2000, price: 400 },
+    { id: 4, coins: 4000, price: 800 },
   ];
   const dispatch = useDispatch();
   const onCardClickHandler = (amount) => {

@@ -24,6 +24,18 @@ const UploadModal = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const warningnotify = (message) =>
+  toast.warn(message, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -107,7 +119,7 @@ const UploadModal = (props) => {
             <div className='form-group'>
               <label htmlFor='MusicFile'>Upload Your Music</label>
               <MusicUploader
-                onFileSelectError={({ error }) => alert(error)}
+                onFileSelectError={({ error }) => warningnotify(error)}
                 onFileSelectSuccess={(file) => setAudio(file)}
               />
             </div>
@@ -115,7 +127,7 @@ const UploadModal = (props) => {
               <label htmlFor='UploadCoverArt'>Cover Art</label>
               <ImageUploader
                 coverArt={coverArt}
-                onFileSelectError={({ error }) => alert(error)}
+                onFileSelectError={({ error }) => warningnotify(error)}
                 onFileSelectSuccess={(file) => setCoverArt(file)}
                 onFileClear={() => setCoverArt('')}
               />

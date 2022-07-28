@@ -25,7 +25,6 @@ const initialStateValue = {
   isError: false,
   errorMessage: "",
   isFollowed: "",
-  coins: 0,
   isAdmin: false,
   verification_request: false,
 };
