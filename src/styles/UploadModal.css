@@ -1,0 +1,52 @@
+.file-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 200px;
+    height: 100px;
+
+    border: 2px dashed #c2cdda;
+    border-radius: 5px;
+}
+
+.file-wrapper img {
+    width: 200px;
+    height: 96px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.cover-upload {
+    font-size: 40px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+
+.cover-remove {
+    font-size: 15px;
+
+    position: absolute;
+    top: 10%;
+    right: 0%;
+
+    /* display: none; */
+
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+
+#UploadCoverArt {
+    display: none;
+}
+
+#UploadProfileImage {
+    display: none;
+}

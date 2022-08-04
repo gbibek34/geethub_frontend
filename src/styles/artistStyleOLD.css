@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+
+  background: #f4f4f5;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh;
+
+  background-color: #e8e9ec;
+}
+
+.page-header {
+  font-family: "Open Sans";
+  font-size: 48px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 65px;
+
+  display: flex;
+  align-items: center;
+
+  height: 65px;
+
+  color: #000000;
+}
+
+.music-status {
+  width: 20%;
+
+  border-left: 1px gray solid;
+  background-color: #f4f4f5;
+}
+
+.clr_primaryFG {
+  color: #3d85a3;
+}
+
+.clr_primaryBG {
+  background-color: #3d85a3;
+}
+
+.btn-main {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 160px;
+  height: 50px;
+
+  text-align: center;
+
+  color: #f4f4f5;
+  border: #3d85a3;
+  background-color: #3d85a3;
+}
+
+.btn-main-outline {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 160px;
+  height: 50px;
+
+  text-align: center;
+
+  color: #3d85a3;
+  border: solid #3d85a3 3px;
+  background-color: #f4f4f5;
+}
+
+.btn-main-outline:hover {
+  color: #f4f4f5;
+  border: solid #698a98 3px;
+  background-color: #698a98;
+}
+
+.back_btn_container {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back_btn_container:hover {
+  text-decoration: none;
+
+  color: #344b54;
+}
+
+.back_btn_container:focus {
+  text-decoration: none;
+
+  color: #698a98;
+}
+
+.artist_profile_container {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  padding: 20px;
+}
+
+.artist_profile_picture {
+  width: 165px;
+  height: 165px;
+  max-height: 20%;
+
+  border-radius: 25px;
+
+  object-fit: cover;
+}
+
+.artist_profile_details {
+  display: block;
+
+  width: 80%;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.artist_profile_name {
+  font-family: "Inter";
+  font-size: 42px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.artist_profile_desc,
+.artist_profile_stat {
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+
+  display: flex;
+  overflow-y: hidden;
+  align-items: center;
+
+  width: 95%;
+  max-height: 80px;
+
+  color: #9799a0;
+}
+
+.artist_profile_stat {
+  width: 30%;
+}
+
+.artist_profile_all_stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.artist_profile_buttons {
+}
+
+.btn-play {
+  width: max-content;
+
+  background-color: #f4f4f5;
+}
+
+.btn-play:hover {
+  transform: scale(1.5);
+
+  background-color: #f4f4f5;
+}
+
+.artist_profile_play {
+  width: 150px;
+  height: 150px;
+}
+
+.play_symbol {
+  font-size: 48px;
+
+  color: #3d85a3;
+  background-color: #f4f4f5;
+}
+
+.artist_profile_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.artist_profile_actions {
+  display: flex;
+  flex-direction: row;
+}

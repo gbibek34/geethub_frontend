@@ -1,0 +1,77 @@
+.monetization-container {
+  overflow-y: scroll;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}
+
+.bg-soft-danger {
+  background-color: #ffd6e0;
+}
+
+.bg-soft-success {
+  background-color: #ccf5e7;
+}
+.transaction-card-container > div > .rounded {
+  background-color: #fff;
+  border: none;
+  color: #fff;
+  min-height: 150px;
+  border-radius: 8px;
+}
+.transaction-card-container h6 {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #fff;
+  font-weight: 900;
+}
+.gra-blue {
+  background: linear-gradient(
+    180deg,
+    #3d85a3 0%,
+    rgba(103, 170, 197, 0.630653) 154.71%,
+    rgba(176, 233, 255, 0) 230%
+  );
+}
+.gra-yellow {
+  background: linear-gradient(
+    180deg,
+    #ffc42d 0%,
+    #fff9d8 182.54%,
+    rgba(255, 255, 255, 0) 230%
+  );
+}
+.gra-green {
+  background: linear-gradient(
+    180deg,
+    #21a179 0%,
+    rgba(159, 250, 137, 0.630653) 189.18%,
+    rgba(173, 197, 122, 0) 230%
+  );
+}
+.gra-red {
+  background: linear-gradient(
+    180deg,
+    #f18766 0%,
+    rgba(245, 202, 151, 0.630653) 159.29%,
+    rgba(255, 242, 171, 0) 230%
+  );
+}

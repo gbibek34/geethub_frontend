@@ -1,0 +1,84 @@
+/* Reported Music Card CSS */
+
+.music-report-card {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.report-status-color {
+    width: 5px;
+
+    border-radius: 8px 0px 0px 8px;
+}
+
+.music-report-information {
+    width: 100%;
+    padding: 10px;
+}
+
+.reported-music {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 10px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba( 27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.reported-music div {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.admin-verify {
+    transition: ease-in-out 0.2s;
+}
+
+.admin-verify:hover {
+    transform: scale(1.1);
+}
+
+.music-reported-by {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.music-reported-on {
+    color: gray;
+}
+
+.music-report-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.report-reject-btn,
+.report-resolve-btn {
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    color: white;
+    border-radius: 5px;
+}
+
+.report-reject-btn {
+    background: red;
+}
+
+.report-resolve-btn {
+    background: green;
+}

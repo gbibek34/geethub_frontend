@@ -1,0 +1,226 @@
+.major-details {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.music-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.music-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-music {
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+
+  opacity: 0;
+}
+
+.delete-music {
+  margin-left: 15px;
+
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+
+  opacity: 0;
+}
+
+/* library */
+
+.clr_primaryFG {
+  color: #3d85a3;
+}
+
+.clr_primaryBG {
+  background-color: #3d85a3;
+}
+
+/* all playlists */
+
+.all_playlists {
+  margin-top: 32px;
+  padding-bottom: 20px;
+
+  border-radius: 8px;
+  background: #fafafa;
+  box-shadow: 0px 8px 20px -80px rgba(0, 0, 0, 0.25);
+}
+
+/* playlist header */
+
+.upload-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+
+  padding: 8px 24px;
+}
+
+.sub-header {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+
+  padding: 5px 0px 0px 10px;
+
+  color: #9799a0;
+}
+
+.create_new_playlist {
+  font-size: 16px;
+  font-weight: bold !important;
+
+  cursor: pointer;
+
+  color: #3d85a3;
+}
+
+.create_new_playlist:hover {
+  color: #698a98;
+}
+
+/* for playlists scrollable */
+
+.all_playlists .allmusic-container {
+  max-height: 530px;
+  margin-right: 4px;
+  padding: 0px 24px;
+}
+
+.allmusic-container {
+  overflow-y: scroll;
+
+  height: 85vh;
+}
+
+@media(max-width: 1250px) {
+  .allmusic-container {
+    overflow-y: scroll;
+
+    height: 73vh;
+  }
+}
+
+.artist-music-container {
+  overflow-y: scroll;
+
+  height: 50vh;
+}
+
+.playlist-music-container {
+  overflow-y: scroll;
+
+  height: 50vh;
+}
+
+/* individual playlist */
+
+.indiv_playlist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 110px;
+
+  /* margin: 20px; */
+
+  margin-bottom: 8px;
+  padding: 5px 0px;
+  padding-right: 28px;
+
+  cursor: pointer;
+
+  border-radius: 8px;
+  background: #f4f4f5;
+}
+
+/* image, name and description */
+
+.playlist_details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.playlist_image {
+  width: 71px;
+  height: 71px;
+  margin: 20px 18px;
+
+  border-radius: 8px;
+
+  object-fit: cover;
+}
+
+/* title class for name and desc blocks */
+
+.playlist_title {
+  max-width: 390px;
+}
+
+.playlist_name {
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+
+  text-decoration: none !important;
+
+  color: #000 !important;
+}
+
+.playlist_descr {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 22px;
+
+  color: #9799a0;
+}
+
+/* playlist stats */
+
+.playlist_allstats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 440px;
+}
+
+.playlist_stat {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 22px;
+
+  color: #9799a0;
+}
+
+.image_container {
+  cursor: pointer;
+}
+
+
+/* Load Money*/
+.coin-box {
+  background-color: white;
+  border-radius: 8px;
+  height: 100px;
+  width: 200px;
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.amount-container {
+  display: flex;
+  justify-content: flex-start;
+
+}

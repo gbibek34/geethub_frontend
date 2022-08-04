@@ -1,0 +1,31 @@
+/* signup css */
+
+
+.btn-cyan{
+  background-color: #3D85A3;
+  color: white;
+}
+
+.loginContinue {
+  width: 250px;
+  margin: auto;
+  color: white;
+}
+.gotoSignup {
+  color: #67686c;
+}
+.gotoSignup:hover{
+  /* text-decoration: ; */
+  color: #3D85A3;
+}
+.loginHeader {
+  margin-bottom: 100px;
+}
+.signupHeader {
+  margin-bottom: 60px;
+}
+
+.agree{
+  text-align: left;
+}
+

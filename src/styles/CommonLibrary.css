@@ -1,0 +1,139 @@
+.page-header {
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 65px;
+
+  margin-bottom: 0px;
+}
+
+/* font library */
+
+.f-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.f-opensans {
+  font-family: "Open Sans", sans-serif;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+/* colour library */
+
+.clr-main-fg {
+  color: #3d85a3;
+}
+
+.clr-main-bg {
+  background-color: #3d85a3;
+}
+
+.clr-gray {
+  color: #9799a0;
+}
+
+.clr-light-gray-bg {
+  background-color: #f4f4f5;
+}
+
+/* Buttons */
+button {
+  font-size: 14px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+
+  transition: all 0.2s ease;
+  text-align: center;
+  text-transform: uppercase;
+
+  border-radius: 8px !important;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover>.material-symbols-rounded {
+  font-size: 32px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-gradient-hover {
+  width: 150px;
+  height: 52px;
+
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+
+  color: #fff;
+  border-radius: 8px;
+  background-size: 300% 100%;
+}
+
+.btn-gradient-hover:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+  color: #fff;
+  background-position: 100% 0;
+}
+
+.btn-profile-play {
+  width: 200px;
+
+  background-image: linear-gradient(to right, #3d85a3, #4fbaca, #45abc0);
+}
+
+.btn-follow,
+.btn-edit {
+  width: 150px;
+
+  transition: all 0.2s ease;
+
+  color: #9799a0;
+  border: solid #9799a0 2px;
+  background-color: #f4f4f5;
+}
+
+.btn-follow:hover,
+.btn-edit:hover {
+  color: #9799a0;
+}
+
+.btn-delete {
+  width: 150px;
+
+  transition: all 0.2s ease;
+
+  color: #B93160;
+  border: solid #B93160 2px;
+  background-color: #f4f4f5;
+}
+
+.btn-delete:hover {
+  color: #B93160;
+}

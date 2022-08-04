@@ -1,0 +1,79 @@
+.uploaded-music {
+    overflow-y: scroll;
+
+    height: 85vh;
+    padding: 10px;
+
+    border-radius: 5px;
+    background-color: #FAFAFA;
+}
+
+.upload-button {
+    font-weight: 600;
+
+    padding: 5px 20px;
+
+    cursor: pointer;
+    transition: ease-in 0.2s;
+
+    color: #3D85A3;
+    border: 2px #FAFAFA solid;
+    border-radius: 2px;
+}
+
+.upload-button:hover {
+    transform: scale(1.01);
+
+    background: #F4F4F5;
+}
+
+.all-music {
+    overflow-y: scroll;
+
+    height: 60vh;
+    padding: 0px 20px 20px 20px;
+}
+
+.edit-music {
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+
+    opacity: 0;
+}
+
+.delete-music {
+    margin-left: 15px;
+
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+
+    opacity: 0;
+}
+
+.queue-music {
+    margin-left: 15px;
+
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+
+    opacity: 0;
+}
+
+.other-details {
+    font-family: 'Dosis', sans-serif;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.play-button {
+    font-size: 35px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: #FAFAFA;
+}
